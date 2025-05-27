@@ -1,5 +1,5 @@
 // components/AuthFlow.tsx
-import Header from '@/components/ui/Header';
+import Header from '@/components/shell/Header';
 import Login from '@/features/login/components/Login';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -17,7 +17,7 @@ export default function AuthFlow() {
 
     const transitionTimer = setTimeout(() => {
       setPhase('login');
-    }, 2800);
+    }, 2500);
 
     return () => {
       clearTimeout(splashTimer);
@@ -26,7 +26,7 @@ export default function AuthFlow() {
   }, []);
 
   return (
-    <div className='relative h-screen w-screen overflow-hidden'>
+    <div className='relative w-screen h-screen overflow-hidden'>
       {/* Continuous Header Animation */}
       <Header
         groupClassName='bg-none'

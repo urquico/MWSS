@@ -1,12 +1,9 @@
 import { useLogoutMutation } from '@/api/mutation/logout';
-import IconLogout2 from '@/components/icons/IconLogout2';
-import IconUserCircle from '@/components/icons/IconUserCircle';
-import Avatar from '@/components/ui/Avatar';
-import Menu from '@/components/ui/Menu';
-import { useSidebar } from '@/hooks/sidebar-hooks';
-import { Text } from '@mantine/core';
-import { useNavigate } from 'react-router-dom';
 
+import { useSidebar } from '@/hooks/sidebar-hooks';
+import { Flex, Text } from '@mantine/core';
+import { useNavigate } from 'react-router-dom';
+import { IconLogout } from '@tabler/icons-react';
 /**
  *
  * @description
@@ -21,15 +18,14 @@ import { useNavigate } from 'react-router-dom';
  * <NavFooter />
  * )
  *
- **/
+ **/interface NavFooterProps {
+  collapsed: boolean;
+}
 
-// Todo: add test cases
-function NavFooter() {
+function NavFooter({ collapsed }: NavFooterProps) {
   const navigate = useNavigate();
   const firstName = localStorage.getItem('firstName');
   const lastName = localStorage.getItem('lastName');
-
-  const { open } = useSidebar();
 
   const { mutateAsync: logout } = useLogoutMutation();
 
@@ -42,32 +38,13 @@ function NavFooter() {
   };
 
   return (
-    <Menu>
-      <Menu.Target>
-        <div
-          className={`relative flex w-full cursor-pointer flex-row items-center md:text-center ${
-            !open && 'justify-center'
-          }`}
-          style={{ width: '100%' }}
-        >
-          <Avatar />
-          {open && (
-            <Text className='text-md w-56 truncate px-2 text-center font-semibold text-white'>
-              {firstName} {lastName}
-            </Text>
-          )}
-        </div>
-      </Menu.Target>
-      <Menu.Dropdown>
-        <Menu.Label>Settings</Menu.Label>
-        <Menu.Item leftSection={<IconUserCircle height={14} width={14} />}>
-          <Text onClick={handleViewProfile}>View Profile</Text>
-        </Menu.Item>
-        <Menu.Item leftSection={<IconLogout2 />}>
-          <Text onClick={handleLogout}>Logout</Text>
-        </Menu.Item>
-      </Menu.Dropdown>
-    </Menu>
+    <Flex>
+      <IconLogout className='text-neutral'></IconLogout>
+      <Text fz={16} fw={600} ml={10} onClick={handleLogout} style={{ cursor: 'pointer' }} className='text-neutral'>
+Back to Homepage
+      </Text>
+    </Flex>
+
   );
 }
 

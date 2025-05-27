@@ -1,257 +1,49 @@
 import { lazy } from 'react';
 
-// login
+// Authentication
 export const Login = lazy(() => import('@/routes/Login'));
 export const LandingPage = lazy(() => import('@/routes/LandingPage'));
-// // change password
-// export const ChangePassword = lazy(() => import('@/routes/ChangePassword'));
 
-// // profile
-// export const Profile = lazy(() => import('@/routes/Profile'));
+// Main Modules
+export const Dashboard = lazy(() => import('@/routes/Dashboard'));
+export const IncomeManagement = lazy(() => import('@/routes/IncomeManagement'));
+// export const BudgetManagement = lazy(() => import('@/routes/BudgetManagement'));
+// export const DisbursementManagement = lazy(() => import('@/routes/DisbursementManagement'));
+// export const TreasuryManagement = lazy(() => import('@/routes/TreasuryManagement'));
+// export const LoanManagement = lazy(() => import('@/routes/LoanManagement'));
+// export const PPEManagement = lazy(() => import('@/routes/PPEManagement'));
+// export const BankReconciliation = lazy(() => import('@/routes/BankReconciliation'));
+// export const FinancialReport = lazy(() => import('@/routes/FinancialReport'));
+// export const ProvidentFund = lazy(() => import('@/routes/ProvidentFund'));
+// export const TaxCompliance = lazy(() => import('@/routes/TaxCompliance'));
+// export const SystemAdministration = lazy(() => import('@/routes/SystemAdministration'));
 
-// //dashboard
-// export const Dashboard = lazy(() => import('@/routes/Dashboard'));
+// Sub-modules
+// export const SOACreation = lazy(() => import('@/routes/income-management/SOACreation'));
+// export const InvoiceTracking = lazy(() => import('@/routes/income-management/InvoiceTracking'));
+// export const TenantManagement = lazy(() => import('@/routes/income-management/TenantManagement'));
+// export const PaymentMonitoring = lazy(() => import('@/routes/income-management/PaymentMonitoring'));
 
-// export const HeadDashboard = lazy(() => import('@/routes/HeadDashboard'));
+// export const BudgetPreparation = lazy(() => import('@/routes/budget-management/BudgetPreparation'));
+// export const BudgetMonitoring = lazy(() => import('@/routes/budget-management/BudgetMonitoring'));
 
-// //queue
-// export const QueuingManagement = lazy(
-//   () => import('@/routes/QueuingManagement'),
-// );
+// export const PersonnelService = lazy(() => import('@/routes/disbursement-management/PersonnelService'));
+// export const FinancialExpenses = lazy(() => import('@/routes/disbursement-management/FinancialExpenses'));
+// export const CapitalOutlay = lazy(() => import('@/routes/disbursement-management/CapitalOutlay'));
+// export const MOOE = lazy(() => import('@/routes/disbursement-management/MOOE'));
 
-// //transactions
-// export const Transactions = lazy(() => import('@/routes/Transactions'));
+// export const CollectionManagement = lazy(() => import('@/routes/treasury-management/CollectionManagement'));
+// export const InvestmentManagement = lazy(() => import('@/routes/treasury-management/InvestmentManagement'));
 
-// export const CardsAndTable = lazy(
-//   () => import('@/features/transactions/components/table/CardsAndTable'),
-// );
+// export const RetainedAssets = lazy(() => import('@/routes/ppe-management/RetainedAssets'));
+// export const ServiceConcessionAssets = lazy(() => import('@/routes/ppe-management/ServiceConcessionAssets'));
 
-// export const OngoingTable = lazy(
-//   () => import('@/features/transactions/components/table/OngoingTable'),
-// );
+// export const TrialBalance = lazy(() => import('@/routes/financial-report/TrialBalance'));
+// export const FinancialStatements = lazy(() => import('@/routes/financial-report/FinancialStatements'));
 
-// export const InQueueTable = lazy(
-//   () => import('@/features/transactions/components/table/InQueueTable'),
-// );
+// export const ContributionManagement = lazy(() => import('@/routes/provident-fund/ContributionManagement'));
+// export const FundLoanProcessing = lazy(() => import('@/routes/provident-fund/FundLoanProcessing'));
 
-// export const CancelledTable = lazy(
-//   () => import('@/features/transactions/components/table/CancelledTable'),
-// );
+// export const AdminSettings = lazy(() => import('@/routes/system-administration/AdminSettings'));
+// export const Customization = lazy(() => import('@/routes/system-administration/Customization'));
 
-// export const NoShowTable = lazy(
-//   () => import('@/features/transactions/components/table/NoShowTable'),
-// );
-
-// export const DoneTable = lazy(
-//   () => import('@/features/transactions/components/table/DoneTable'),
-// );
-
-// //appointments
-
-// export const Appointments = lazy(() => import('@/routes/Appointments'));
-
-// export const AppointmentsTable = lazy(
-//   () => import('@/features/appointments/component/table/AppointmentsTable'),
-// );
-
-// export const AppointmentsOngoing = lazy(
-//   () => import('@/features/appointments/component/table/OngoingTable'),
-// );
-// export const AppointmentsPending = lazy(
-//   () => import('@/features/appointments/component/table/PendingTable'),
-// );
-
-// export const AppointmentsCancelled = lazy(
-//   () => import('@/features/appointments/component/table/CancelledTable'),
-// );
-
-// export const AppointmentsNoShow = lazy(
-//   () => import('@/features/appointments/component/table/NoShowTable'),
-// );
-
-// export const AppointmentsDone = lazy(
-//   () => import('@/features/appointments/component/table/DoneTable'),
-// );
-
-// export const AppointmentManagement = lazy(
-//   () => import('@/routes/AppointmentManagement'),
-// );
-
-// export const AppointmentManagementTable = lazy(
-//   () =>
-//     import(
-//       '@/features/appointment-management/component/table/AppointmentManagementTable'
-//     ),
-// );
-
-// export const AddSchedule = lazy(
-//   () => import('@/features/appointment-management/component/form/AddSchedule'),
-// );
-
-// export const ViewSchedule = lazy(
-//   () => import('@/features/appointment-management/component/form/ViewSchedule'),
-// );
-
-// export const EditSchedule = lazy(
-//   () => import('@/features/appointment-management/component/form/EditSchedule'),
-// );
-
-// //kiosk management
-// export const Kiosk = lazy(() => import('@/routes/Kiosk'));
-
-// export const KioskTable = lazy(
-//   () => import('@/features/kiosk-management/component/table/KioskTable'),
-// );
-
-// export const AddKiosk = lazy(
-//   () => import('@/features/kiosk-management/component/form/AddKiosk'),
-// );
-
-// export const ViewKiosk = lazy(
-//   () => import('@/features/kiosk-management/component/form/ViewKiosk'),
-// );
-
-// export const EditKiosk = lazy(
-//   () => import('@/features/kiosk-management/component/form/EditKiosk'),
-// );
-
-// //user's Feedback
-// export const UserFeedback = lazy(() => import('@/routes/UserFeedback'));
-
-// //feedback
-// export const Feedback = lazy(() => import('@/routes/Feedback'));
-
-// //feedback management
-// export const FeedbackManagement = lazy(
-//   () => import('@/routes/FeedbackManagement'),
-// );
-
-// export const QuestionsList = lazy(
-//   () => import('@/features/feedback-management/component/data/QuestionsList'),
-// );
-
-// export const AddQuestion = lazy(
-//   () => import('@/features/feedback-management/component/form/AddQuestion'),
-// );
-
-// export const EditQuestion = lazy(
-//   () => import('@/features/feedback-management/component/form/EditQuestion'),
-// );
-
-// //office management
-// export const Office = lazy(() => import('@/routes/Office'));
-
-// export const OfficeTable = lazy(
-//   () => import('@/features/office/components/table/OfficeTable'),
-// );
-
-// export const AddOffice = lazy(
-//   () => import('@/features/office/components/form/office/AddOffice'),
-// );
-
-// export const ViewOffice = lazy(
-//   () => import('@/features/office/components/form/office/ViewOffice'),
-// );
-
-// export const EditOffice = lazy(
-//   () => import('@/features/office/components/form/office/EditOffice'),
-// );
-
-// export const MonitorTable = lazy(
-//   () => import('@/features/office/components/table/MonitorTable'),
-// );
-
-// export const AddMonitor = lazy(
-//   () => import('@/features/office/components/form/monitor/AddMonitor'),
-// );
-
-// export const ViewMonitor = lazy(
-//   () => import('@/features/office/components/form/monitor/ViewMonitor'),
-// );
-
-// export const EditMonitor = lazy(
-//   () => import('@/features/office/components/form/monitor/EditMonitor'),
-// );
-
-// //service management
-// export const Service = lazy(() => import('@/routes/Service'));
-
-// export const ServiceTable = lazy(
-//   () => import('@/features/service-management/component/table/ServiceTable'),
-// );
-
-// export const AddService = lazy(
-//   () =>
-//     import('@/features/service-management/component/form/service/AddService'),
-// );
-
-// export const ViewService = lazy(
-//   () =>
-//     import('@/features/service-management/component/form/service/ViewService'),
-// );
-
-// export const EditService = lazy(
-//   () =>
-//     import('@/features/service-management/component/form/service/EditService'),
-// );
-
-// export const CounterAssignTable = lazy(
-//   () =>
-//     import('@/features/service-management/component/table/CounterAssignTable'),
-// );
-
-// export const AddCounter = lazy(
-//   () =>
-//     import('@/features/service-management/component/form/counter/AddCounter'),
-// );
-
-// export const ViewCounter = lazy(
-//   () =>
-//     import('@/features/service-management/component/form/counter/ViewCounter'),
-// );
-
-// export const EditCounter = lazy(
-//   () =>
-//     import('@/features/service-management/component/form/counter/EditCounter'),
-// );
-
-// //admin settings
-// export const AdminSettings = lazy(
-//   () => import('@/features/admin-settings/components/AdminSettings'),
-// );
-
-// export const UsersTable = lazy(
-//   () => import('@/features/admin-settings/components/table/UsersTable'),
-// );
-
-// export const AddUser = lazy(
-//   () => import('@/features/admin-settings/components/form/users/AddUser'),
-// );
-
-// export const ViewProfile = lazy(
-//   () => import('@/features/admin-settings/components/form/users/ViewProfile'),
-// );
-
-// export const EditUser = lazy(
-//   () => import('@/features/admin-settings/components/form/users/EditUser'),
-// );
-
-// export const RolesTable = lazy(
-//   () => import('@/features/admin-settings/components/table/RolesTable'),
-// );
-
-// export const AddRole = lazy(
-//   () => import('@/features/admin-settings/components/form/roles/AddRole'),
-// );
-
-// export const ViewRole = lazy(
-//   () => import('@/features/admin-settings/components/form/roles/ViewRole'),
-// );
-
-// export const EditRole = lazy(
-//   () => import('@/features/admin-settings/components/form/roles/EditRole'),
-// );
-
-// export const UserLogsTable = lazy(
-//   () => import('@/features/admin-settings/components/table/UserLogsTable'),
-// );

@@ -1,100 +1,111 @@
-import { useLogoutMutation } from '@/api/mutation/logout';
-import NavFooter from '@/components/ui/shell/NavFooter';
-import NavHeader from '@/components/ui/shell/NavHeader';
-import NavbarLink from '@/components/ui/shell/NavbarLink';
-import LastPathTracker from '@/hooks/last-path-tracker';
-import { useSidebar } from '@/hooks/sidebar-hooks';
-import {
-  Divider,
-  AppShell as MantineAppShell,
-  ScrollArea,
-} from '@mantine/core';
+import Text from '@/components/ui/Text';
+import { useSidebarStore } from '@/store/sidebar-store';
+import { AppShell } from '@mantine/core';
 import { ReactNode, useEffect } from 'react';
-
-import Submitting from '../Submitting';
-
-interface CollapseDesktopProps {
-  children: ReactNode;
+import { Outlet, useLocation } from 'react-router-dom';
+import SidebarToggle from './SidebarToggle';
+import LinksGroup from './LinksGroup';
+import NavFooter from './NavFooter';
+import { sidebarModules } from '@/lib/data/sidebar-links';
+import Header from './Header';
+interface ShellProps {
+  children?: ReactNode;
 }
 
 /**
- *
- * @description
- * The AppShell component is a layout component that wraps the entire
- * application. It contains the main layout structure of the application
- * including the sidebar, navbar, and main content area.
- *
- *
- * @param {ReactNode} children - The children to render inside the AppShell
- *
- * @returns {ReactNode} - The AppShell component
- *
- * @example
- * return (
- *  <AppShell>
- *   <div>Content goes here</div>
- * </AppShell>
- * )
- *
- **/
-
-function AppShell({ children }: CollapseDesktopProps) {
-  const { open, setOpen } = useSidebar();
-
-  const { isPending } = useLogoutMutation();
+ * Simplified Shell Component
+ * Uses sidebar-links.ts directly without needing props for links or module
+ */
+function Shell({ children }: ShellProps) {
+  const { isOpenSidebar, toggleSidebar } = useSidebarStore();
+  const location = useLocation();
 
   useEffect(() => {
-    const keydownHandler = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setOpen(!open);
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        toggleSidebar();
       }
     };
-    window.addEventListener('keydown', keydownHandler);
-    return () => window.removeEventListener('keydown', keydownHandler);
-  }, [open]);
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [toggleSidebar]);
 
+  // You can set a fixed module name or use the first sidebar link's label
+  const currentModule = sidebarModules.length > 0 ? sidebarModules[0].label : 'Menu';
+  const moduleName = sidebarModules[0]?.module;
   return (
-    <MantineAppShell
+    <AppShell
+      header={{ height: 90 }}
       navbar={{
-        width: open ? '20rem' : '6rem',
-        breakpoint: 'xs',
+        width: isOpenSidebar ? 280 : 80,
+        breakpoint: 'sm',
+        collapsed: { mobile: !isOpenSidebar },
       }}
+      className="bg-background"
     >
-      <LastPathTracker />
-      <MantineAppShell.Navbar className='top-0 flex items-stretch justify-center gap-6 bg-[#0e2f65] p-6'>
-        <MantineAppShell.Section
-          className='relative flex items-center'
-          onClick={() => setOpen(!open)}
-        >
-          <NavHeader />
-        </MantineAppShell.Section>
-        <MantineAppShell.Section grow component={ScrollArea} my='md'>
-          <NavbarLink />
-        </MantineAppShell.Section>
-        <Divider className='py-2' />
-        <MantineAppShell.Section
-          style={{
-            justifyContent: open ? 'flex-start' : 'center',
-            width: '100%',
-          }}
-        >
-          <NavFooter />
-        </MantineAppShell.Section>
-      </MantineAppShell.Navbar>
+      {/* Header */}
+      <AppShell.Header  className="flex items-center px-4 border-b">
+       
+          <SidebarToggle />
+          <Header
+            textSize={40}
+            textWeight={800}
+            textColor="#002161"
+            gradientFrom="#002161"
+            gradientTo="#0044C7"
+            gradientDeg={67}
+            groupClassName="p-2 bg-none"
+            logoSize={60}
+            headerText="MWSS - CORPORATE OFFICE"
+            position='top-left'
+            className='-ml-8'
+            
+             />
+      </AppShell.Header>
 
-      <MantineAppShell.Main>
-        <main
-          className={`lg:full w-full bg-[#f4f6ff] md:h-full xl:h-screen ${open ? '' : ''}`}
-        >
-          {isPending ? (
-            <Submitting title='Logging out please wait...' />
-          ) : (
-            children
-          )}
-        </main>
-      </MantineAppShell.Main>
-    </MantineAppShell>
+      {/* Sidebar */}
+      <AppShell.Navbar >
+          <AppShell.Section className="px-5 py-5 text-center">
+          <Text fw={700} fz={24} className="text-blue-900 uppercase font-roboto-slab">
+          Preparer
+       </Text>
+        </AppShell.Section>
+        <AppShell.Section className=" bg-[#FAFAFA] py-5 px-5">
+          <Text fw={700} fz={20} className=" font-roboto-slab text-neutral">
+              {isOpenSidebar ? moduleName : ''}
+
+       </Text>
+        </AppShell.Section>
+
+        <AppShell.Section grow component="nav" my="md" className="overflow-y-auto">
+          <div className="w-full py-2">
+            {sidebarModules.map((link) => (
+              <LinksGroup
+                key={link.label}
+                icon={link.icon}
+                label={link.label}
+                link={link.link}
+                path={link.path}
+                links={link.links}
+                initiallyOpened={location.pathname.startsWith(link.path || '')}
+              />
+            ))}
+          </div>
+        </AppShell.Section>
+
+        <AppShell.Section  className=" bg-[#FAFAFA] py-5 px-5">
+          <NavFooter collapsed={!isOpenSidebar} />
+        </AppShell.Section>
+      </AppShell.Navbar>
+
+      {/* Main Content */}
+      <AppShell.Main>
+        <section className="h-[calc(100vh-60px)] overflow-hidden p-4 md:p-6">
+          <div className="h-full overflow-auto">        {children || <Outlet />}</div>
+        </section>
+      </AppShell.Main>
+    </AppShell>
   );
 }
 
-export default AppShell;
+export default Shell;

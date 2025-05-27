@@ -14,6 +14,7 @@ import { Anchor, Grid } from '@mantine/core';
 import { useForm, zodResolver } from '@mantine/form';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 interface LoginProps {
   bgColor?: string;
@@ -52,27 +53,21 @@ const Login = ({
   });
 
   const { mutateAsync, isPending } = useLoginMutation();
+  const navigate = useNavigate();
 
   const handleSubmit = async (values: LoginRequest) => {
-    try {
-      await mutateAsync({
-        kiosk_code: values.kiosk_code,
-        password: values.password,
-      });
-    } catch (error) {
-      console.error(error);
-    }
+    navigate('/landing');
   };
 
   if (isPending)
     return (
-      <main className='flex flex-col items-center justify-center w-full h-screen'>
+      <main className='z-50 flex flex-col items-center justify-center w-full h-screen'>
         <Submitting title='Logging in please wait...' />
       </main>
     );
 
   return (
-    <BackgroundImage>
+    <BackgroundImage className='fade-in-blur'>
       {!isFromTransition && <div></div>}
 
       {/* Two-column layout */}
@@ -101,7 +96,7 @@ const Login = ({
           className='flex items-center justify-center'
         >
           <div className='w-full max-w-md'>
-            <Title fz={48} fw={600} className='font-roboto-slab text-blue900'>
+            <Title fz={48} fw={600} className='text-blue-900 font-roboto-slab'>
               Welcome!
             </Title>
             <Text fw={300} fz={24}>

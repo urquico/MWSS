@@ -1,11 +1,12 @@
 import { useCheckValidityQuery } from '@/api/query/check-validity';
 import Loader from '@/components/ui/Loader';
 import ErrorPage from '@/components/ui/error/ErrorPage';
+// import ErrorPage from '@/components/ui/error/ErrorPage';
 import { PropsWithChildren, createContext } from 'react';
+import { Navigate } from 'react-router-dom';
 
 export type SessionContextProps = {
   isTokenExpired: boolean;
-  status?: number;
 };
 
 /**
@@ -44,33 +45,38 @@ export const SessionWrapper = ({
 function SessionProvider({ children }: PropsWithChildren) {
   const { data: validity, isLoading, isError, error } = useCheckValidityQuery();
 
-  if (isLoading)
+  if (isLoading) {
     return (
       <main className='h-screen'>
         <Loader />
       </main>
     );
+  }
 
-  // Determine if the token is expired
-  const isTokenExpired = isError || validity?.statusCode === 401;
+  if (validity?.statusCode === 401) {
+    return <Navigate to='/' />;
+  }
 
-  if (isTokenExpired) {
-    // If the user is not logged in, show the ErrorPage component
+  if (isError) {
     return (
-      <main className='h-screen bg-[#f4f6ff]'>
-        <ErrorPage
-          message={error?.message || 'An error occurred.'}
-          status={error?.response?.status}
-        />
+      <main className='h-screen w-full'>
+        <ErrorPage status={error.status} message={error.message} />
       </main>
     );
   }
 
-  // Provide session context
   return (
-    <SessionWrapper value={{ isTokenExpired, status: validity?.statusCode }}>
-      {children}
-    </SessionWrapper>
+    <>
+      {validity?.redirect ? (
+        <Navigate to={validity.redirect} />
+      ) : (
+        <SessionWrapper
+          value={{ isTokenExpired: validity?.statusCode === 401 }}
+        >
+          {children}
+        </SessionWrapper>
+      )}
+    </>
   );
 }
 

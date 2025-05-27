@@ -1,6 +1,6 @@
 import { Image, Loader } from '@mantine/core';
 
-import logo from '/pasig-logo.svg';
+import logo from '/mwss-logo.svg';
 
 /**
  * LoaderPage component renders a full-screen loader centered on the page.
@@ -10,7 +10,7 @@ import logo from '/pasig-logo.svg';
 
 function LoaderPage() {
   return (
-    <div className='flex h-full max-w-full flex-col items-center justify-center gap-2'>
+    <div className='flex flex-col items-center justify-center h-full max-w-full gap-2'>
       <Image src={logo} alt='logo' className='monitor:size-40 size-20' />
       <Loader type='dots' size='lg' />
     </div>

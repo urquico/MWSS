@@ -19,6 +19,7 @@ function BackgroundImage({
   className = '',
 }: CustomBackgroundImageProps) {
   return (
+    
     <div
       className={className}
       style={{

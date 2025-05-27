@@ -1,5 +1,5 @@
 // pages/Splash.tsx
-import Header from '@/components/ui/Header';
+import Header from '@/components/shell/Header';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 

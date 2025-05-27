@@ -1,15 +1,7 @@
-/* Login.css */
 
   .fade-in-blur {
     animation: fadeInBlur 0.8s ease-out;
   }
-  /* Login.css or your global CSS */
-.bg-login-bg {
-  background-image: url('/background.png');
-  background-size: cover;         /* or 'contain' if you want the whole image always visible */
-  background-position: center;
-  background-repeat: no-repeat;
-}
   @keyframes fadeInBlur {
     0% {
       opacity: 0;

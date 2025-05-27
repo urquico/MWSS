@@ -42,7 +42,6 @@ export default {
         secondary: '#118dd2',
         'secondary-light': '#118def',
         darkBlue: '#0E2F65',
-        blue900:'#0E3687',
         gray: '#7c7c7c',
         lightGray: '#7c8594',
         background: '#eaeaea',

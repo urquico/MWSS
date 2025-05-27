@@ -1,9 +1,13 @@
-import AppShell from '@/components/ui/AppShell';
 import ErrorPage from '@/components/ui/error/ErrorPage';
-import { LandingPage, Login } from '@/lib/lazy';
+import Loader from '@/components/ui/Loader';
+import { Login, IncomeManagement, LandingPage, Dashboard } from '@/lib/lazy';
 import AuthGuard from '@/provider/auth-guard';
-import Landing from '@/routes/LandingPage';
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Outlet } from 'react-router-dom';
+import { Suspense } from 'react';
+import SessionProvider from '@/provider/session-provider';
+import { SidebarProvider } from '@/provider/sidebar-provider';
+import { ActiveRoute } from '@/types/routes-enums';
+import Shell from '@/components/shell/AppShell';
 
 
 export const router = createBrowserRouter([
@@ -17,22 +21,36 @@ export const router = createBrowserRouter([
       </AuthGuard>
     ),
   },
-
   {
     id: 'landing',
     path: '/landing',
+    element: (<LandingPage />)
+  },
+  {
+    id: 'root',
+    path: '/finance',
+    errorElement: <ErrorPage />,
     element: (
-        <Landing />
+        <Shell />
     ),
     children: [
-      //   {
-      //     path: 'dashboard',
-      //     element: <Dashboard />,
-      //   },
       {
-        path: '*',
-        element: <ErrorPage message='Page not found' status={404} />,
+        index: true,
+        path: ActiveRoute.DASHBOARD,
+        element: <Dashboard /> 
+      }, {
+        path: ActiveRoute.INCOME_MGMT,
+        element: <IncomeManagement />
       },
-    ],
+    ]
+  }
+],
+  {
+
+    hydrationData: {
+      loaderData: {
+        root: <Loader />,
+      },
+    },
   },
-]);
+);
