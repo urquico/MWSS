@@ -11,7 +11,7 @@ export const landingMenu: LandingMenuItem[] = [
   {
     title: 'Income Management',
     iconSrc: '/icons/coins.svg',
-    path: ActiveRoute.INCOME_MGMT,
+    path: ActiveRoute.INCOME_MANAGEMENT_DASHBOARD,
     onClick: () => console.log('Income clicked'),
   },
   {

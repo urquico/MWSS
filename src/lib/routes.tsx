@@ -5,10 +5,8 @@ import AuthGuard from '@/provider/auth-guard';
 import { createBrowserRouter, Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 import SessionProvider from '@/provider/session-provider';
-import { SidebarProvider } from '@/provider/sidebar-provider';
 import { ActiveRoute } from '@/types/routes-enums';
-import Shell from '@/components/shell/AppShell';
-
+import Shell from '@/components/ui/shell/AppShell';
 
 export const router = createBrowserRouter([
   {
@@ -24,22 +22,29 @@ export const router = createBrowserRouter([
   {
     id: 'landing',
     path: '/landing',
-    element: (<LandingPage />)
+    element: (
+      <Suspense fallback={<Loader />}>
+        <LandingPage />
+      </Suspense>
+    )
   },
   {
     id: 'root',
     path: '/finance',
     errorElement: <ErrorPage />,
     element: (
+      <Suspense fallback={<Loader />}>
         <Shell />
+      </Suspense>
     ),
     children: [
       {
         index: true,
-        path: ActiveRoute.DASHBOARD,
-        element: <Dashboard /> 
-      }, {
-        path: ActiveRoute.INCOME_MGMT,
+        path: ActiveRoute.INCOME_MANAGEMENT_DASHBOARD,
+        element: <Dashboard />
+      },
+       {
+        path: ActiveRoute.INCOME_MGMT + '/*',
         element: <IncomeManagement />
       },
     ]

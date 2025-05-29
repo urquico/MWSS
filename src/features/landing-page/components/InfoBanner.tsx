@@ -1,5 +1,5 @@
 import { Box, Container, Text } from '@mantine/core';
-import Header from '@/components/shell/Header';
+import Header from '@/components/ui/shell/Header';
 import Title from '@/components/ui/Title';
 import BackgroundImage from '@/components/ui/BackgroundImage';
 export default function InfoBanner() {

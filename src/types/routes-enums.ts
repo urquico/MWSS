@@ -1,5 +1,7 @@
 export enum ActiveRoute {
-  // Main Modules
+  // ===============================
+  // MAIN MODULES
+  // ===============================
   DASHBOARD = '/finance/dashboard',
   INCOME_MGMT = '/finance/income-management',
   BUDGET_MGMT = '/finance/budget-management',
@@ -13,9 +15,10 @@ export enum ActiveRoute {
   TAX_COMPLIANCE = '/finance/tax-compliance',
   SYSTEM_ADMIN = '/finance/system-administration',
 
-  // Sub-modules with parameters
-  INVOICE_TRACKING = '/finance/income-management/invoice-tracking?page=1',
-  BUDGET_PREP = '/finance/budget-management/preparation?fy=2023',
+  // ===============================
+  // INCOME MGMT (LEASE MANAGEMENT)
+  // ===============================
+  INCOME_MANAGEMENT_DASHBOARD = '/finance/income-management/dashboard',
   BILLING_MGMT = '/finance/income-management/billing',
   STATEMENT_OF_ACCOUNT = '/finance/income-management/billing/statement',
   BILLING_STATEMENT = '/finance/income-management/billing/billing-statement',
@@ -24,5 +27,32 @@ export enum ActiveRoute {
   PAYMENT_MONITORING = '/finance/income-management/payments',
   INVOICE_GENERATION_TRACKING = '/finance/income-management/invoices',
   TENANT_INFORMATION_MANAGEMENT = '/finance/income-management/tenants',
-  // Add other parameterized routes as needed
+  INVOICE_TRACKING = '/finance/income-management/invoice-tracking?page=1',
+
+  // ===============================
+  // RAW WATER MANAGEMENT
+  // ===============================
+  RAW_WATER_DASHBOARD = '/finance/raw-water/dashboard',
+  RAW_WATER_STATEMENT_OF_ACCOUNT = '/finance/raw-water/billing/statement',
+  RAW_WATER_DEMAND_TO_PAY = '/finance/raw-water/billing/demand',
+  RAW_WATER_JOURNAL_ENTRY_VOUCHER = '/finance/raw-water/billing/journal',
+  RAW_WATER_INVOICE_TRACKING = '/finance/raw-water/invoices',
+  RAW_WATER_INVOICE_LIST = '/finance/raw-water/invoices/list',
+  RAW_WATER_CUSTOMER_INVOICE_REPORTS = '/finance/raw-water/invoices/reports',
+  RAW_WATER_CUSTOMER_INFORMATION_MANAGEMENT = '/finance/raw-water/customers',
+  RAW_WATER_CUSTOMER_INFORMATION = '/finance/raw-water/customers/info',
+  RAW_WATER_PAYMENT_HISTORY = '/finance/raw-water/customers/payments',
+  RAW_WATER_PAYMENT_MONITORING = '/finance/raw-water/payments',
+  RAW_WATER_PAYMENT_COMPUTATION = '/finance/raw-water/payment-computation',
+
+  // ===============================
+  // CONCESSION
+  // ===============================
+  CONCESSIONAIRE_FEE = '/finance/concession/fee',
+  CONCESSION_JOURNAL_ENTRY_VOUCHER = '/finance/concession/journal',
+  
+  // ===============================
+  // BUDGET MGMT EXAMPLE (W/ PARAMS)
+  // ===============================
+  BUDGET_PREP = '/finance/budget-management/preparation?fy=2023',
 }

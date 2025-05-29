@@ -1,9 +1,10 @@
-import React from 'react'
+import TableViewWrapper from './TableWrapper';
 
 const IncomeManagementLanding = () => {
   return (
-    <div>IncomeManagementLanding</div>
-  )
-}
+    <TableViewWrapper />
 
-export default IncomeManagementLanding
+  );
+};
+
+export default IncomeManagementLanding;

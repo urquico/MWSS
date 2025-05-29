@@ -1,4 +1,4 @@
-import LoginPage from '@/components/shell/AuthFlow';
+import LoginPage from '@/components/ui/shell/AuthFlow';
 
 function Login() {
   return <LoginPage />;
