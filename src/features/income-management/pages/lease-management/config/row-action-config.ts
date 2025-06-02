@@ -1,5 +1,5 @@
 import { TableRowActions } from '@/components/ui/table/types/table-types';
-import { BSBtnText,getBSRowActions } from '../components/BIllingStatement';
+import { BSBtnText,getBSRowActions } from '../components/BSToolbar';
 import { renderSOARowButton } from '../components/SOAToolbar';
 
 export const getRowActionsConfig = (

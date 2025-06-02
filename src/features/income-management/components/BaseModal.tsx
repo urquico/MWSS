@@ -8,13 +8,14 @@ import html2pdf from 'html2pdf.js';
 import * as XLSX from 'xlsx';
 import './generate-modal.css'
 
-
 interface GenerateModalProps {
   title: string;
   exportText?: string;
   printText?: string;
   children: ReactNode;
   tableData: any[];
+  showExportButton?: boolean; // <-- new prop
+  showPrintButton?: boolean;  // <-- new prop
 }
 
 const GenerateModal: React.FC<GenerateModalProps> = ({
@@ -23,7 +24,8 @@ const GenerateModal: React.FC<GenerateModalProps> = ({
   printText = "Print",
   children,
   tableData,
-
+  showExportButton = true, // <-- default true
+  showPrintButton = true,  // <-- default true
 }) => {
   const { isOpen, closeModal } = useModalStore();
 
@@ -59,7 +61,6 @@ const GenerateModal: React.FC<GenerateModalProps> = ({
       // Clean up
       URL.revokeObjectURL(url);
 
-
     } catch (error) {
       console.error('Error generating PDF:', error);
     } finally {
@@ -69,7 +70,6 @@ const GenerateModal: React.FC<GenerateModalProps> = ({
     }
   };
 
-
   const handleExport = () => {
     const worksheet = XLSX.utils.json_to_sheet(tableData);
     const workbook = XLSX.utils.book_new();
@@ -77,9 +77,7 @@ const GenerateModal: React.FC<GenerateModalProps> = ({
     XLSX.writeFile(workbook, "StatementOfAccount.xlsx");
   };
 
-
   return (
-
     <Modal
       opened={isOpen}
       onClose={closeModal}
@@ -88,32 +86,34 @@ const GenerateModal: React.FC<GenerateModalProps> = ({
       size="60%"
     >
       <Group justify="flex-end" mb="md" className="no-print">
-        <Button
-          leftSection={<IconDownload size={16} />}
-          variant="outline"
-          color="gray"
-          onClick={handleExport}
-        >
-          {exportText}
-        </Button>
-        <Button
-          leftSection={<IconPrinter size={16} />}
-          variant="filled"
-          color="#1e40af"
-          onClick={() => handlePrint()}
-        >
-          {printText}
-        </Button>
+        {showExportButton && (
+          <Button
+            leftSection={<IconDownload size={16} />}
+            variant="outline"
+            color="gray"
+            onClick={handleExport}
+          >
+            {exportText}
+          </Button>
+        )}
+        {showPrintButton && (
+          <Button
+            leftSection={<IconPrinter size={16} />}
+            variant="filled"
+            color="#1e40af"
+            onClick={() => handlePrint()}
+          >
+            {printText}
+          </Button>
+        )}
       </Group>
       <div ref={contentRef} >
-
         <ModalHeader />
         <Text mb="sm">
           {children}
         </Text>
       </div>
     </Modal>
-
   );
 };
 

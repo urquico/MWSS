@@ -1,13 +1,21 @@
-import { ColumnDef } from '@tanstack/react-table';
 import { ViewType } from '@/features/income-management/types/view-types.ts';
+import { ColumnDef } from '@tanstack/react-table';
+import { renderStatusCell } from '../utils/status-utils';
 
-// Example column sets – reuse or customize as needed
 const billingColumns: ColumnDef<any>[] = [
   { accessorKey: 'date', header: 'Date' },
   { accessorKey: 'controlNumber', header: 'Control Number' },
   { accessorKey: 'lessee', header: 'Lessee' },
   { accessorKey: 'companyName', header: 'Company Name' },
   { accessorKey: 'subject', header: 'Subject' },
+{ accessorKey: 'dateReceived ', header: 'Date Received' },
+
+  { 
+    accessorKey: 'status', 
+    header: 'Status',
+    cell: ({ row }) => renderStatusCell(row.original.status)
+  },
+  { accessorKey: 'remarks', header: 'Remarks' },
 ];
 const soaColumns: ColumnDef<any>[] = [
   { accessorKey: 'date', header: 'Date' },
@@ -15,8 +23,12 @@ const soaColumns: ColumnDef<any>[] = [
   { accessorKey: 'lessee', header: 'Lessee' },
   { accessorKey: 'companyName', header: 'Company Name' },
   { accessorKey: 'subject', header: 'Subject' },
-   { accessorKey: 'periodCovered', header: 'Period Covered' },
-  { accessorKey: 'status', header: 'Status' },
+  { accessorKey: 'periodCovered', header: 'Period Covered' },
+  { 
+    accessorKey: 'status', 
+    header: 'Status',
+    cell: ({ row }) => renderStatusCell(row.original.status)
+  },
   { accessorKey: 'remarks', header: 'Remarks' },
 ];
 
@@ -112,7 +124,10 @@ const columnConfigs: Record<ViewType, ColumnDef<any>[]> = {
  * @returns An array of column definitions based on the specified view type and any provided custom columns.
  */
 
-export const getColumnConfig = (viewType: ViewType, customColumns?: ColumnDef<any>[]) => {
+export const getColumnConfig = (
+  viewType: ViewType,
+  customColumns?: ColumnDef<any>[],
+) => {
   const baseColumns = columnConfigs[viewType] || [];
   return customColumns ? [...baseColumns, ...customColumns] : baseColumns;
 };

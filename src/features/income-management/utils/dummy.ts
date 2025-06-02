@@ -2,140 +2,257 @@ import { ViewType } from '@/features/income-management/types/view-types.ts';
 
 const dummyDataMap: Record<ViewType, any[]> = {
   'billing-statement': [
-    {
-      date: '2024-06-01',
-      controlNumber: 'BS-001',
-      lessee: 'John Doe',
-      companyName: 'Acme Corp',
-      subject: 'Monthly Rent'
-    },
-    {
-      date: '2024-06-02',
-      controlNumber: 'BS-002',
-      lessee: 'Jane Smith',
-      companyName: 'Beta LLC',
-      subject: 'Water Bill'
-    },
-    {
-      date: '2024-06-03',
-      controlNumber: 'BS-003',
-      lessee: 'Alice Johnson',
-      companyName: 'Gamma Inc',
-      subject: 'Maintenance Fee'
-    },
-    {
-      date: '2024-06-04',
-      controlNumber: 'BS-004',
-      lessee: 'Bob Lee',
-      companyName: 'Delta Ltd',
-      subject: 'Electricity Bill'
-    },
-    {
-      date: '2024-06-05',
-      controlNumber: 'BS-005',
-      lessee: 'Carol King',
-      companyName: 'Epsilon Co',
-      subject: 'Monthly Rent'
-    },
-    {
-      date: '2024-06-06',
-      controlNumber: 'BS-006',
-      lessee: 'David Kim',
-      companyName: 'Zeta Group',
-      subject: 'Water Bill'
-    },
-    {
-      date: '2024-06-07',
-      controlNumber: 'BS-007',
-      lessee: 'Eva Green',
-      companyName: 'Eta Solutions',
-      subject: 'Maintenance Fee'
-    },
-    {
-      date: '2024-06-08',
-      controlNumber: 'BS-008',
-      lessee: 'Frank Moore',
-      companyName: 'Theta Services',
-      subject: 'Electricity Bill'
-    },
-    {
-      date: '2024-06-09',
-      controlNumber: 'BS-009',
-      lessee: 'Grace Lee',
-      companyName: 'Iota Holdings',
-      subject: 'Monthly Rent'
-    },
-    {
-      date: '2024-06-10',
-      controlNumber: 'BS-010',
-      lessee: 'Henry Ford',
-      companyName: 'Kappa Ventures',
-      subject: 'Water Bill'
-    },
-    {
-      date: '2024-06-11',
-      controlNumber: 'BS-011',
-      lessee: 'Ivy Chan',
-      companyName: 'Lambda Partners',
-      subject: 'Maintenance Fee'
-    },
-    {
-      date: '2024-06-12',
-      controlNumber: 'BS-012',
-      lessee: 'Jack Black',
-      companyName: 'Mu Technologies',
-      subject: 'Electricity Bill'
-    },
-    {
-      date: '2024-06-13',
-      controlNumber: 'BS-013',
-      lessee: 'Karen White',
-      companyName: 'Nu Enterprises',
-      subject: 'Monthly Rent'
-    },
-    {
-      date: '2024-06-14',
-      controlNumber: 'BS-014',
-      lessee: 'Leo Brown',
-      companyName: 'Xi Logistics',
-      subject: 'Water Bill'
-    },
-    {
-      date: '2024-06-15',
-      controlNumber: 'BS-015',
-      lessee: 'Mona Lisa',
-      companyName: 'Omicron Foods',
-      subject: 'Maintenance Fee'
-    }
-  ],
+  {
+    date: '2024-06-01',
+    controlNumber: 'BS-001',
+    lessee: 'John Doe',
+    companyName: 'Acme Corp',
+    subject: 'Monthly Rent',
+    dateReceived: '2024-06-02',
+    status: 'For Review [1/4]',
+    remarks: 'Payment pending'
+  },
+  {
+    date: '2024-06-02',
+    controlNumber: 'BS-002',
+    lessee: 'Jane Smith',
+    companyName: 'Beta LLC',
+    subject: 'Water Bill',
+    dateReceived: '2024-06-03',
+    status: 'Approved',
+    remarks: ''
+  },
+  {
+    date: '2024-06-03',
+    controlNumber: 'BS-003',
+    lessee: 'Alice Johnson',
+    companyName: 'Gamma Inc',
+    subject: 'Maintenance Fee',
+    dateReceived: '2024-06-04',
+    status: 'Returned',
+    remarks: 'Incorrect amount'
+  },
+  {
+    date: '2024-06-04',
+    controlNumber: 'BS-004',
+    lessee: 'Bob Lee',
+    companyName: 'Delta Ltd',
+    subject: 'Electricity Bill',
+    dateReceived: '2024-06-05',
+    status: 'For Review [2/4]',
+    remarks: ''
+  },
+  {
+    date: '2024-06-05',
+    controlNumber: 'BS-005',
+    lessee: 'Carol King',
+    companyName: 'Epsilon Co',
+    subject: 'Monthly Rent',
+    dateReceived: '2024-06-06',
+    status: 'Approved',
+    remarks: 'Paid early'
+  },
+  {
+    date: '2024-06-06',
+    controlNumber: 'BS-006',
+    lessee: 'David Kim',
+    companyName: 'Zeta Group',
+    subject: 'Water Bill',
+    dateReceived: '2024-06-07',
+    status: 'Returned',
+    remarks: 'Missing signature'
+  },
+  {
+    date: '2024-06-07',
+    controlNumber: 'BS-007',
+    lessee: 'Eva Green',
+    companyName: 'Eta Solutions',
+    subject: 'Maintenance Fee',
+    dateReceived: '2024-06-08',
+    status: 'Approved',
+    remarks: ''
+  },
+  {
+    date: '2024-06-08',
+    controlNumber: 'BS-008',
+    lessee: 'Frank Moore',
+    companyName: 'Theta Services',
+    subject: 'Electricity Bill',
+    dateReceived: '2024-06-09',
+    status: 'For Review',
+    remarks: ''
+  },
+  {
+    date: '2024-06-09',
+    controlNumber: 'BS-009',
+    lessee: 'Grace Lee',
+    companyName: 'Iota Holdings',
+    subject: 'Monthly Rent',
+    dateReceived: '2024-06-10',
+    status: 'Returned',
+    remarks: 'Document incomplete'
+  },
+  {
+    date: '2024-06-10',
+    controlNumber: 'BS-010',
+    lessee: 'Henry Ford',
+    companyName: 'Kappa Ventures',
+    subject: 'Water Bill',
+    dateReceived: '2024-06-11',
+    status: 'Approved',
+    remarks: ''
+  },
+  {
+    date: '2024-06-11',
+    controlNumber: 'BS-011',
+    lessee: 'Ivy Chan',
+    companyName: 'Lambda Partners',
+    subject: 'Maintenance Fee',
+    dateReceived: '2024-06-12',
+    status: 'For Review',
+    remarks: ''
+  },
+  {
+    date: '2024-06-12',
+    controlNumber: 'BS-012',
+    lessee: 'Jack Black',
+    companyName: 'Mu Technologies',
+    subject: 'Electricity Bill',
+    dateReceived: '2024-06-13',
+    status: 'Approved',
+    remarks: ''
+  },
+  {
+    date: '2024-06-13',
+    controlNumber: 'BS-013',
+    lessee: 'Karen White',
+    companyName: 'Nu Enterprises',
+    subject: 'Monthly Rent',
+    dateReceived: '2024-06-14',
+    status: 'Returned',
+    remarks: 'Late submission'
+  },
+  {
+    date: '2024-06-14',
+    controlNumber: 'BS-014',
+    lessee: 'Leo Brown',
+    companyName: 'Xi Logistics',
+    subject: 'Water Bill',
+    dateReceived: '2024-06-15',
+    status: 'Approved',
+    remarks: ''
+  },
+  {
+    date: '2024-06-15',
+    controlNumber: 'BS-015',
+    lessee: 'Mona Lisa',
+    companyName: 'Omicron Foods',
+    subject: 'Maintenance Fee',
+    dateReceived: '2024-06-16',
+    status: 'For Review',
+    remarks: ''
+  }
+],
    'statement-of-account': [
     {
       date: '2024-06-01',
-      controlNumber: 'BS-001',
+      controlNumber: 'SOA-001',
       lessee: 'SOA-1',
       companyName: 'Acme Corp',
-      subject: 'Monthly Rent'
+      subject: 'Monthly Rent',
+      periodCovered: '2024-06-01 to 2024-06-30',
+      status: 'For Review',
+      remarks: 'Payment received on time'
     },
     {
       date: '2024-06-02',
-      controlNumber: 'BS-002',
+      controlNumber: 'SOA-002',
       lessee: 'SOA-2',
       companyName: 'Beta LLC',
-      subject: 'Water Bill'
+      subject: 'Water Bill',
+      periodCovered: '2024-06-01 to 2024-06-30',
+      status: 'Approved',
+      remarks: 'Pending payment'
     },
     {
-      date: '2024-06-14',
-      controlNumber: 'BS-014',
+      date: '2024-06-03',
+      controlNumber: 'SOA-003',
       lessee: 'SOA-3',
-      companyName: 'Xi Logistics',
-      subject: 'Water Bill'
+      companyName: 'Gamma Inc',
+      subject: 'Maintenance Fee',
+      periodCovered: '2024-06-01 to 2024-06-30',
+      status: 'For Review',
+      remarks: 'Partial payment received'
     },
     {
-      date: '2024-06-15',
-      controlNumber: 'BS-015',
+      date: '2024-06-04',
+      controlNumber: 'SOA-004',
       lessee: 'SOA-4',
-      companyName: 'Omicron Foods',
-      subject: 'Maintenance Fee'
+      companyName: 'Delta Ltd',
+      subject: 'Electricity Bill',
+      periodCovered: '2024-06-01 to 2024-06-30',
+      status: 'For Review',
+      remarks: 'Overdue by 5 days'
+    },
+    {
+      date: '2024-06-05',
+      controlNumber: 'SOA-005',
+      lessee: 'SOA-5',
+      companyName: 'Epsilon Co',
+      subject: 'Monthly Rent',
+      periodCovered: '2024-06-01 to 2024-06-30',
+      status: 'Returned',
+      remarks: ''
+    },
+    {
+      date: '2024-06-06',
+      controlNumber: 'SOA-006',
+      lessee: 'SOA-6',
+      companyName: 'Zeta Group',
+      subject: 'Water Bill',
+      periodCovered: '2024-06-01 to 2024-06-30',
+      status: 'Approved',
+      remarks: 'Awaiting confirmation'
+    },
+    {
+      date: '2024-06-07',
+      controlNumber: 'SOA-007',
+      lessee: 'SOA-7',
+      companyName: 'Eta Solutions',
+      subject: 'Maintenance Fee',
+      periodCovered: '2024-06-01 to 2024-06-30',
+      status: 'Returned',
+      remarks: 'Paid via bank transfer'
+    },
+    {
+      date: '2024-06-08',
+      controlNumber: 'SOA-008',
+      lessee: 'SOA-8',
+      companyName: 'Theta Services',
+      subject: 'Electricity Bill',
+      periodCovered: '2024-06-01 to 2024-06-30',
+      status: 'Approved',
+      remarks: ''
+    },
+    {
+      date: '2024-06-09',
+      controlNumber: 'SOA-009',
+      lessee: 'SOA-9',
+      companyName: 'Iota Holdings',
+      subject: 'Monthly Rent',
+      periodCovered: '2024-06-01 to 2024-06-30',
+      status: 'Returned',
+      remarks: ''
+    },
+    {
+      date: '2024-06-10',
+      controlNumber: 'SOA-010',
+      lessee: 'SOA-10',
+      companyName: 'Kappa Ventures',
+      subject: 'Water Bill',
+      periodCovered: '2024-06-01 to 2024-06-30',
+      status: 'Returned',
+      remarks: 'Reminder sent'
     }
   ],
   'payment-monitoring': [

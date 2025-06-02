@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDataView } from '../../hooks/useDataView';
 import { ViewConfig } from '@/features/income-management/types/view-types.ts';
 import { getColumnConfig } from '@/features/income-management/types/column-types.ts';
@@ -7,7 +7,10 @@ import Table from '@/components/ui/table/components/Table';
 import { SOAToolbar } from './components/SOAToolbar';
 import { useModalStore } from '../../stores/useModalStore';
 import { getRowActionsConfig } from './config/row-action-config';
-import GenerateSOA from './components/GenerateSOA';
+import GenerateModal from './components/GenerateModal';
+import BSToolbar from './components/BSToolbar';
+import CreateModal from './components/CreateModal';
+
 interface DataViewProps {
   config: ViewConfig;
 }
@@ -22,13 +25,19 @@ interface DataViewProps {
  */
 function LeaseManagement({ config }: DataViewProps) {
   const { data, isLoading, error } = useDataView(config.viewType);
+    const [createModalOpened, setCreateModalOpened] = useState(false);
+
   const columns = getColumnConfig(config.viewType, config.customColumns);
 
-  const handleCreate = () => {
-    console.log('Creating a new billing statement...');
-    // your create logic here
+   const handleCreate = () => {
+    setCreateModalOpened(true);
   };
 
+  const handleCreateSubmit = (values: any) => {
+    console.log('Form submitted:', values);
+    // Add your API call or state update logic here
+    setCreateModalOpened(false);
+  };
   const handleGenerateRow = (row: any) => {
     console.log('Generating billing statement for row:', row);
     useModalStore.getState().openModal(row); // Open modal with row data
@@ -37,6 +46,12 @@ function LeaseManagement({ config }: DataViewProps) {
   const toolbarMap: Record<string, React.ReactNode> = {
     'statement-of-account': (
       <SOAToolbar
+        onCreate={handleCreate}
+        onGenerateRow={handleGenerateRow}
+      />
+    ),
+    'billing-statement': (
+      <BSToolbar
         onCreate={handleCreate}
         onGenerateRow={handleGenerateRow}
       />
@@ -54,7 +69,13 @@ function LeaseManagement({ config }: DataViewProps) {
 
   return (
     <Paper radius={20} p="xl">
-      <GenerateSOA />
+      <GenerateModal />
+    <CreateModal
+        viewType={config.viewType}
+        onSubmit={handleCreateSubmit}
+        opened={createModalOpened}
+        onClose={() => setCreateModalOpened(false)}
+      />
       <LoadingOverlay visible={isLoading} />
 
       <Box className="flex justify-end mb-4">
@@ -67,7 +88,7 @@ function LeaseManagement({ config }: DataViewProps) {
         features={{
           filtering: { fuzzy: true, global: true },
           export: { filename: `${config.viewType}-export` },
-           rowActions: rowActionsConfig,
+          rowActions: rowActionsConfig,
           sorting: true,
           pagination: true,
         }}

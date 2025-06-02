@@ -17,7 +17,6 @@ interface SOAToolbarProps {
 }
 
 {/* Top toolbar with a Create button */}
-
 const SOAToolbar: React.FC<SOAToolbarProps> = ({
   onCreate,
 }) => {

@@ -1,4 +1,4 @@
-import GenerateModal from "@/features/income-management/components/GenerateModal";
+import GenerateModal from "@/features/income-management/components/BaseModal";
 import TextInput from "@/components/ui/TextInput";
 import { Grid, Title } from "@mantine/core";
 import Table from "@/components/ui/table/components/Table";
