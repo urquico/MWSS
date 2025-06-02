@@ -1,6 +1,6 @@
-import DataView from './DataView';
+import LeaseManagement from './pages/lease-management/LeaseManagement';
 import { useLocation } from 'react-router-dom';
-import { getViewConfig } from '@/features/income-management/utils/route-view-config';
+import { getViewConfig } from '@/features/income-management/pages/lease-management/config/route-view-config';
 import { Box, Text } from '@mantine/core';
 
 
@@ -11,7 +11,7 @@ import { Box, Text } from '@mantine/core';
  * view configuration with `getViewConfig`, and renders the `DataView` component
  * with the resolved configuration.
  *
- * @returns {JSX.Element} The rendered data view wrapped in a div with a dynamic title.
+ * @returns {JSX.Element} The rendered data view.
  */
 
 function TableViewWrapper() {
@@ -21,7 +21,7 @@ function TableViewWrapper() {
   return (
     <Box>
       <Text fz={36} fw={500} className='text-blue-950 font-roboto-slab'>{config.title}</Text>
-      <DataView config={config} />
+      <LeaseManagement config={config} />
     </Box>
   );
 }

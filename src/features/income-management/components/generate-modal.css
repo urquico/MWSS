@@ -1,0 +1,14 @@
+
+  .print-area {
+    background: #fff !important;
+    color: #000 !important;
+
+  }
+    .print-area, .print-area *{
+
+ font-size: 14px !important;
+
+  }
+  body {
+    background: #fff !important;
+  }

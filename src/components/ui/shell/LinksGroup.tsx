@@ -122,7 +122,7 @@ const handleSelect = (e: React.MouseEvent) => {
   // Define styles for the main and secondary variants
   const classes = {
     main: {
-      style: 'block w-full p-3 text-sm font-medium hover:bg-slate-100',
+    style: 'block w-full p-3 text-sm font-medium hover:bg-slate-100 ',
       icon: 'block',
     },
     secondary: {
@@ -156,7 +156,7 @@ const handleSelect = (e: React.MouseEvent) => {
     <div className={`relative w-full ${variant === 'main' ? 'pl-2' : ''}`}>
       {/* Vertical line for sublinks */}
       {variant === 'secondary' && (
-        <div className='-pl-5 absolute left-0 top-0 z-0 h-full w-0.5 bg-slate-' />
+        <div className='-pl-5 absolute left-0 top-0 z-0 h-full w-0.5 bg-slate-300' />
       )}
       <Box
         onClick={handleSelect}

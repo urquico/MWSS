@@ -26,47 +26,6 @@ import { ViewConfig, RouteConfig } from '@/features/income-management/types/view
  * ```
  */
 export const routeViewConfig: RouteConfig = {
-  // ===== INCOME MANAGEMENT =====
- 
-  [ActiveRoute.STATEMENT_OF_ACCOUNT]: {
-    viewType: 'billing-statement',
-    title: 'Statement of Account',
-    enableExport: true,
-    enableFilters: true,
-  },
-  [ActiveRoute.BILLING_STATEMENT]: {
-    viewType: 'billing-statement',
-    title: 'Billing Statement',
-    enableExport: true,
-    enableFilters: true,
-  },
-  [ActiveRoute.DEMAND_TO_PAY]: {
-    viewType: 'demand-to-pay',
-    title: 'Demand to Pay',
-    enableExport: false,
-  },
-  [ActiveRoute.JOURNAL_ENTRY_VOUCHER]: {
-    viewType: 'journal-entry',
-    title: 'Journal Entry Voucher',
-    enableExport: true,
-  },
-  [ActiveRoute.PAYMENT_MONITORING]: {
-    viewType: 'payment-monitoring',
-    title: 'Payment Monitoring',
-    enableExport: true,
-  },
-  [ActiveRoute.INVOICE_TRACKING]: {
-    viewType: 'invoice-tracking',
-    title: 'Invoice Tracking',
-    enableExport: true,
-    enableFilters: true,
-  },
-  [ActiveRoute.TENANT_INFORMATION_MANAGEMENT]: {
-    viewType: 'tenant-information',
-    title: 'Tenant Information',
-    enableExport: true,
-    enableFilters: true,
-  },
 
   // ===== RAW WATER MANAGEMENT =====
   [ActiveRoute.RAW_WATER_STATEMENT_OF_ACCOUNT]: {

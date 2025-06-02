@@ -6,7 +6,6 @@ import { AdminDashboardProvider } from '@/features/dashboard/provider/admin-dash
 import DashboardSummary from './DashboardSummary';
 import TrendLineChart from '../chart/TrendLineChart';
 import LesseeTypePieChart from '../chart/PieChart';
-import Table from './Table'
 import { useDashboardDummyData } from '../types/dummy';
 import LesseeTypeBarChart from '../chart/BarChart';
 import BillingDonutChart from '../chart/DonutChart';
@@ -48,11 +47,6 @@ function DashboardPage() {
             </Grid.Col>
           ))}
         </Grid>
-
-        {/* Table below the grid */}
-        {/* <section className="w-full h-full mt-8">
-          <Table />
-        </section> */}
       </main>
     </AdminDashboardProvider>
   );

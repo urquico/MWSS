@@ -1,22 +1,21 @@
-
 import React from 'react';
 import {  Group, Menu, Button } from '@mantine/core';
 import { IconPlus } from '@tabler/icons-react';
 
 /**
- * `BillingStatementToolbar` component is responsible for:
+ *  component is responsible for:
  * 
  * - Rendering the top toolbar UI, including buttons such as "Create" and "Generate All".
- * - Providing the menu items for row-specific actions via the `renderRowActionMenuItems` function.
- * - Supplying the text label for the row actions button through the `actionBtnText` property.
+ * - Providing the menu items for row-specific actions via the renderRowActionMenuItems function.
+ * - Supplying the text label for the row actions button through the actionBtnText property.
  */
 
-interface BillingStatementToolbarProps {
+interface BSToolbarProps {
   onCreate: () => void;
   onGenerateRow: (row: any) => void;
 }
 
-const BillingStatementToolbar: React.FC<BillingStatementToolbarProps> = ({
+const BSToolbar: React.FC<BSToolbarProps> = ({
   onCreate,
   onGenerateRow,
 }) => {
@@ -28,7 +27,7 @@ const BillingStatementToolbar: React.FC<BillingStatementToolbarProps> = ({
   );
 
   // text for the action button on each row
-  const actionBtnText = 'Generate';
+  const actionBtnText = 'GeneratSe';
 
   return (
     <>
@@ -46,12 +45,12 @@ const BillingStatementToolbar: React.FC<BillingStatementToolbarProps> = ({
 };
 
 // To export helpers outside the component (optional)
-export function getBillingStatementRowActions(onGenerateRow: (row: any) => void) {
+export function getBSRowActions(onGenerateRow: (row: any) => void) {
   return (row: any) => (
     <Menu.Item onClick={() => onGenerateRow(row)}>Generate</Menu.Item>
   );
 }
 
-export const billingStatementActionBtnText = 'Generate';
+export const BSBtnText = 'Generate';
 
-export default BillingStatementToolbar;
+export default BSToolbar;

@@ -19,7 +19,8 @@
  */
 export type ViewType = 
 
-  | 'billing-statement' 
+  | 'statement-of-account' 
+  | 'billing-statement'
   | 'demand-to-pay'
   | 'journal-entry'
   | 'payment-monitoring'

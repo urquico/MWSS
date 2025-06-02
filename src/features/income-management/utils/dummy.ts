@@ -108,6 +108,36 @@ const dummyDataMap: Record<ViewType, any[]> = {
       subject: 'Maintenance Fee'
     }
   ],
+   'statement-of-account': [
+    {
+      date: '2024-06-01',
+      controlNumber: 'BS-001',
+      lessee: 'SOA-1',
+      companyName: 'Acme Corp',
+      subject: 'Monthly Rent'
+    },
+    {
+      date: '2024-06-02',
+      controlNumber: 'BS-002',
+      lessee: 'SOA-2',
+      companyName: 'Beta LLC',
+      subject: 'Water Bill'
+    },
+    {
+      date: '2024-06-14',
+      controlNumber: 'BS-014',
+      lessee: 'SOA-3',
+      companyName: 'Xi Logistics',
+      subject: 'Water Bill'
+    },
+    {
+      date: '2024-06-15',
+      controlNumber: 'BS-015',
+      lessee: 'SOA-4',
+      companyName: 'Omicron Foods',
+      subject: 'Maintenance Fee'
+    }
+  ],
   'payment-monitoring': [
     { transactionId: 'TX-001', paymentDate: '2025-05-01' },
     { transactionId: 'TX-002', paymentDate: '2025-05-02' },

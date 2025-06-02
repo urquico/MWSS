@@ -10,6 +10,6 @@ export const IncomeManagement = lazy(() => import('@/routes/IncomeManagement'));
 
 // Income Management Subpages (Billing, Payments, Tenants, etc)
 
-export const DataView = lazy(() => import('@/features/income-management/components/DataView'));
-export const TableViewWrapper = lazy(() => import('@/features/income-management/components/TableWrapper'));
+export const DataView = lazy(() => import('@/features/income-management/pages/lease-management/LeaseManagement'));
+export const TableViewWrapper = lazy(() => import('@/features/income-management/IncomeManagement'));
 

@@ -5,9 +5,19 @@ import { ViewType } from '@/features/income-management/types/view-types.ts';
 const billingColumns: ColumnDef<any>[] = [
   { accessorKey: 'date', header: 'Date' },
   { accessorKey: 'controlNumber', header: 'Control Number' },
-   { accessorKey: 'lessee', header: 'Lessee' },
+  { accessorKey: 'lessee', header: 'Lessee' },
   { accessorKey: 'companyName', header: 'Company Name' },
   { accessorKey: 'subject', header: 'Subject' },
+];
+const soaColumns: ColumnDef<any>[] = [
+  { accessorKey: 'date', header: 'Date' },
+  { accessorKey: 'controlNumber', header: 'Control Number' },
+  { accessorKey: 'lessee', header: 'Lessee' },
+  { accessorKey: 'companyName', header: 'Company Name' },
+  { accessorKey: 'subject', header: 'Subject' },
+   { accessorKey: 'periodCovered', header: 'Period Covered' },
+  { accessorKey: 'status', header: 'Status' },
+  { accessorKey: 'remarks', header: 'Remarks' },
 ];
 
 const paymentColumns: ColumnDef<any>[] = [
@@ -82,6 +92,7 @@ const concessionFeeColumns: ColumnDef<any>[] = [
  */
 
 const columnConfigs: Record<ViewType, ColumnDef<any>[]> = {
+  'statement-of-account': soaColumns,
   'billing-statement': billingColumns,
   'payment-monitoring': paymentColumns,
   'demand-to-pay': demandColumns,
