@@ -1,9 +1,9 @@
 import React, { ReactNode, useRef } from 'react';
 import { Text, Button, Group } from '@mantine/core';
-import { useModalStore } from '../stores/useModalStore';
 import ModalHeader from './ModalHeader';
+import ModalFooter from './ModalFooter';
 import Modal from '@/components/ui/Modal';
-import { IconDownload, IconPrinter } from '@tabler/icons-react';
+import { IconDownload, IconFileCheck, IconPrinter } from '@tabler/icons-react';
 import html2pdf from 'html2pdf.js';
 import * as XLSX from 'xlsx';
 import './generate-modal.css'
@@ -12,10 +12,19 @@ interface GenerateModalProps {
   title: string;
   exportText?: string;
   printText?: string;
+  saveText?: string; 
   children: ReactNode;
-  tableData: any[];
-  showExportButton?: boolean; // <-- new prop
-  showPrintButton?: boolean;  // <-- new prop
+  tableData?: any[];
+  showExportButton?: boolean;
+  showPrintButton?: boolean;
+   showSaveButton?: boolean;
+  size?: string;
+  withHeaderBorder?: boolean;
+  withHeader?: boolean;
+  withFooter?: boolean;
+  opened: boolean;
+  onClose: () => void;
+    onSave?: () => void;
 }
 
 const GenerateModal: React.FC<GenerateModalProps> = ({
@@ -24,23 +33,30 @@ const GenerateModal: React.FC<GenerateModalProps> = ({
   printText = "Print",
   children,
   tableData,
-  showExportButton = true, // <-- default true
-  showPrintButton = true,  // <-- default true
+  showExportButton = true,
+  showPrintButton = true,
+  size = "60%",
+  opened,
+  onClose,
+  withFooter = false,
+  withHeader = true,
+  showSaveButton = false,
+  saveText = "Save",
+  onSave = () => {},
 }) => {
-  const { isOpen, closeModal } = useModalStore();
 
   const contentRef = useRef<HTMLDivElement>(null);
+  
   const handlePrint = async () => {
     const element = contentRef.current;
     if (!element) return;
 
-    element.classList.add('print-area'); // Apply styles only for PDF
+    element.classList.add('print-area'); 
 
     const opt = {
       margin: 10,
       filename: 'Statement_of_Account.pdf',
       image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2 },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
     };
 
@@ -71,7 +87,7 @@ const GenerateModal: React.FC<GenerateModalProps> = ({
   };
 
   const handleExport = () => {
-    const worksheet = XLSX.utils.json_to_sheet(tableData);
+    const worksheet = XLSX.utils.json_to_sheet(tableData ?? []);
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "Statement of Account");
     XLSX.writeFile(workbook, "StatementOfAccount.xlsx");
@@ -79,11 +95,11 @@ const GenerateModal: React.FC<GenerateModalProps> = ({
 
   return (
     <Modal
-      opened={isOpen}
-      onClose={closeModal}
+      opened={opened}
+      onClose={onClose}
       title={title}
       withHeaderBorder
-      size="60%"
+      size={size}
     >
       <Group justify="flex-end" mb="md" className="no-print">
         {showExportButton && (
@@ -106,12 +122,23 @@ const GenerateModal: React.FC<GenerateModalProps> = ({
             {printText}
           </Button>
         )}
+         {showSaveButton && (
+          <Button
+            leftSection={<IconFileCheck size={16} />} // You'll need to import IconSave
+            variant="filled"
+            color="#1e40af"
+            onClick={onSave}
+          >
+            {saveText}
+          </Button>
+        )}
       </Group>
       <div ref={contentRef} >
-        <ModalHeader />
+       {withHeader && ( <ModalHeader />)}
         <Text mb="sm">
           {children}
         </Text>
+        {withFooter && ( <ModalFooter />)}
       </div>
     </Modal>
   );

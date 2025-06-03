@@ -33,7 +33,7 @@ const SOAToolbar: React.FC<SOAToolbarProps> = ({
 
 
 {/*Export this function to render the button per row */}
-function renderSOARowButton() {
+function renderSOARowButton(viewType: string) {
   const openModal = useModalStore.getState().openModal;
 
   return {
@@ -41,12 +41,12 @@ function renderSOARowButton() {
       <Button
         variant="outline"
         color="gray"
-        onClick={() => openModal(row)}
+        onClick={() => openModal('generate', row, viewType)}
       >
         Generate
       </Button>
     ),
-    renderMenu: undefined // Explicitly undefined instead of () => null
+    renderMenu: undefined
   };
 }
 

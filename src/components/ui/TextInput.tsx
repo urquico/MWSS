@@ -26,7 +26,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
         ref={ref}
         value={value}
         onChange={onChange}
-        size='lg'
+        size='sm'
         classNames={{
           root: 'font-open-sans',
           input: 'bg-white rounded-md border',

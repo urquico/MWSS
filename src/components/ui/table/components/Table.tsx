@@ -19,7 +19,8 @@ import {
   Center,
   Text,
   Table,
-  ActionIcon
+  ActionIcon,
+  Flex
 } from '@mantine/core';
 import { fuzzyFilter, defaultGlobalFilterFn, handleExportData } from '../utils/fuzzy-filter';
 import { AdvancedTableProps } from '../types/table-props';
@@ -92,27 +93,28 @@ function DataTable<TData extends Record<string, any>>({
       />
 
       <ScrollArea m={10} className='rounded-lg shadow-sm'>
+
+
         <Table highlightOnHover withTableBorder>
           <Table.Thead className='bg-[#98B8F9] text-white'>
             {table.getHeaderGroups().map((headerGroup) => (
               <Table.Tr key={headerGroup.id}>
                 {features.rowActions && <Table.Th className='text-center'>Action</Table.Th>}
                 {headerGroup.headers.map((header) => (
-                  <Table.Th key={header.id} colSpan={header.colSpan}>
+                  <Table.Th key={header.id} colSpan={header.colSpan} >
                     {!header.isPlaceholder && (
-                      <Box>
-                        <Group justify="space-between">
-                          <span>
-                            {flexRender(
-                              header.column.columnDef.header,
-                              header.getContext()
-                            )}
-                          </span>
+                      <Flex direction="column" gap={4}>
+                        <Group justify="space-between" align="center" wrap="nowrap">
+                          <Text fw={700} size="sm">
+                            {flexRender(header.column.columnDef.header, header.getContext())}
+                          </Text>
                           {features.sorting && header.column.getCanSort() && (
                             <Button
                               variant="subtle"
+                              size="xs"
+                              px={6}
                               onClick={header.column.getToggleSortingHandler()}
-                              className='text-white'
+                              className="text-white"
                             >
                               {header.column.getIsSorted() === 'asc'
                                 ? '↑'
@@ -122,16 +124,17 @@ function DataTable<TData extends Record<string, any>>({
                             </Button>
                           )}
                         </Group>
-                        {showColumnFilters && (
 
+                        {showColumnFilters && (
                           <TextInput
-                            placeholder={`Search ${String(header.column.id)}`}
+                            placeholder={`Search ${String(header.column.columnDef.header)}`}
                             value={(header.column.getFilterValue() as string) ?? ''}
                             onChange={(e) => header.column.setFilterValue(e.currentTarget.value)}
-                            mt={4}
+                            size="xs"
                           />
                         )}
-                      </Box>
+                      </Flex>
+
                     )}
                   </Table.Th>
                 ))}

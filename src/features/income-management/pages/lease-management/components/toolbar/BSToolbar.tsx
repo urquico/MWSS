@@ -1,6 +1,7 @@
 import React from 'react';
-import {  Group, Menu, Button } from '@mantine/core';
+import { Group, Menu, Button } from '@mantine/core';
 import { IconPlus } from '@tabler/icons-react';
+import { useModalStore } from '@/features/income-management/stores/useModalStore';
 
 /**
  *  component is responsible for:
@@ -17,17 +18,8 @@ interface BSToolbarProps {
 
 const BSToolbar: React.FC<BSToolbarProps> = ({
   onCreate,
-  onGenerateRow,
 }) => {
-  // row action menu items
-  const renderRowActionMenuItems = (row: any) => (
-    <Menu.Item onClick={() => onGenerateRow(row)}>
-      Generate
-    </Menu.Item>
-  );
 
-  // text for the action button on each row
-  const actionBtnText = 'GeneratSe';
 
   return (
     <>
@@ -45,12 +37,26 @@ const BSToolbar: React.FC<BSToolbarProps> = ({
 };
 
 // To export helpers outside the component (optional)
-export function getBSRowActions(onGenerateRow: (row: any) => void) {
+export function getBSRowActions(viewType: string) {
+  const openModal = useModalStore.getState().openModal;
+
   return (row: any) => (
-    <Menu.Item onClick={() => onGenerateRow(row)}>Generate</Menu.Item>
-  );
+    <>
+      <Menu.Item
+        onClick={() => {
+          console.log('ViewType passed to menu item:', viewType);
+          openModal('template', row, viewType);
+        }}
+      >
+        View Billing
+      </Menu.Item>
+      <Menu.Item   onClick={() => {
+          console.log('ViewType passed to menu item:', viewType);
+          openModal('viewHistory', row, viewType);
+        }}>
+        View Billing History
+      </Menu.Item></>);
 }
 
-export const BSBtnText = 'Generate';
 
 export default BSToolbar;

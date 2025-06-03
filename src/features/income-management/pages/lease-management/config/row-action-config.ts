@@ -1,6 +1,6 @@
 import { TableRowActions } from '@/components/ui/table/types/table-types';
-import { BSBtnText,getBSRowActions } from '../components/BSToolbar';
-import { renderSOARowButton } from '../components/SOAToolbar';
+import { getBSRowActions } from '../components/toolbar/BSToolbar';
+import { renderSOARowButton } from '../components/toolbar/SOAToolbar';
 
 export const getRowActionsConfig = (
   viewType: string,
@@ -9,12 +9,10 @@ export const getRowActionsConfig = (
   switch (viewType) {
     case 'billing-statement':
       return {
-        renderMenu: getBSRowActions(handleGenerateRow),
-        renderButton: undefined,
-        buttonText: BSBtnText
+        renderMenu: getBSRowActions(viewType),
       };
     case 'statement-of-account':
-      return renderSOARowButton();
+      return renderSOARowButton(viewType); 
     default:
       return undefined;
   }
