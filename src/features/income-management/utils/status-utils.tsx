@@ -7,7 +7,7 @@ export type StatusType =
   | 'active' | 'inactive' | 'for review'| 'returned' | 'pending' 
   | 'warning' | 'completed' | 'failed' 
   | 'paid' | 'unpaid' | 'overdue' 
-  | 'approved' | 'rejected' | string;
+  | 'approved' | 'rejected' | 'settled' | string;
 
 export interface StatusConfig {
   icon: ReactNode;
@@ -67,6 +67,13 @@ export const statusConfigMap: Record<StatusType, StatusConfig> = {
     color: 'red',
     label: 'Rejected'
   },
+  // Add to statusConfigMap
+settled: {
+  icon: <IconCircleCheck size={16} />,
+  color: 'green',
+  label: 'Settled'
+},
+
   // Default fallback
   default: {
     icon: <IconAlertCircle size={16} />,
@@ -79,12 +86,14 @@ export const getStatusConfig = (status?: string): StatusConfig => {
   if (!status) return statusConfigMap.default;
   const normalizedStatus = status.toLowerCase().trim();
 
-  // Handle "for review" with extra info, e.g., "for review[1/4]"
   if (normalizedStatus.startsWith('for review')) {
     return statusConfigMap['for review'];
   }
   if (normalizedStatus.startsWith('returned')) {
     return statusConfigMap['returned'];
+  }
+  if (normalizedStatus.startsWith('settled')) {
+    return statusConfigMap['settled'];
   }
 
   return statusConfigMap[normalizedStatus as StatusType] || statusConfigMap.default;

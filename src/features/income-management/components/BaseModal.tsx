@@ -6,7 +6,7 @@ import Modal from '@/components/ui/Modal';
 import { IconDownload, IconFileCheck, IconPrinter } from '@tabler/icons-react';
 import html2pdf from 'html2pdf.js';
 import * as XLSX from 'xlsx';
-import './generate-modal.css'
+import './base-modal.css'
 
 interface GenerateModalProps {
   title: string;
@@ -56,8 +56,16 @@ const GenerateModal: React.FC<GenerateModalProps> = ({
     const opt = {
       margin: 10,
       filename: 'Statement_of_Account.pdf',
-      image: { type: 'jpeg', quality: 0.98 },
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      image: { type: 'jpeg', quality: 1 },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+       html2canvas: { 
+      scale: 2, // Higher scale = better quality
+      logging: false,
+      useCORS: true,
+      allowTaint: true,
+      letterRendering: true,
+      dpi: 300, // Higher DPI for better quality
+    },
     };
 
     try {

@@ -19,6 +19,8 @@ interface FormFieldConfig {
   computed?: boolean;
   defaultValue?: any;
   description?: string;
+ displayIn?: string | string[];
+
 }
 
 const formConfigs: Record<string, FormFieldConfig[]> = {
@@ -33,6 +35,7 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       ],
       cols: 6,
       required: true,
+      displayIn: 'createModal',
     },
     {
       name: 'date',
@@ -40,6 +43,7 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       type: 'date',
       cols: 6,
       required: true,
+      displayIn: 'createModal',
     },
     {
       name: 'location',
@@ -48,6 +52,7 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       disabled: true,
 
       cols: 12,
+      displayIn: 'createModal',
     },
     {
       name: 'principal',
@@ -56,6 +61,7 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       type: 'number',
       cols: 4,
       required: true,
+      displayIn: 'createModal',
     },
     {
       name: 'interestRate',
@@ -68,6 +74,7 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       defaultValue: 1,
       cols: 4,
       required: true,
+      displayIn: 'createModal',
     },
 
     {
@@ -76,6 +83,7 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       description: '(if applicable)',
       type: 'number',
       cols: 4,
+      displayIn: 'createModal',
     },
     {
       name: 'arrearages',
@@ -86,6 +94,7 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       type: 'number',
       cols: 4,
       required: true,
+      displayIn: 'createModal',
     },
 
     {
@@ -96,14 +105,16 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       cols: 4,
       disabled: true,
       computed: true,
+      displayIn: 'createModal',
     },
-{
-  name: 'periodFromTo',
-  label: 'Period',
-  type: 'dateRange',
-  description: '(From - To)',
-  cols: 4,
-},
+    {
+      name: 'periodFromTo',
+      label: 'Period',
+      type: 'dateRange',
+      description: '(From - To)',
+      cols: 4,
+      displayIn: 'createModal',
+    },
 
     {
       name: 'vat',
@@ -114,119 +125,233 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       cols: 12,
       disabled: true,
       computed: true,
+      displayIn: 'createModal',
     },
   ],
   'billing-statement': [
+    {
+      name: 'name',
+      label: 'Name',
+      type: 'text',
+      placeholder: 'Search',
+      required: true,
+      disabled: true,
+      cols: 12,
+      displayIn: 'createModal',
+    },
+    {
+      name: 'name',
+      label: 'Name:',
+      type: 'text',
+      disabled: true,
+      computed: true,
+      defaultValue: 'Auto Populate',
+      cols: 12,
+      displayIn: 'createModal',
+    },
+    {
+      name: 'address',
+      label: 'Address:',
+      type: 'text',
+      disabled: true,
+      computed: true,
+      defaultValue: 'Auto Populate',
+      cols: 12,
+      displayIn: 'createModal',
+    },
+    {
+      name: 'subject',
+      label: 'Subject',
+      type: 'text',
+      disabled: true,
+      computed: true,
+      defaultValue: 'Auto populate',
+      cols: 6,
+      displayIn: 'createModal',
+    },
+    {
+      name: 'attention',
+      label: 'Attention to:',
+      type: 'text',
+      disabled: true,
+      computed: true,
+      defaultValue: 'Auto populate',
+      cols: 6,
+      displayIn: 'createModal',
+    },
+    {
+      name: 'reviewer1',
+      label: 'Reviewer 1',
+      type: 'select',
+      options: [
+        { value: 'rev1', label: 'Reviewer 1' },
+        { value: 'rev2', label: 'Reviewer 2' },
+      ],
+      cols: 6,
+      displayIn: 'formExtra',
+    },
+    {
+      name: 'reviewer2',
+      label: 'Reviewer 2',
+      type: 'select',
+      options: [
+        { value: 'rev3', label: 'Reviewer 3' },
+        { value: 'rev4', label: 'Reviewer 4' },
+      ],
+      cols: 6,
+      displayIn: 'formExtra',
+    },
+    {
+      name: 'reviewer3',
+      label: 'Reviewer 3',
+      type: 'select',
+      options: [
+        { value: 'rev1', label: 'Reviewer 1' },
+        { value: 'rev2', label: 'Reviewer 2' },
+      ],
+      cols: 6,
+      displayIn: 'formExtra',
+    },
+    {
+      name: 'reviewer4',
+      label: 'Reviewer 4',
+      type: 'select',
+      options: [
+        { value: 'rev3', label: 'Reviewer 3' },
+        { value: 'rev4', label: 'Reviewer 4' },
+      ],
+      cols: 6,
+      displayIn: 'formExtra',
+    },
+    {
+      name: 'approver1',
+      label: 'Approver 1',
+      type: 'select',
+      options: [
+        { value: 'app1', label: 'Approver 1' },
+        { value: 'app2', label: 'Approver 2' },
+      ],
+      cols: 6,
+      displayIn: 'formExtra',
+    },
+    {
+      name: 'approver2',
+      label: 'Approver 2',
+      type: 'select',
+      options: [
+        { value: 'app3', label: 'Approver 3' },
+        { value: 'app4', label: 'Approver 4' },
+      ],
+      cols: 6,
+      displayIn: 'formExtra',
+    },
+  ],
+  'demand-to-pay': [
+    {
+      name: 'date',
+      label: 'Date',
+      type: 'date',
+      required: true,
+      cols: 12,
+      placeholder: 'mm/dd/yyyy',
+      displayIn: 'createModal',
+    },
+    {
+      name: 'tenantName',
+      label: 'Tenant Name:',
+      type: 'text',
+      placeholder: 'Search',
+      required: true,
+      cols: 7,
+      displayIn: 'createModal',
+    },
+    {
+      name: 'controlNo',
+      label: 'Control No.',
+      type: 'text',
+      placeholder: 'Control No.', // Populate with control number options as needed
+      required: true,
+      cols: 5,
+      displayIn: 'createModal',
+    },
 
-  {
-    name: 'name',
-    label: 'Name',
-    type: 'text',
-    placeholder: 'Search',
-    required: true,
-        disabled: true,
-
-    cols: 12,
-  },
-  {
-    name: 'name',
-    label: 'Name:',
-    type: 'text',
-    disabled: true,
-    computed: true,
-    defaultValue: 'Auto Populate',
-    cols: 12,
-  },
-  {
-    name: 'address',
-    label: 'Address:',
-    type: 'text',
-    disabled: true,
-    computed: true,
-    defaultValue: 'Auto Populate',
-    cols: 12,
-  },
-  {
-    name: 'subject',
-    label: 'Subject',
-    type: 'text',
-    disabled: true,
-    computed: true,
-    defaultValue: 'Auto populate',
-    cols: 6,
-  },
-  {
-    name: 'attention',
-    label: 'Attention to:',
-    type: 'text',
-    disabled: true,
-    computed: true,
-    defaultValue: 'Auto populate',
-    cols: 6,
-  },
-  {
-  name: 'reviewer1',
-  label: 'Reviewer 1',
-  type: 'select',
-  options: [
-    { value: 'rev1', label: 'Reviewer 1' },
-    { value: 'rev2', label: 'Reviewer 2' },
+    {
+      name: 'name',
+      label: 'Name:',
+      type: 'text',
+      disabled: true,
+      computed: true,
+      cols: 12,
+      displayIn: 'createModal',
+    },
+    {
+      name: 'address',
+      label: 'Address:',
+      type: 'text',
+      disabled: true,
+      computed: true,
+      cols: 12,
+      displayIn: 'createModal',
+    },
+    {
+      name: 'subject',
+      label: 'Subject',
+      type: 'text',
+      disabled: true,
+      computed: true,
+      cols: 12,
+      displayIn: 'createModal',
+    },
+    {
+      name: 'buildingSpace',
+      label: 'Building Space',
+      type: 'text',
+      required: true,
+      cols: 6,
+      displayIn: 'formExtra',
+    },
+    {
+      name: 'contractName',
+      label: 'Contract of Lease',
+      type: 'text',
+      required: true,
+      cols: 6,
+      displayIn: 'formExtra',
+    },
+    {
+      name: 'contractLocation',
+      label: 'Contract Location',
+      type: 'text',
+      required: true,
+      cols: 6,
+      displayIn: 'formExtra',
+    },
+    {
+      name: 'squareMeters',
+      label: 'Square Meter',
+      type: 'number',
+      required: true,
+      cols: 6,
+      displayIn: 'formExtra',
+    },
+    {
+      name: 'amountInWords',
+      label: 'Amount in Words',
+      type: 'text',
+      required: true,
+      cols: 12,
+      displayIn: 'formExtra',
+    },
+    {
+      name: 'rentalPeriod',
+      label: 'Rental Period',
+      type: 'text',
+      required: true,
+      placeholder: 'e.g. March - April 2025',
+      cols: 12,
+      displayIn: 'formExtra',
+    },
   ],
-  cols: 6,
-},
-{
-  name: 'reviewer2',
-  label: 'Reviewer 2',
-  type: 'select',
-  options: [
-    { value: 'rev3', label: 'Reviewer 3' },
-    { value: 'rev4', label: 'Reviewer 4' },
-  ],
-  cols: 6,
-},
- {
-  name: 'reviewer3',
-  label: 'Reviewer 3',
-  type: 'select',
-  options: [
-    { value: 'rev1', label: 'Reviewer 1' },
-    { value: 'rev2', label: 'Reviewer 2' },
-  ],
-  cols: 6,
-},
-{
-  name: 'reviewer4',
-  label: 'Reviewer 4',
-  type: 'select',
-  options: [
-    { value: 'rev3', label: 'Reviewer 3' },
-    { value: 'rev4', label: 'Reviewer 4' },
-  ],
-  cols: 6,
-},
-{
-  name: 'approver1',
-  label: 'Approver 1',
-  type: 'select',
-  options: [
-    { value: 'app1', label: 'Approver 1' },
-    { value: 'app2', label: 'Approver 2' },
-  ],
-  cols: 6,
-},
-{
-  name: 'approver2',
-  label: 'Approver 2',
-  type: 'select',
-  options: [
-    { value: 'app3', label: 'Approver 3' },
-    { value: 'app4', label: 'Approver 4' },
-  ],
-  cols: 6,
-},
-
-],
-
 };
 
 // Add this new function to handle computed fields

@@ -258,15 +258,225 @@ const dummyDataMap: Record<ViewType, any[]> = {
   'payment-monitoring': [
     { transactionId: 'TX-001', paymentDate: '2025-05-01' },
     { transactionId: 'TX-002', paymentDate: '2025-05-02' },
+  ],'payment-reconciliation': [
+    {
+      transactionId: 'PR-001',
+      controlNumber: 'BS-001',
+      lessee: 'John Doe',
+      companyName: 'Acme Corp',
+      paymentDate: '2024-06-01',
+      amountPaid: 12000,
+      paymentMethod: 'Bank Transfer',
+      status: 'Reconciled'
+    },
+    {
+      transactionId: 'PR-002',
+      controlNumber: 'BS-002',
+      lessee: 'Jane Smith',
+      companyName: 'Beta LLC',
+      paymentDate: '2024-06-02',
+      amountPaid: 2500,
+      paymentMethod: 'Check',
+      status: 'Pending Verification'
+    },
+    {
+      transactionId: 'PR-003',
+      controlNumber: 'BS-003',
+      lessee: 'Alice Johnson',
+      companyName: 'Gamma Inc',
+      paymentDate: '2024-06-03',
+      amountPaid: 3400,
+      paymentMethod: 'Cash',
+      status: 'Reconciled'
+    }
   ],
-  'demand-to-pay': [
-    { id: 'DTP-001', dueDate: '2025-05-10', amountDue: 1500 },
-    { id: 'DTP-002', dueDate: '2025-05-11', amountDue: 2000 },
+  'payment-history': [
+    {
+      transactionId: 'PH-001',
+      date: '2024-05-30',
+      lessee: 'John Doe',
+      companyName: 'Acme Corp',
+      amount: 12000,
+      referenceNumber: 'REF-0001',
+      paymentMethod: 'Bank Transfer'
+    },
+    {
+      transactionId: 'PH-002',
+      date: '2024-05-31',
+      lessee: 'Jane Smith',
+      companyName: 'Beta LLC',
+      amount: 2500,
+      referenceNumber: 'REF-0002',
+      paymentMethod: 'Check'
+    },
+    {
+      transactionId: 'PH-003',
+      date: '2024-06-01',
+      lessee: 'Alice Johnson',
+      companyName: 'Gamma Inc',
+      amount: 3400,
+      referenceNumber: 'REF-0003',
+      paymentMethod: 'Cash'
+    }
   ],
-  'journal-entry': [
-    { entryId: 'JE-001', description: 'Adjustment', amount: 500 },
-    { entryId: 'JE-002', description: 'Correction', amount: -300 },
+  'payment-reminder': [
+    {
+      reminderId: 'REM-001',
+      lessee: 'John Doe',
+      companyName: 'Acme Corp',
+      dueDate: '2024-06-10',
+      amountDue: 12000,
+      status: 'Unpaid',
+      lastReminderSent: '2024-06-01'
+    },
+    {
+      reminderId: 'REM-002',
+      lessee: 'Jane Smith',
+      companyName: 'Beta LLC',
+      dueDate: '2024-06-12',
+      amountDue: 2500,
+      status: 'Paid',
+      lastReminderSent: '2024-06-02'
+    },
+    {
+      reminderId: 'REM-003',
+      lessee: 'Alice Johnson',
+      companyName: 'Gamma Inc',
+      dueDate: '2024-06-15',
+      amountDue: 3400,
+      status: 'Unpaid',
+      lastReminderSent: '2024-06-05'
+    }
   ],
+ 'demand-to-pay': [
+  {
+    status: 'approved',
+    date: '2025-06-01',
+    controlNumber: 'CN-001',
+    lessee: 'Juan Dela Cruz',
+    companyName: 'Alpha Corp',
+    subject: 'Lease Renewal',
+    dateReceived: '2025-05-28',
+  },
+  {
+    status: 'for review[1/4]',
+    date: '2025-06-02',
+    controlNumber: 'CN-002',
+    lessee: 'Maria Santos',
+    companyName: 'Beta Ltd',
+    subject: 'Lease Termination',
+    dateReceived: '2025-05-30',
+  },
+  {
+    status: 'settled [1/3]',
+    date: '2025-05-30',
+    controlNumber: 'CN-003',
+    lessee: 'Pedro Gomez',
+    companyName: 'Gamma Ventures',
+    subject: 'Payment Settlement',
+    dateReceived: '2025-05-29',
+  },
+  {
+    status: 'returned',
+    date: '2025-05-25',
+    controlNumber: 'CN-004',
+    lessee: 'Carla Ramos',
+    companyName: 'Delta Corp',
+    subject: 'Document Review',
+    dateReceived: '2025-05-23',
+  },
+  {
+    status: 'rejected',
+    date: '2025-05-20',
+    controlNumber: 'CN-005',
+    lessee: 'Luis Enriquez',
+    companyName: 'Epsilon Inc',
+    subject: 'Late Submission',
+    dateReceived: '2025-05-19',
+  },
+  {
+    status: 'settled [2/4]',
+    date: '2025-05-15',
+    controlNumber: 'CN-006',
+    lessee: 'Grace Villanueva',
+    companyName: 'Zeta Tech',
+    subject: 'Installment Payment',
+    dateReceived: '2025-05-14',
+  },
+  {
+    status: 'unpaid',
+    date: '2025-05-10',
+    controlNumber: 'CN-007',
+    lessee: 'Danilo Cruz',
+    companyName: 'Theta Holdings',
+    subject: 'Outstanding Invoice',
+    dateReceived: '2025-05-09',
+  },
+  {
+    status: 'completed',
+    date: '2025-05-05',
+    controlNumber: 'CN-008',
+    lessee: 'Elaine Lopez',
+    companyName: 'Iota Services',
+    subject: 'Contract Completion',
+    dateReceived: '2025-05-03',
+  },
+  {
+    status: 'overdue',
+    date: '2025-04-30',
+    controlNumber: 'CN-009',
+    lessee: 'Oscar Mendoza',
+    companyName: 'Kappa Build',
+    subject: 'Overdue Rent',
+    dateReceived: '2025-04-28',
+  },
+  {
+    status: 'settled [3/3]',
+    date: '2025-04-25',
+    controlNumber: 'CN-010',
+    lessee: 'Isabel Navarro',
+    companyName: 'Lambda Co.',
+    subject: 'Final Payment',
+    dateReceived: '2025-04-24',
+  },
+],
+
+'journal-entry': [
+
+  {
+    jevDate: '2025-06-02',
+    jevNo: 'JEV-002',
+    accountTitle: 'Accounts Payable',
+    particulars: 'Correction of invoice error',
+    debit: 0,
+    credit: 300,
+  },
+  {
+    jevDate: '2025-06-03',
+    jevNo: 'JEV-003',
+    accountTitle: 'Office Supplies',
+    particulars: 'Purchase of supplies',
+    debit: 200,
+    credit: 0,
+  },
+  {
+    jevDate: '2025-06-03',
+    jevNo: 'JEV-004',
+    accountTitle: 'Cash in Bank',
+    particulars: 'Payment for office supplies',
+    debit: 0,
+    credit: 200,
+  },
+  {
+    jevDate: '2025-06-04',
+    jevNo: 'JEV-005',
+    accountTitle: 'Salaries Expense',
+    particulars: 'Salary payment for June',
+    debit: 1000,
+    credit: 0,
+  }
+],
+
   'invoice-tracking': [
     { invoiceNo: 'INV-001', status: 'Paid', total: 1000 },
     { invoiceNo: 'INV-002', status: 'Pending', total: 2500 },

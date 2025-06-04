@@ -50,10 +50,10 @@ export function getBSRowActions(viewType: string) {
       >
         View Billing
       </Menu.Item>
-      <Menu.Item   onClick={() => {
-          console.log('ViewType passed to menu item:', viewType);
-          openModal('viewHistory', row, viewType);
-        }}>
+      <Menu.Item onClick={() => {
+        console.log('ViewType passed to menu item:', viewType);
+        openModal('viewHistory', row, viewType);
+      }}>
         View Billing History
       </Menu.Item></>);
 }

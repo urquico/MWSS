@@ -27,7 +27,8 @@ import { ViewConfig, RouteConfig } from '@/features/income-management/types/view
  */
 export const routeViewConfig: RouteConfig = {
   // ===== INCOME MANAGEMENT =====
- 
+
+//  BILLING MANAGEMENT
   [ActiveRoute.STATEMENT_OF_ACCOUNT]: {
     viewType: 'statement-of-account',
     title: 'Statement of Account',
@@ -50,11 +51,29 @@ export const routeViewConfig: RouteConfig = {
     title: 'Journal Entry Voucher',
     enableExport: true,
   },
+// PAYMENT MONITORING
   [ActiveRoute.PAYMENT_MONITORING]: {
     viewType: 'payment-monitoring',
     title: 'Payment Monitoring',
     enableExport: true,
   },
+   [ActiveRoute.PAYMENT_RECONCILIATION]: {
+    viewType: 'payment-reconciliation',
+    title: 'Payment Reconciliation',
+    enableExport: true,
+  },
+   [ActiveRoute.PAYMENT_HISTORY]: {
+    viewType: 'payment-history',
+    title: 'Payment History',
+    enableExport: true,
+  },
+   [ActiveRoute.PAYMENT_REMINDER]: {
+    viewType: 'payment-reminder',
+    title: 'Payment Reminder',
+    enableExport: true,
+  },
+
+  
   [ActiveRoute.INVOICE_TRACKING]: {
     viewType: 'invoice-tracking',
     title: 'Invoice Tracking',

@@ -13,12 +13,15 @@ interface CreateModalProps {
   onSubmit: (values: any) => void;
   onClose: () => void;
 }
+
 function CreateModal({ viewType, onSubmit, onClose }: CreateModalProps) {
-
   const formRef = useRef<HTMLFormElement>(null);
-
-
   const fields = formConfigs[viewType] || [];
+  
+  // Filter fields that should appear in the modal (default to 'createModal' if not specified)
+  const modalFields = fields.filter(field => 
+    !field.displayIn || field.displayIn === 'createModal'
+  );
 
   const form = useForm({
     initialValues: fields.reduce((acc, field) => {
@@ -45,7 +48,6 @@ function CreateModal({ viewType, onSubmit, onClose }: CreateModalProps) {
     });
   }, [form.values.principal, form.values.interestRate, form.values.retailAdjustment]);
 
-
   const handleSubmit = (values: any) => {
     const [periodFrom, periodTo] = values.periodFromTo || [null, null];
     const finalValues = {
@@ -56,7 +58,6 @@ function CreateModal({ viewType, onSubmit, onClose }: CreateModalProps) {
     onSubmit(finalValues);
     form.reset();
   };
-
 
   const renderField = (field: typeof fields[0]) => {
     const commonProps = {
@@ -71,8 +72,7 @@ function CreateModal({ viewType, onSubmit, onClose }: CreateModalProps) {
       case 'text':
         return <TextInput {...commonProps} />;
       case 'date':
-        return <DateInput {...commonProps} rightSection={<IconCalendarWeek size={18} />}
-        />;
+        return <DateInput {...commonProps} rightSection={<IconCalendarWeek size={18} />} />;
       case 'number':
         return <NumberInput {...commonProps} />;
       case 'select':
@@ -94,7 +94,6 @@ function CreateModal({ viewType, onSubmit, onClose }: CreateModalProps) {
     }
   };
 
-
   return (
     <BaseModal
       opened={true}
@@ -105,7 +104,6 @@ function CreateModal({ viewType, onSubmit, onClose }: CreateModalProps) {
       showExportButton={false}
       showPrintButton={false}
       onSave={() => {
-        // Programmatically submit the form
         if (formRef.current) {
           formRef.current.requestSubmit();
         }
@@ -113,22 +111,19 @@ function CreateModal({ viewType, onSubmit, onClose }: CreateModalProps) {
     >
       <form ref={formRef} onSubmit={form.onSubmit(handleSubmit)}>
         <Grid>
-          {fields
-            .filter(field =>
-              viewType !== 'billing-statement' ||
-              !['reviewer1', 'reviewer2', 'reviewer3', 'reviewer4', 'approver1', 'approver2'].includes(field.name)
-            )
-            .map(field => (
-              <Grid.Col key={field.name} span={field.cols || 12}>
-                {renderField(field)}
-              </Grid.Col>
-            ))}
-          {/* Hidden submit button to allow programmatic submission */}
-        <button type="submit" style={{ display: 'none' }} />
+          {modalFields.map(field => (
+            <Grid.Col key={field.name} span={field.cols || 12}>
+              {renderField(field)}
+            </Grid.Col>
+          ))}
+          <button type="submit" style={{ display: 'none' }} />
         </Grid>
       </form>
-      <FormExtras viewType={viewType} fields={fields} form={form} />
-
+      <FormExtras 
+        viewType={viewType} 
+        fields={fields.filter(f => f.displayIn === 'formExtra')} 
+        form={form} 
+      />
     </BaseModal>
   );
 }

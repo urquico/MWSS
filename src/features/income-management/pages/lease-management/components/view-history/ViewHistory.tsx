@@ -23,6 +23,7 @@ const ViewHistory: React.FC<ViewHistoryProps> = ({ data, onClose, viewType }) =>
       opened={true}
       onClose={onClose}
       showExportButton={false}
+      showPrintButton={false}
       withFooter={false}
       withHeader={false}
       size="57%"

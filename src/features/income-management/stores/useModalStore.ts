@@ -1,14 +1,6 @@
 import { create, StateCreator } from 'zustand';
 import zukeeper from 'zukeeper';
-
-type ModalType =
-
-  | 'create'
-  | 'generate'
-  | 'template'
-  | 'viewHistory'
-  | null;
-
+import { ModalType } from '../types/modal-types';
 interface ModalState {
   isOpen: boolean;
   type: ModalType;
@@ -18,7 +10,6 @@ interface ModalState {
   closeModal: () => void;
 }
 
-// Explicitly type your store creator
 const modalStoreCreator: StateCreator<ModalState> = (set) => ({
   isOpen: false,
   type: null,
@@ -30,10 +21,8 @@ const modalStoreCreator: StateCreator<ModalState> = (set) => ({
     set({ isOpen: false, type: null, data: null, viewType: undefined }),
 });
 
-// Wrap it with zukeeper
 export const useModalStore = create<ModalState>(zukeeper(modalStoreCreator));
 
-// Optional: expose for DevTools
 if (typeof window !== 'undefined') {
   (window as any).store = useModalStore;
 }

@@ -40,7 +40,7 @@ function Header({
 
   const logoClick = () => {
     if (monitor) {
-      navigate(-1);
+      navigate('/landing');
     }
   };
 

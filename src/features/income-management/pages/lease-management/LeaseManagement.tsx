@@ -12,7 +12,8 @@ import BSToolbar from './components/toolbar/BSToolbar';
 import CreateModal from './components/create-modal-components/CreateModal';
 import GenerateTemplate from './components/generate-modal-components/GenerateTemplate';
 import  ViewHistory  from './components/view-history/ViewHistory';
-import { useLeaseDataStore } from './stores/useLeaseDataStore';
+import { viewTypeModalMap } from '../../types/redirect-types';
+import { DPToolbar } from './components/toolbar/DPToolbar';
 interface DataViewProps {
   config: ViewConfig;
 }
@@ -29,8 +30,6 @@ interface DataViewProps {
 function LeaseManagement({ config }: DataViewProps) {
   const { data, isLoading, error } = useDataView(config.viewType);
   const { isOpen, type, data: modalData, closeModal } = useModalStore();
-  const setLeaseData = useLeaseDataStore((state) => state.setData);
-  const [generatedData, setGeneratedData] = useState<any>(null);
 
   const columns = getColumnConfig(config.viewType, config.customColumns);
 
@@ -38,22 +37,19 @@ function LeaseManagement({ config }: DataViewProps) {
     useModalStore.getState().openModal('create', null, config.viewType);
   };
 
- 
-  const handleCreateSubmit = async (values: any) => {
-    // 1. Simulate sending to backend
-    console.log('Saving to backend:', values);
-
-    // 2. Simulate fetching new data
-    const newData = { ...values, id: Date.now() }; // just mock data
-    console.log('Fetched new data:', newData);
-
-    // 3. Store in local state for GenerateModal
-    setGeneratedData(newData);
-
-    // 4. Open GenerateModal with new data
-    useModalStore.getState().openModal('generate', newData, config.viewType);
+ const handleCreateSubmit = async (values: any) => {
+    try {
+      console.log('Saving to backend:', values);
+      const newData = { ...values, id: Date.now() };
+      
+      const modalType = viewTypeModalMap[config.viewType];
+      useModalStore.getState().openModal(modalType, newData, config.viewType);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
   };
 
+  
   const handleGenerateRow = (row: any) => {
     console.log('Generating billing statement for row:', row);
     useModalStore.getState().openModal('generate', row, config.viewType);
@@ -66,6 +62,7 @@ function LeaseManagement({ config }: DataViewProps) {
     'billing-statement': (
       <BSToolbar onCreate={handleCreate} onGenerateRow={handleGenerateRow} />
     ),
+    'demand-to-pay':(<DPToolbar onCreate={handleCreate} />),
   };
 
   const topToolbarSlot = toolbarMap[config.viewType] || null;
@@ -77,17 +74,17 @@ function LeaseManagement({ config }: DataViewProps) {
 
   return (
     <Paper radius={20} p="xl">
+      
       {/* Conditionally render modals */}
       {isOpen && type === 'generate' && (
-        <GenerateModal data={modalData} onClose={closeModal} config={config}  />
+        <GenerateModal data={modalData} onClose={closeModal} config={config} />
       )}
       {isOpen && type === 'template' && (
         <GenerateTemplate data={modalData} onClose={closeModal} viewType={config.viewType} />
       )}
- {isOpen && type === 'viewHistory' && (
+      {isOpen && type === 'viewHistory' && (
         <ViewHistory data={modalData} onClose={closeModal} viewType={config.viewType} />
       )}
-
       {isOpen && type === 'create' && (
         <CreateModal
           viewType={config.viewType}
@@ -95,7 +92,7 @@ function LeaseManagement({ config }: DataViewProps) {
           onClose={closeModal}
         />
       )}
-
+      
       <LoadingOverlay visible={isLoading} />
 
       <Box className="flex justify-end mb-4">
