@@ -4,10 +4,9 @@ import Title from '@/components/ui/Title';
 import BackgroundImage from '@/components/ui/BackgroundImage';
 export default function InfoBanner() {
   return (
-    <BackgroundImage src='/landing-bg.png' className="flex items-center justify-center">
-
+    <BackgroundImage src='/landing-bg.png' className="flex items-center justify-center ">
       <Header
-        groupClassName='bg-none'
+        groupClassName='bg-none '
         textSize={24}
         textColor='#D2E1FF'
         textWeight={400}
@@ -16,6 +15,7 @@ export default function InfoBanner() {
           ['Metropolitan Waterworks', '& Sewerage System']
         }
         position='top-left'
+  useAbsolutePosition={true}
 
 
       />

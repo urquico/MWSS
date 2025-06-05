@@ -1,4 +1,4 @@
-import { useSidebarStore } from '@/store/sidebar-store';
+import { useSidebarStore } from '@/store/useSidebarStore';
 import { Burger } from '@mantine/core';
 
 /**

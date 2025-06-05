@@ -31,26 +31,32 @@ function DashboardSummary({
         Summary
       </Text>
 
-      <SimpleGrid cols={5} spacing="md" >
-        {items.map((item, index) => (
-          <Card 
-            key={index}
-            p="lg"
-            radius="md"
-            style={{ 
-              backgroundColor: item.color || theme.colors.gray[0],
-              color: item.textColor || theme.black,
-              height: '100%',
-              
-            }}
-          >
-            <Text fz={16} fw={600} style={{ marginBottom: theme.spacing.xs }}>
-              {item.label}
-            </Text>
-            <Title fz={25} fw={700} order={3}>{item.value}</Title>
-          </Card>
-        ))}
-      </SimpleGrid>
+     <SimpleGrid
+  cols={{ base: 1, sm: 2, lg: 5 }}
+  spacing={{ base: 'md', sm: 'lg' }}
+  verticalSpacing={{ base: 'sm', sm: 'md' }}
+>
+  {items.map((item, index) => (
+    <Card
+      key={index}
+      p="lg"
+      radius="md"
+      style={{
+        backgroundColor: item.color || theme.colors.gray[0],
+        color: item.textColor || theme.black,
+        height: '100%',
+      }}
+    >
+      <Text fz={16} fw={600} mb="xs">
+        {item.label}
+      </Text>
+      <Title fz={25} fw={700} order={3}>
+        {item.value}
+      </Title>
+    </Card>
+  ))}
+</SimpleGrid>
+
     </Card>
   );
 }

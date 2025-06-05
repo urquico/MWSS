@@ -42,11 +42,16 @@ function DashboardPage() {
         </section>
         <Grid gutter="xl" className="w-full h-full">
           {chartLayout.map(({ span, component }, index) => (
-            <Grid.Col key={index} span={span}>
+            <Grid.Col
+              key={index}
+              span={{ base: 12, md: span }}
+            >
               <div className="h-full">{component}</div>
             </Grid.Col>
           ))}
         </Grid>
+
+
       </main>
     </AdminDashboardProvider>
   );

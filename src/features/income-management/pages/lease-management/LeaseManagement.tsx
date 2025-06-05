@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDataView } from '../../hooks/useDataView';
 import { ViewConfig } from '@/features/income-management/types/view-types.ts';
 import { getColumnConfig } from '@/features/income-management/types/column-types.ts';
@@ -14,6 +14,7 @@ import GenerateTemplate from './components/generate-modal-components/GenerateTem
 import  ViewHistory  from './components/view-history/ViewHistory';
 import { viewTypeModalMap } from '../../types/redirect-types';
 import { DPToolbar } from './components/toolbar/DPToolbar';
+import { PHToolbar } from './components/toolbar/PHToolbar';
 interface DataViewProps {
   config: ViewConfig;
 }
@@ -30,6 +31,12 @@ interface DataViewProps {
 function LeaseManagement({ config }: DataViewProps) {
   const { data, isLoading, error } = useDataView(config.viewType);
   const { isOpen, type, data: modalData, closeModal } = useModalStore();
+const [filteredData, setFilteredData] = useState(data || []);
+useEffect(() => {
+  if (config.viewType === 'payment-history' && data) {
+    setFilteredData(data);
+  }
+}, [config.viewType, data]);
 
   const columns = getColumnConfig(config.viewType, config.customColumns);
 
@@ -62,7 +69,14 @@ function LeaseManagement({ config }: DataViewProps) {
     'billing-statement': (
       <BSToolbar onCreate={handleCreate} onGenerateRow={handleGenerateRow} />
     ),
-    'demand-to-pay':(<DPToolbar onCreate={handleCreate} />),
+    'demand-to-pay':(<DPToolbar onCreate={handleCreate} />
+    ),
+    'payment-history': (
+    <PHToolbar
+      originalData={data || []}
+      onFilteredData={(filtered) => setFilteredData(filtered)}
+    />
+    )
   };
 
   const topToolbarSlot = toolbarMap[config.viewType] || null;
@@ -100,7 +114,7 @@ function LeaseManagement({ config }: DataViewProps) {
       </Box>
 
       <Table
-        data={data || []}
+        data={config.viewType === 'payment-history' ? filteredData : data || []}
         columns={columns}
         features={{
           filtering: { fuzzy: true, global: true },

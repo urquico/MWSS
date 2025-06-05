@@ -4,7 +4,6 @@ import Shell from '@/components/ui/shell/AppShell';
 import AuthGuard from '@/provider/auth-guard';
 import { Login, IncomeManagement, LandingPage, Dashboard } from '@/lib/lazy';
 import { createBrowserRouter } from 'react-router-dom';
-import { Suspense } from 'react';
 import { ActiveRoute } from '@/types/routes-enums';
 
 export const router = createBrowserRouter([
@@ -22,9 +21,7 @@ export const router = createBrowserRouter([
     id: 'landing',
     path: '/landing',
     element: (
-      <Suspense fallback={<Loader />}>
         <LandingPage />
-      </Suspense>
     )
   },
   {
@@ -32,9 +29,7 @@ export const router = createBrowserRouter([
     path: '/finance',
     errorElement: <ErrorPage />,
     element: (
-      <Suspense fallback={<Loader />}>
         <Shell />
-      </Suspense>
     ),
     children: [
       {

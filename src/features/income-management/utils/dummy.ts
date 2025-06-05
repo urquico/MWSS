@@ -291,33 +291,42 @@ const dummyDataMap: Record<ViewType, any[]> = {
     }
   ],
   'payment-history': [
-    {
-      transactionId: 'PH-001',
-      date: '2024-05-30',
-      lessee: 'John Doe',
-      companyName: 'Acme Corp',
-      amount: 12000,
-      referenceNumber: 'REF-0001',
-      paymentMethod: 'Bank Transfer'
-    },
-    {
-      transactionId: 'PH-002',
-      date: '2024-05-31',
-      lessee: 'Jane Smith',
-      companyName: 'Beta LLC',
-      amount: 2500,
-      referenceNumber: 'REF-0002',
-      paymentMethod: 'Check'
-    },
-    {
-      transactionId: 'PH-003',
-      date: '2024-06-01',
-      lessee: 'Alice Johnson',
-      companyName: 'Gamma Inc',
-      amount: 3400,
-      referenceNumber: 'REF-0003',
-      paymentMethod: 'Cash'
-    }
+   {
+    soaControlNumber: 'SOA-001',
+    soaAmount: 12000,
+    orDate: '2024-05-30',
+    lessee: 'John Doe',
+    orNo: 'OR-001',
+    paymentMade: 12000,
+    balanceDue: 0,
+  },
+  {
+    soaControlNumber: 'SOA-002',
+    soaAmount: 2500,
+    orDate: '2024-05-31',
+    lessee: 'Jane Smith',
+    orNo: 'OR-002',
+    paymentMade: 2500,
+    balanceDue: 0,
+  },
+  {
+    soaControlNumber: 'SOA-003',
+    soaAmount: 3400,
+    orDate: '2024-06-01',
+    lessee: 'Alice Johnson',
+    orNo: 'OR-003',
+    paymentMade: 2400,
+    balanceDue: 1000,
+  },
+  {
+    soaControlNumber: 'SOA-004',
+    soaAmount: 3000,
+    orDate: '2024-06-01',
+    lessee: 'Alice Johnson',
+    orNo: 'OR-004',
+    paymentMade: 1000,
+    balanceDue: 2000,
+  },
   ],
   'payment-reminder': [
     {

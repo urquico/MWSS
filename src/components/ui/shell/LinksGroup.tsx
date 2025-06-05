@@ -1,6 +1,6 @@
 import IconChevronRight from '@/components/icons/IconChevronRight';
-import { useLinksGroupStore } from '@/store/links-group-store';
-import { useSidebarStore } from '@/store/sidebar-store';
+import { useLinksGroupStore } from '@/store/useLinksGroupStore';
+import { useSidebarStore } from '@/store/useSidebarStore';
 import { Box, Collapse, ThemeIcon, Tooltip} from '@mantine/core';
 import { useLocation, useNavigate } from 'react-router-dom';
 

@@ -55,10 +55,9 @@ const journalColumns: ColumnDef<any>[] = [
   { accessorKey: 'jevDate', header: 'JEV Date' },
   { accessorKey: 'jevNo', header: 'JEV No.' },
   { accessorKey: 'accountTitle', header: 'Account Title' },
-    { accessorKey: 'particulars', header: 'Particulars' },
+  { accessorKey: 'particulars', header: 'Particulars' },
   { accessorKey: 'debit', header: 'Debit' },
   { accessorKey: 'credit', header: 'Credit' },
-
 ];
 
 const paymentReconciliationColumns: ColumnDef<any>[] = [
@@ -73,9 +72,9 @@ const paymentHistoryColumns: ColumnDef<any>[] = [
   { accessorKey: 'lessee', header: 'Lessee Name' },
   { accessorKey: 'soaControlNumber', header: 'SOA Control No.' },
   { accessorKey: 'soaAmount', header: 'SOA Amount' },
-  { accessorKey: 'paymentDate', header: 'Payment Date' },
-  { accessorKey: 'paymentNo', header: 'Payment No.' },
-  { accessorKey: 'paymentMode', header: 'Payment Mode' },
+  { accessorKey: 'orDate', header: 'OR Date' },
+  { accessorKey: 'orNo', header: 'OR No.' },
+  { accessorKey: 'paymentMade', header: 'Payment Made' },
   { accessorKey: 'balanceDue', header: 'Balance Due' },
 ];
 const paymentReminderColumns: ColumnDef<any>[] = [
