@@ -47,7 +47,7 @@ function Shell({ children }: ShellProps) {
       className="bg-background"
     >
       {/* Header */}
-      <AppShell.Header className="flex items-center justify-start px-6 overflow-hidden">
+      <AppShell.Header className="flex items-center justify-start px-6 overflow-hidden ">
         <SidebarToggle />
         {/* Header container - takes remaining space */}
         <div className="flex items-center flex-1 min-w-0 overflow-hidden">
@@ -102,7 +102,7 @@ function Shell({ children }: ShellProps) {
           </>
         )}
 
-        <AppShell.Section grow component="nav" my="md" className="overflow-y-auto">
+        <AppShell.Section grow component="nav" my="md" className="h-full overflow-y-auto sidebar-scroll">
           <div className="w-full py-2">
             {sidebarModules.map((link) => (
               <LinksGroup
