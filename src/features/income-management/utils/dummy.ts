@@ -486,10 +486,51 @@ const dummyDataMap: Record<ViewType, any[]> = {
   }
 ],
 
-  'invoice-tracking': [
-    { invoiceNo: 'INV-001', status: 'Paid', total: 1000 },
-    { invoiceNo: 'INV-002', status: 'Pending', total: 2500 },
-  ],
+ 'invoice-tracking': [
+  {
+    lessee: 'Acme Corp.',
+    invoiceDate: '2025-06-01',
+    invoiceNo: 'INV-001',
+    amount: 1000,
+    status: 'Paid',
+  },
+  {
+    lessee: 'Beta Solutions',
+    invoiceDate: '2025-06-02',
+    invoiceNo: 'INV-002',
+    amount: 2500,
+    status: 'Pending',
+  },
+  {
+    lessee: 'Cyber Systems',
+    invoiceDate: '2025-06-03',
+    invoiceNo: 'INV-003',
+    amount: 1850,
+    status: 'Overdue',
+  },
+  {
+    lessee: 'Delta Logistics',
+    invoiceDate: '2025-06-04',
+    invoiceNo: 'INV-004',
+    amount: 3200,
+    status: 'Paid',
+  },
+  {
+    lessee: 'Eco Rentals',
+    invoiceDate: '2025-06-05',
+    invoiceNo: 'INV-005',
+    amount: 1450,
+    status: 'Cancelled',
+  },
+  {
+    lessee: 'FastTrack Inc.',
+    invoiceDate: '2025-06-06',
+    invoiceNo: 'INV-006',
+    amount: 2750,
+    status: 'Pending',
+  },
+],
+
   'tenant-information': [
     { tenantId: 'TEN-001', name: 'Tenant A', unit: '101-A' },
     { tenantId: 'TEN-002', name: 'Tenant B', unit: '102-B' },

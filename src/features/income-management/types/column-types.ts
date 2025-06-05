@@ -87,9 +87,15 @@ const paymentReminderColumns: ColumnDef<any>[] = [
 ];
 
 const invoiceColumns: ColumnDef<any>[] = [
-  { accessorKey: 'invoiceNo', header: 'Invoice Number' },
-  { accessorKey: 'status', header: 'Status' },
-  { accessorKey: 'total', header: 'Total' },
+  { accessorKey: 'lessee', header: 'Lessee Name' },
+  { accessorKey: 'invoiceDate', header: 'Invoice Date' },
+  { accessorKey: 'invoiceNo', header: 'Invoice No.' },
+  { accessorKey: 'amount', header: 'Amount' },
+{
+    accessorKey: 'status',
+    header: 'Status',
+    cell: ({ row }) => renderStatusCell(row.original.status),
+  }
 ];
 
 const tenantColumns: ColumnDef<any>[] = [

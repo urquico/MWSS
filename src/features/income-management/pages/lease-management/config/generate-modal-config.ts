@@ -109,4 +109,15 @@ export const generateModalConfigs: Record<string, GenerateModalConfig> = {
       { accessorKey: 'orNo', header: 'O.R. No.' },
     ],
   },
+    
 };
+
+
+export const getTitle = (viewType: string): string => {
+  if (viewType === 'invoice-tracking') return 'Sales Invoice';
+
+  return viewType
+    .split('-')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}

@@ -3,15 +3,15 @@ import TextInput from "@/components/ui/TextInput";
 import { Grid, Title } from "@mantine/core";
 import Table from "@/components/ui/table/components/Table";
 import { generateModalConfigs } from "../../config/generate-modal-config";
-
+import { getTitle } from "../../config/generate-modal-config";
 interface GenerateModalProps {
   data?: any;
   onClose: () => void;
-  config: any
+  viewType: string;
 }
 
-const GenerateModal: React.FC<GenerateModalProps> = ({ data, onClose, config }) => {
-  const configuration = generateModalConfigs[config.viewType];
+const GenerateModal: React.FC<GenerateModalProps> = ({ data, onClose, viewType }) => {
+  const configuration = generateModalConfigs[viewType];
   if (!configuration) return null;
   console.log(configuration)
   const { fields, columns } = configuration;
@@ -32,7 +32,7 @@ const GenerateModal: React.FC<GenerateModalProps> = ({ data, onClose, config }) 
     : configuration.tableData;
   return (
     <BaseModal
-      title={`Create ${config.title.replace(/-/g, ' ')}`}
+      title={`Create ${getTitle(viewType)}`}
       exportText="Export to Excel"
       printText="Print PDF"
       tableData={tableData}

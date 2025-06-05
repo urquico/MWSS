@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDataView } from '../../hooks/useDataView';
 import { ViewConfig } from '@/features/income-management/types/view-types.ts';
 import { getColumnConfig } from '@/features/income-management/types/column-types.ts';
-import { Box, LoadingOverlay, Paper, Text } from '@mantine/core';
+import { Box, Paper, Text } from '@mantine/core';
 import Table from '@/components/ui/table/components/Table';
 import { SOAToolbar } from './components/toolbar/SOAToolbar';
 import { useModalStore } from '../../stores/useModalStore';
@@ -15,6 +15,7 @@ import  ViewHistory  from './components/view-history/ViewHistory';
 import { viewTypeModalMap } from '../../types/redirect-types';
 import { DPToolbar } from './components/toolbar/DPToolbar';
 import { PHToolbar } from './components/toolbar/PHToolbar';
+import { InvoiceToolbar } from './components/toolbar/InvoiceToolbar';
 interface DataViewProps {
   config: ViewConfig;
 }
@@ -76,7 +77,8 @@ useEffect(() => {
       originalData={data || []}
       onFilteredData={(filtered) => setFilteredData(filtered)}
     />
-    )
+    ),
+    'invoice-tracking':( <InvoiceToolbar  onCreate={handleCreate}/>),
   };
 
   const topToolbarSlot = toolbarMap[config.viewType] || null;
@@ -91,7 +93,7 @@ useEffect(() => {
       
       {/* Conditionally render modals */}
       {isOpen && type === 'generate' && (
-        <GenerateModal data={modalData} onClose={closeModal} config={config} />
+        <GenerateModal data={modalData} onClose={closeModal} viewType={config.viewType} />
       )}
       {isOpen && type === 'template' && (
         <GenerateTemplate data={modalData} onClose={closeModal} viewType={config.viewType} />
@@ -107,7 +109,6 @@ useEffect(() => {
         />
       )}
       
-      <LoadingOverlay visible={isLoading} />
 
       <Box className="flex justify-end mb-4">
         {topToolbarSlot}

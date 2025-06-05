@@ -1,13 +1,22 @@
-import { Grid, Select, Textarea, NumberInput } from '@mantine/core';
+import { Grid, Select, Textarea, NumberInput, Checkbox} from '@mantine/core';
 import { DateInput, DatePickerInput } from '@mantine/dates';
 import TextInput from "@/components/ui/TextInput";
 import formConfigs, { getComputedFields } from "../../config/create-modal-config";
 import { useForm } from '@mantine/form';
 import { useEffect, useRef } from 'react';
 import { IconCalendarWeek } from '@tabler/icons-react';
+import { getTitle } from '../../config/create-modal-config';
 import BaseModal from '@/features/income-management/components/BaseModal';
 import FormExtras from './FormExtras';
 
+
+/**
+ * PLEASE NOTE, the submit logic is passed to the parent component LeaseManagement.tsx
+ * 
+ * 
+ * 
+ * 
+ */
 interface CreateModalProps {
   viewType: string;
   onSubmit: (values: any) => void;
@@ -22,6 +31,7 @@ function CreateModal({ viewType, onSubmit, onClose }: CreateModalProps) {
   const modalFields = fields.filter(field => 
     !field.displayIn || field.displayIn === 'createModal'
   );
+
 
   const form = useForm({
     initialValues: fields.reduce((acc, field) => {
@@ -65,7 +75,7 @@ function CreateModal({ viewType, onSubmit, onClose }: CreateModalProps) {
       placeholder: field.placeholder,
       disabled: field.disabled,
       description: field.description,
-      ...form.getInputProps(field.name),
+    ...form.getInputProps(field.name, { type: field.type === 'checkbox' ? 'checkbox' : 'input' }),
     };
 
     switch (field.type) {
@@ -88,7 +98,16 @@ function CreateModal({ viewType, onSubmit, onClose }: CreateModalProps) {
             value={form.values[field.name]}
             onChange={(value) => form.setFieldValue(field.name, value)}
           />
-        );
+        ); case 'checkbox':
+      return (
+        <Checkbox
+          label={field.label}
+          disabled={field.disabled}
+          description={field.description}
+          checked={form.values[field.name]}
+          onChange={(event) => form.setFieldValue(field.name, event.currentTarget.checked)}
+        />
+      );
       default:
         return null;
     }
@@ -98,7 +117,7 @@ function CreateModal({ viewType, onSubmit, onClose }: CreateModalProps) {
     <BaseModal
       opened={true}
       onClose={onClose}
-      title={`Create ${viewType.replace(/-/g, ' ')}`}
+      title={`Create ${getTitle(viewType)}`}
       size="55rem"
       showSaveButton={true}
       showExportButton={false}

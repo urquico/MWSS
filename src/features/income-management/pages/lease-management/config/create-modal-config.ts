@@ -251,7 +251,7 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       name: 'date',
       label: 'Date',
       type: 'date',
-      required: true,
+      required: false,
       cols: 12,
       placeholder: 'mm/dd/yyyy',
       displayIn: 'createModal',
@@ -261,7 +261,7 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       label: 'Tenant Name:',
       type: 'text',
       placeholder: 'Search',
-      required: true,
+      required: false,
       cols: 7,
       displayIn: 'createModal',
     },
@@ -270,7 +270,7 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       label: 'Control No.',
       type: 'text',
       placeholder: 'Control No.', // Populate with control number options as needed
-      required: true,
+      required: false,
       cols: 5,
       displayIn: 'createModal',
     },
@@ -306,7 +306,7 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       name: 'buildingSpace',
       label: 'Building Space',
       type: 'text',
-      required: true,
+      required: false,
       cols: 6,
       displayIn: 'formExtra',
     },
@@ -314,7 +314,7 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       name: 'contractName',
       label: 'Contract of Lease',
       type: 'text',
-      required: true,
+      required: false,
       cols: 6,
       displayIn: 'formExtra',
     },
@@ -322,7 +322,7 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       name: 'contractLocation',
       label: 'Contract Location',
       type: 'text',
-      required: true,
+      required: false,
       cols: 6,
       displayIn: 'formExtra',
     },
@@ -330,7 +330,7 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       name: 'squareMeters',
       label: 'Square Meter',
       type: 'number',
-      required: true,
+      required: false,
       cols: 6,
       displayIn: 'formExtra',
     },
@@ -338,7 +338,7 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       name: 'amountInWords',
       label: 'Amount in Words',
       type: 'text',
-      required: true,
+      required: false,
       cols: 12,
       displayIn: 'formExtra',
     },
@@ -346,10 +346,64 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       name: 'rentalPeriod',
       label: 'Rental Period',
       type: 'text',
-      required: true,
+      required: false,
       placeholder: 'e.g. March - April 2025',
       cols: 12,
       displayIn: 'formExtra',
+    },
+  ],
+  'invoice-tracking':[
+ {
+      name: 'cashSale',
+      label: 'Cash Sales',
+      type: 'checkbox',
+       defaultValue: false,
+      cols: 3,
+      displayIn: 'createModal',
+    },
+     {
+      name: 'chargeSale',
+      label: 'Charge Sales',
+      type: 'checkbox',
+       defaultValue: false,
+
+      cols: 3,
+      displayIn: 'createModal',
+    },
+ {
+      name: 'date',
+      label: 'Date',
+      type: 'date',
+      required: true,
+      cols: 6,
+      placeholder: 'mm/dd/yyyy',
+      displayIn: 'createModal',
+    },
+    {
+      name: 'registeredName',
+      label: 'Registered Name:',
+      type: 'text',
+      placeholder: 'Search',
+      required: true,
+      cols: 7,
+      displayIn: 'createModal',
+    },
+    {
+      name: 'tin',
+      label: 'TIN No.',
+      type: 'text',
+      placeholder: 'TIN No.', // Populate with control number options as needed
+      required: true,
+      cols: 5,
+      displayIn: 'createModal',
+    },
+    {  name: 'businessAddress',
+      label: 'Business Address',
+      type: 'text',
+      required: true,
+      placeholder: 'Business Address',
+      cols: 12,
+      displayIn: 'createModal',
     },
   ],
 };
@@ -396,5 +450,13 @@ export const getSubmitButtonLabel = (viewType: string): string => {
   };
   return labels[viewType] || 'Submit';
 };
+export const getTitle = (viewType: string): string => {
+  if (viewType === 'invoice-tracking') return 'Sales Invoice';
+
+  return viewType
+    .split('-')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
 
 export default formConfigs;

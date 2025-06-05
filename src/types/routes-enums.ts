@@ -28,9 +28,8 @@ export enum ActiveRoute {
   PAYMENT_RECONCILIATION = '/finance/income-management/payments/reconciliation',
   PAYMENT_HISTORY = '/finance/income-management/payments/history',
   PAYMENT_REMINDER = '/finance/income-management/payments/reminder',
-  INVOICE_GENERATION_TRACKING = '/finance/income-management/invoices',
+  INVOICE_GENERATION_TRACKING = '/finance/income-management/invoice-tracking',
   TENANT_INFORMATION_MANAGEMENT = '/finance/income-management/tenants',
-  INVOICE_TRACKING = '/finance/income-management/invoice-tracking?page=1',
 
   // ===============================
   // RAW WATER MANAGEMENT
