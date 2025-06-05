@@ -1,13 +1,35 @@
-import { ColumnDef } from '@tanstack/react-table';
 import { ViewType } from '@/features/income-management/types/view-types.ts';
+import { ColumnDef } from '@tanstack/react-table';
 
-// Example column sets – reuse or customize as needed
+import { renderStatusCell } from '../utils/status-utils';
+
 const billingColumns: ColumnDef<any>[] = [
   { accessorKey: 'date', header: 'Date' },
   { accessorKey: 'controlNumber', header: 'Control Number' },
-   { accessorKey: 'lessee', header: 'Lessee' },
+  { accessorKey: 'lessee', header: 'Lessee' },
   { accessorKey: 'companyName', header: 'Company Name' },
   { accessorKey: 'subject', header: 'Subject' },
+  { accessorKey: 'dateReceived ', header: 'Date Received' },
+  {
+    accessorKey: 'status',
+    header: 'Status',
+    cell: ({ row }) => renderStatusCell(row.original.status),
+  },
+  { accessorKey: 'remarks', header: 'Remarks' },
+];
+const soaColumns: ColumnDef<any>[] = [
+  { accessorKey: 'date', header: 'Date' },
+  { accessorKey: 'controlNumber', header: 'Control Number' },
+  { accessorKey: 'lessee', header: 'Lessee' },
+  { accessorKey: 'companyName', header: 'Company Name' },
+  { accessorKey: 'subject', header: 'Subject' },
+  { accessorKey: 'periodCovered', header: 'Period Covered' },
+  {
+    accessorKey: 'status',
+    header: 'Status',
+    cell: ({ row }) => renderStatusCell(row.original.status),
+  },
+  { accessorKey: 'remarks', header: 'Remarks' },
 ];
 
 const paymentColumns: ColumnDef<any>[] = [
@@ -16,15 +38,52 @@ const paymentColumns: ColumnDef<any>[] = [
 ];
 
 const demandColumns: ColumnDef<any>[] = [
-  { accessorKey: 'id', header: 'ID' },
-  { accessorKey: 'dueDate', header: 'Due Date' },
-  { accessorKey: 'amountDue', header: 'Amount Due' },
+  {
+    accessorKey: 'status',
+    header: 'Status',
+    cell: ({ row }) => renderStatusCell(row.original.status),
+  },
+  { accessorKey: 'date', header: 'Date' },
+  { accessorKey: 'controlNumber', header: 'Control Number' },
+  { accessorKey: 'lessee', header: 'Lessee' },
+  { accessorKey: 'companyName', header: 'Company Name' },
+  { accessorKey: 'subject', header: 'Subject' },
+  { accessorKey: 'dateReceived', header: 'Date Received' },
 ];
 
 const journalColumns: ColumnDef<any>[] = [
-  { accessorKey: 'entryId', header: 'Entry ID' },
-  { accessorKey: 'description', header: 'Description' },
+  { accessorKey: 'jevDate', header: 'JEV Date' },
+  { accessorKey: 'jevNo', header: 'JEV No.' },
+  { accessorKey: 'accountTitle', header: 'Account Title' },
+  { accessorKey: 'particulars', header: 'Particulars' },
+  { accessorKey: 'debit', header: 'Debit' },
+  { accessorKey: 'credit', header: 'Credit' },
+];
+
+const paymentReconciliationColumns: ColumnDef<any>[] = [
+  { accessorKey: 'lessee', header: 'Lessee Name' },
+  { accessorKey: 'soaControlNumber', header: 'SOA Control No.' },
+  { accessorKey: 'amountPaid', header: 'Amount Paid' },
+  { accessorKey: 'paymentDate', header: 'Payment Date' },
+  { accessorKey: 'paymentMode', header: 'Payment Mode' },
+  { accessorKey: 'balance', header: 'Balance' },
+];
+const paymentHistoryColumns: ColumnDef<any>[] = [
+  { accessorKey: 'lessee', header: 'Lessee Name' },
+  { accessorKey: 'soaControlNumber', header: 'SOA Control No.' },
+  { accessorKey: 'soaAmount', header: 'SOA Amount' },
+  { accessorKey: 'orDate', header: 'OR Date' },
+  { accessorKey: 'orNo', header: 'OR No.' },
+  { accessorKey: 'paymentMade', header: 'Payment Made' },
+  { accessorKey: 'balanceDue', header: 'Balance Due' },
+];
+const paymentReminderColumns: ColumnDef<any>[] = [
+  { accessorKey: 'lessee', header: 'Lessee Name' },
+  { accessorKey: 'noticeCount', header: 'No. of Notice' },
+  { accessorKey: 'demandDate', header: 'Demand to Pay Date' },
+  { accessorKey: 'controlNumber', header: 'Demand to Pay Control No.' },
   { accessorKey: 'amount', header: 'Amount' },
+  { accessorKey: 'remarks', header: 'Remarks' },
 ];
 
 const invoiceColumns: ColumnDef<any>[] = [
@@ -82,8 +141,12 @@ const concessionFeeColumns: ColumnDef<any>[] = [
  */
 
 const columnConfigs: Record<ViewType, ColumnDef<any>[]> = {
+  'statement-of-account': soaColumns,
   'billing-statement': billingColumns,
   'payment-monitoring': paymentColumns,
+  'payment-reconciliation': paymentReconciliationColumns,
+  'payment-history': paymentHistoryColumns,
+  'payment-reminder': paymentReminderColumns,
   'demand-to-pay': demandColumns,
   'journal-entry': journalColumns,
   'invoice-tracking': invoiceColumns,
@@ -101,7 +164,10 @@ const columnConfigs: Record<ViewType, ColumnDef<any>[]> = {
  * @returns An array of column definitions based on the specified view type and any provided custom columns.
  */
 
-export const getColumnConfig = (viewType: ViewType, customColumns?: ColumnDef<any>[]) => {
+export const getColumnConfig = (
+  viewType: ViewType,
+  customColumns?: ColumnDef<any>[],
+) => {
   const baseColumns = columnConfigs[viewType] || [];
   return customColumns ? [...baseColumns, ...customColumns] : baseColumns;
 };

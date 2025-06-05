@@ -9,13 +9,14 @@ export default function LandingPage() {
   return (
     <Grid gutter={0} className="relative w-full h-screen overflow-hidden">
       {/* InfoBanner: only show on large screens and up */}
-      <Grid.Col
-        span={{ base: 0, lg: 4 }}
-        order={{ base: 1, lg: 1 }}
-        className="hidden w-full h-screen lg:block"
-      >
-        <InfoBanner />
-      </Grid.Col>
+   <Grid.Col
+  span={4}
+  order={{ base: 1, lg: 1 }}
+  display={{ base: 'none', lg: 'block' }}
+  className="w-full h-screen"
+>
+  <InfoBanner />
+</Grid.Col>
       {/* Main content: always visible */}
       <Grid.Col
         span={{ base: 12, lg: 'auto' }}

@@ -27,9 +27,10 @@ import { ViewConfig, RouteConfig } from '@/features/income-management/types/view
  */
 export const routeViewConfig: RouteConfig = {
   // ===== INCOME MANAGEMENT =====
- 
+
+//  BILLING MANAGEMENT
   [ActiveRoute.STATEMENT_OF_ACCOUNT]: {
-    viewType: 'billing-statement',
+    viewType: 'statement-of-account',
     title: 'Statement of Account',
     enableExport: true,
     enableFilters: true,
@@ -50,11 +51,29 @@ export const routeViewConfig: RouteConfig = {
     title: 'Journal Entry Voucher',
     enableExport: true,
   },
+// PAYMENT MONITORING
   [ActiveRoute.PAYMENT_MONITORING]: {
     viewType: 'payment-monitoring',
     title: 'Payment Monitoring',
     enableExport: true,
   },
+   [ActiveRoute.PAYMENT_RECONCILIATION]: {
+    viewType: 'payment-reconciliation',
+    title: 'Payment Reconciliation',
+    enableExport: true,
+  },
+   [ActiveRoute.PAYMENT_HISTORY]: {
+    viewType: 'payment-history',
+    title: 'Payment History',
+    enableExport: true,
+  },
+   [ActiveRoute.PAYMENT_REMINDER]: {
+    viewType: 'payment-reminder',
+    title: 'Payment Reminder',
+    enableExport: true,
+  },
+
+  
   [ActiveRoute.INVOICE_TRACKING]: {
     viewType: 'invoice-tracking',
     title: 'Invoice Tracking',
@@ -66,53 +85,6 @@ export const routeViewConfig: RouteConfig = {
     title: 'Tenant Information',
     enableExport: true,
     enableFilters: true,
-  },
-
-  // ===== RAW WATER MANAGEMENT =====
-  [ActiveRoute.RAW_WATER_STATEMENT_OF_ACCOUNT]: {
-    viewType: 'raw-water-statement',
-    title: 'Raw Water Statement of Account',
-    enableExport: true,
-    enableFilters: true,
-  },
-  [ActiveRoute.RAW_WATER_DEMAND_TO_PAY]: {
-    viewType: 'demand-to-pay',
-    title: 'Raw Water Demand to Pay',
-    enableExport: true,
-  },
-  [ActiveRoute.RAW_WATER_JOURNAL_ENTRY_VOUCHER]: {
-    viewType: 'journal-entry',
-    title: 'Raw Water Journal Entry Voucher',
-    enableExport: true,
-  },
-  [ActiveRoute.RAW_WATER_INVOICE_TRACKING]: {
-    viewType: 'invoice-tracking',
-    title: 'Raw Water Invoice Tracking',
-    enableExport: true,
-  },
-  [ActiveRoute.RAW_WATER_CUSTOMER_INFORMATION_MANAGEMENT]: {
-    viewType: 'tenant-information',
-    title: 'Raw Water Customer Information',
-    enableExport: true,
-    enableFilters: true,
-  },
-  [ActiveRoute.RAW_WATER_PAYMENT_MONITORING]: {
-    viewType: 'raw-water-payment',
-    title: 'Raw Water Payment Monitoring',
-    enableExport: true,
-    enableFilters: true,
-  },
-
-  // ===== CONCESSION MANAGEMENT =====
-  [ActiveRoute.CONCESSIONAIRE_FEE]: {
-    viewType: 'concession-fee',
-    title: 'Concessionaire Fee',
-    enableExport: true,
-  },
-  [ActiveRoute.CONCESSION_JOURNAL_ENTRY_VOUCHER]: {
-    viewType: 'journal-entry',
-    title: 'Concession Journal Entry Voucher',
-    enableExport: true,
   },
 };
 

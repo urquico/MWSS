@@ -1,21 +1,39 @@
-import { Button } from '@mantine/core';
-import { ColumnDef, RowData, FilterFn, Row } from '@tanstack/react-table';
+import { ColumnDef } from '@tanstack/react-table';
+import { ButtonProps } from '@mantine/core';
 
-export type AdvancedTableProps<TData extends RowData> = {
-  data: TData[];
-  columns: ColumnDef<TData, any>[];
-  enableGlobalFilter?: boolean;
-  enableColumnFilters?: boolean;
-  enableExport?: boolean;
-  showFooter?: boolean;
-  enableFuzzySearch?: boolean;
-  showColumnSearch?: Record<string, boolean>;
-  globalFilterColumns?: string[];
-  exportFilename?: string;
-  loadingText?: string;
+export type TableFiltering = {
+  global?: boolean;
+  column?: boolean | Record<string, boolean>;
+  fuzzy?: boolean;
+};
+
+export type TableExportConfig = {
+  filename?: string;
+  format?: 'csv' | 'json';
+};
+
+export type TableRowActions = {
+  renderMenu?: (row: any) => React.ReactNode;
+  renderButton?: (row: any) => React.ReactNode;
+  buttonProps?: ButtonProps;
+  buttonText?: string;
+};
+
+export type TableFeatures = {
+  filtering?: TableFiltering;
+  sorting?: boolean;
+  pagination?: boolean;
+  export?: boolean | TableExportConfig;
+  rowActions?: boolean | TableRowActions;
+  statusColumn?: boolean;
+};
+
+export type TableLoadingState = {
   isLoading?: boolean;
-  renderRowActionMenuItems?: (row: TData) => React.ReactNode;
-  renderRowActionButton?: (row: TData) => React.ReactNode;
-  menuTargetProps?: React.ComponentProps<typeof Button>;
-  actionBtnText?: string; 
+  text?: string;
+};
+
+export type StatusItem = {
+  icon: React.ReactNode;
+  text: string;
 };

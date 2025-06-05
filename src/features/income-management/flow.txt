@@ -1,0 +1,48 @@
+/**
+ * # Income Management Code Documentation
+ *
+ * ## How to Add a New Income Management Page
+ *
+ * 1. **Define a New Page Type**
+ *    - Open the `view-types.ts` file.
+ *    - Add a new type for your page (e.g., `statement-of-account`, `demand-to-pay`).
+ *
+ *
+ * 2. **Configure the Route**
+ *    - Go to the `route-view-config.ts` file.
+ *    - Add a new route configuration for your new page type.
+ *    - Specify the path, component, and any required metadata.
+ *    - Example:
+ *      note: use route-enums
+ *      ```typescript
+ *      [ActiveRoute.STATEMENT_OF_ACCOUNT]: {
+ *          viewType: 'statement-of-account',
+ *          title: 'Statement of Account',
+ *          enableExport: true,
+ *          enableFilters: true,
+ *      },
+ *      ```
+ *
+ * 3. **Add Table Columns**
+ *    - Go to the `columns-types.ts` file.
+ *    - Add a specific table column definition for your new page, for example:
+ *      ```typescript
+ *      export const paymentColumns: ColumnDef<any>[] = [
+ *        { accessorKey: 'transactionId', header: 'Transaction ID' },
+ *        { accessorKey: 'paymentDate', header: 'Payment Date' },
+ *      ];
+ *      ```
+ *
+ * 4. **Configure DataView and Components**
+ *    - Go to the `dataview` folder.
+ *    - Configure the required components such as buttons, fields, etc., by adding a toolbar component (see the `toolbar` folder for examples).
+ *    - Import and use the additional components in your DataView as needed.
+ *
+ * ## Summary
+ * - **Step 1:** Add a new type in `view-types.ts`.
+ * - **Step 2:** Add a new route in `route-view-config.ts`.
+ * - **Step 3:** Implement the page component.
+ * - **Step 4:** Test the new page.
+ *
+ * This process allows you to easily extend the income management system with new page types and routes.
+ */

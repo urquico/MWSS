@@ -19,10 +19,14 @@
  */
 export type ViewType = 
 
-  | 'billing-statement' 
+  | 'statement-of-account' 
+  | 'billing-statement'
   | 'demand-to-pay'
   | 'journal-entry'
   | 'payment-monitoring'
+  | 'payment-reconciliation'
+  | 'payment-history'
+  | 'payment-reminder'
   | 'invoice-tracking'
   | 'tenant-information'
   | 'raw-water-statement'

@@ -19,6 +19,7 @@ type HeaderProps = {
   position?: 'center' | 'top-left';
   style?: CSSProperties;
   className?: string;
+  useAbsolutePosition?: boolean;   // <-- new prop to toggle absolute positioning
 };
 
 function Header({
@@ -34,13 +35,14 @@ function Header({
   position = 'center',
   className = '',
   style = {},
+  useAbsolutePosition = true,    // default keep absolute behavior
 }: HeaderProps) {
   const navigate = useNavigate();
   const monitor = window.location.pathname.startsWith('/');
 
   const logoClick = () => {
     if (monitor) {
-      navigate(-1);
+      navigate('/landing');
     }
   };
 
@@ -53,59 +55,100 @@ function Header({
       .map((line, index) => <div key={index}>{line}</div>);
   };
 
-  // Create a wrapper div 
-  return (
-    <div
-      style={{
-        position: 'absolute',
-        ...(position === 'center'
-          ? {
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-            }
-          : {
-              top: '10%',
-              left: '5%',
-              transform: 'translate(0, 0)',
-            }),
-        transition: 'all 0.4s ease-in-out',
-        ...style,
-      }}
-      className={`z-10 ${className}`} 
-    >
-      <Group h='100%' className={groupClassName} gap='lg'>
-        <Image
-          src={headerLogo}
-          alt='MWSS Logo'
-          w={logoSize}
-          h={logoSize}
-          onClick={logoClick}
-        />
+  if (useAbsolutePosition) {
+    // Absolute positioned version (for desktop)
+    return (
+      <div
+        style={{
+          position: 'absolute',
+          ...(position === 'center'
+            ? {
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+              }
+            : {
+                top: '10%',
+                left: '5%',
+                transform: 'translate(0, 0)',
+              }),
+          transition: 'all 0.4s ease-in-out',
+          ...style,
+        }}
+        className={`z-10 ${className}`}
+      >
+        <Group h='auto' className={groupClassName} gap='md'            >
+          <Image
+            src={headerLogo}
+            alt='MWSS Logo'
+            w={logoSize}
+            h={logoSize}
+            onClick={logoClick}
+          />
+          {textColor ? (
+            <Text
+              fz={textSize}
+              lh={1.2}
+              fw={textWeight}
+              c={textColor}
+              className='whitespace-pre-line'
+            >
+              {renderText()}
+            </Text>
+          ) : (
+            <Text
+              fz={textSize}
+              fw={textWeight}
+              variant='gradient'
+              gradient={{ from: gradientFrom, to: gradientTo, deg: gradientDeg }}
+              className='whitespace-pre-line'
+            >
+              {renderText()}
+            </Text>
+          )}
+        </Group>
+      </div>
+    );
+  }
 
-        {textColor ? (
-          <Text
-            fz={textSize}
-            lh={1.2}
-            fw={textWeight}
-            c={textColor}
-            className='whitespace-pre-line'
-          >
-            {renderText()}
-          </Text>
-        ) : (
-          <Text
-            fz={textSize}
-            fw={textWeight}
-            variant='gradient'
-            gradient={{ from: gradientFrom, to: gradientTo, deg: gradientDeg }}
-            className='whitespace-pre-line'
-          >
-            {renderText()}
-          </Text>
-        )}
-      </Group>
-    </div>
+  // Normal flow version (for mobile)
+  return (
+    <Group
+      h='auto'
+      className={`${groupClassName} ${className}`}
+      style={{ ...style }}
+      gap='lg'
+      align='center'
+    >
+      <Image
+        src={headerLogo}
+        alt='MWSS Logo'
+        w={logoSize}
+        h={logoSize}
+        onClick={logoClick}
+      />
+      {textColor ? (
+        <Text
+          fz={textSize}
+          lh={1.2}
+          fw={textWeight}
+          c={textColor}
+          className='whitespace-pre-line'
+        >
+          {renderText()}
+        </Text>
+      ) : (
+        <Text
+          fz={textSize}
+          fw={textWeight}
+          variant='gradient'
+          gradient={{ from: gradientFrom, to: gradientTo, deg: gradientDeg }}
+          className='whitespace-pre-line'
+        >
+          {renderText()}
+        </Text>
+      )}
+    </Group>
   );
 }
 

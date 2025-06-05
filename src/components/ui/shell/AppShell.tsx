@@ -1,5 +1,5 @@
 import Text from '@/components/ui/Text';
-import { useSidebarStore } from '@/store/sidebar-store';
+import { useSidebarStore } from '@/store/useSidebarStore';
 import { AppShell, Breadcrumbs } from '@mantine/core';
 import { ReactNode, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
@@ -8,7 +8,7 @@ import LinksGroup from './LinksGroup';
 import NavFooter from './NavFooter';
 import { sidebarModules } from '@/lib/data/sidebar-links';
 import Header from './Header';
-import { useLinksGroupStore } from '@/store/links-group-store';
+import { useLinksGroupStore } from '@/store/useLinksGroupStore';
 interface ShellProps {
   children?: ReactNode;
 }
@@ -47,22 +47,40 @@ function Shell({ children }: ShellProps) {
       className="bg-background"
     >
       {/* Header */}
-      <AppShell.Header className="flex items-center justify-between px-6 overflow-hidden">
+      <AppShell.Header className="flex items-center justify-start px-6 overflow-hidden ">
         <SidebarToggle />
+        {/* Header container - takes remaining space */}
+        <div className="flex items-center flex-1 min-w-0 overflow-hidden">
+          {/* Desktop Header - visible on md+ */}
+          <div className="flex-1 hidden min-w-0 md:flex">
+            <Header
+              textSize={40}
+              textWeight={800}
+              gradientFrom="#002161"
+              gradientTo="#0044C7"
+              gradientDeg={87}
+              groupClassName="p-2 bg-none"
+              logoSize={60}
+              headerText="MWSS - CORPORATE OFFICE"
+              position="top-left"
+              className="truncate"
+            />
+          </div>
 
-        <div className="flex items-center min-w-0 overflow-hidden">
-          <Header
-            textSize={40}
-            textWeight={800}
-            gradientFrom="#002161"
-            gradientTo="#0044C7"
-            gradientDeg={87}
-            groupClassName="p-2 bg-none"
-            logoSize={60}
-            headerText="MWSS - CORPORATE OFFICE"
-            position="top-left"
-            className="truncate"
-          />
+          {/* Mobile Header - visible below md */}
+          <div className="flex flex-1 min-w-0 md:hidden">
+            <Header
+              textSize={18}        
+              textWeight={700}
+              gradientFrom="#002161"
+              gradientTo="#0044C7"
+              gradientDeg={87}
+              groupClassName="p-2 bg-none"
+              logoSize={40}       
+              headerText="MWSS - CORPORATE OFFICE"
+              useAbsolutePosition={false}
+            />
+          </div>
         </div>
       </AppShell.Header>
 
@@ -84,7 +102,7 @@ function Shell({ children }: ShellProps) {
           </>
         )}
 
-        <AppShell.Section grow component="nav" my="md" className="overflow-y-auto">
+        <AppShell.Section grow component="nav" my="md" className="h-full overflow-y-auto sidebar-scroll">
           <div className="w-full py-2">
             {sidebarModules.map((link) => (
               <LinksGroup

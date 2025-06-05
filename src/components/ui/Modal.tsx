@@ -31,15 +31,15 @@ function Modal({
   trigger,
   withHeaderBorder = false,
   title,
-  contentClassName = 'p-40',
+  contentClassName = 'p-10',
   ...props
 }: ModalProps) {
   return (
     <>
-      <MantineModal {...props} withCloseButton={false} >
+      <MantineModal {...props} withCloseButton={false}>
         {/* Custom Header */}
         <Group  justify='space-between' w='100%' >
-          <Text fz={30} fw={600} className='text-neutral'>
+          <Text fz={24} fw={600} className='text-neutral'>
             {title}
           </Text>
           <button

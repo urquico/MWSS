@@ -44,8 +44,23 @@ export const sidebarModules: LinkItem[] = [
       },
       {
         label: 'Payment Monitoring',
-        path: ActiveRoute.PAYMENT_MONITORING,
-        link: ActiveRoute.PAYMENT_MONITORING,
+        links: [
+          {
+            label: 'Payment Reconciliation',
+            path: ActiveRoute.PAYMENT_RECONCILIATION,
+            link: ActiveRoute.PAYMENT_RECONCILIATION,
+          },
+          {
+            label: 'Payment History',
+            path: ActiveRoute.PAYMENT_HISTORY,
+            link: ActiveRoute.PAYMENT_HISTORY,
+          },
+          {
+            label: 'Payment Reminder',
+            path: ActiveRoute.PAYMENT_REMINDER,
+            link: ActiveRoute.PAYMENT_REMINDER,
+          },
+        ],
       },
       {
         label: 'Invoice Generation & Tracking',

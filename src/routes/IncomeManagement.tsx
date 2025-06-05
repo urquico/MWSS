@@ -1,8 +1,8 @@
-import IncomeManagementLanding from '@/features/income-management/components/IncomeManagementLanding';
+import TableViewWrapper from '@/features/income-management/IncomeManagement';
 
 function IncomeManagement() {
     return (
-        <IncomeManagementLanding />
+    <TableViewWrapper />
     );
 }
 
