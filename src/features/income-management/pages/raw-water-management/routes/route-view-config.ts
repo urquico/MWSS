@@ -50,7 +50,7 @@ export const routeViewConfig: RouteConfig = {
     enableExport: true,
   },
   [ActiveRoute.RAW_WATER_CUSTOMER_INFORMATION_MANAGEMENT]: {
-    viewType: 'tenant-information',
+    viewType: 'lessee-information',
     title: 'Raw Water Customer Information',
     enableExport: true,
     enableFilters: true,

@@ -3,7 +3,7 @@ import { Text, Button, Group } from '@mantine/core';
 import ModalHeader from './ModalHeader';
 import ModalFooter from './ModalFooter';
 import Modal from '@/components/ui/Modal';
-import { IconDownload, IconFileCheck, IconPrinter } from '@tabler/icons-react';
+import { IconDownload, IconFileCheck, IconPencil, IconPrinter } from '@tabler/icons-react';
 import html2pdf from 'html2pdf.js';
 import * as XLSX from 'xlsx';
 import './base-modal.css'
@@ -12,29 +12,33 @@ interface GenerateModalProps {
   title: string;
   exportText?: string;
   printText?: string;
-  saveText?: string; 
+  saveText?: string;
   children: ReactNode;
   tableData?: any[];
   showExportButton?: boolean;
   showPrintButton?: boolean;
-   showSaveButton?: boolean;
+  showSaveButton?: boolean;
+  showEditButton?: boolean;
   size?: string;
   withHeaderBorder?: boolean;
   withHeader?: boolean;
   withFooter?: boolean;
   opened: boolean;
+  onEdit?: () => void;
   onClose: () => void;
-    onSave?: () => void;
+  onSave?: () => void;
 }
 
 const GenerateModal: React.FC<GenerateModalProps> = ({
   title,
   exportText = "Export",
   printText = "Print",
+  
   children,
   tableData,
   showExportButton = true,
   showPrintButton = true,
+  showEditButton = false,
   size = "60%",
   opened,
   onClose,
@@ -42,30 +46,32 @@ const GenerateModal: React.FC<GenerateModalProps> = ({
   withHeader = true,
   showSaveButton = false,
   saveText = "Save",
-  onSave = () => {},
+  onSave = () => { },
+  onEdit = () => { },
+
 }) => {
 
   const contentRef = useRef<HTMLDivElement>(null);
-  
+
   const handlePrint = async () => {
     const element = contentRef.current;
     if (!element) return;
 
-    element.classList.add('print-area'); 
+    element.classList.add('print-area');
 
     const opt = {
       margin: 10,
       filename: 'Statement_of_Account.pdf',
       image: { type: 'jpeg', quality: 1 },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-       html2canvas: { 
-      scale: 2, // Higher scale = better quality
-      logging: false,
-      useCORS: true,
-      allowTaint: true,
-      letterRendering: true,
-      dpi: 300, // Higher DPI for better quality
-    },
+      html2canvas: {
+        scale: 2, // Higher scale = better quality
+        logging: false,
+        useCORS: true,
+        allowTaint: true,
+        letterRendering: true,
+        dpi: 300, // Higher DPI for better quality
+      },
     };
 
     try {
@@ -110,6 +116,15 @@ const GenerateModal: React.FC<GenerateModalProps> = ({
       size={size}
     >
       <Group justify="flex-end" mb="md" className="no-print">
+         {showEditButton && (
+          <Button
+            leftSection={<IconPencil size={16} />}
+            variant="filled"
+            color="#1e40af"
+            onClick={onEdit}
+          >Edit
+            </Button>
+        )}
         {showExportButton && (
           <Button
             leftSection={<IconDownload size={16} />}
@@ -130,7 +145,8 @@ const GenerateModal: React.FC<GenerateModalProps> = ({
             {printText}
           </Button>
         )}
-         {showSaveButton && (
+         
+        {showSaveButton && (
           <Button
             leftSection={<IconFileCheck size={16} />} // You'll need to import IconSave
             variant="filled"
@@ -142,11 +158,11 @@ const GenerateModal: React.FC<GenerateModalProps> = ({
         )}
       </Group>
       <div ref={contentRef} >
-       {withHeader && ( <ModalHeader />)}
+        {withHeader && (<ModalHeader />)}
         <Text mb="sm">
           {children}
         </Text>
-        {withFooter && ( <ModalFooter />)}
+        {withFooter && (<ModalFooter />)}
       </div>
     </Modal>
   );

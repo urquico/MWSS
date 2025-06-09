@@ -99,9 +99,20 @@ const invoiceColumns: ColumnDef<any>[] = [
 ];
 
 const tenantColumns: ColumnDef<any>[] = [
-  { accessorKey: 'tenantId', header: 'Tenant ID' },
-  { accessorKey: 'name', header: 'Name' },
-  { accessorKey: 'unit', header: 'Unit' },
+  {
+    accessorKey: 'status',
+    header: 'Status',
+    cell: ({ row }) => renderStatusCell(row.original.status),
+  },
+  { accessorKey: 'lesseeNo', header: 'Lessee No.' },
+  { accessorKey: 'nameOfLessee', header: 'Name of Lessee' },
+  { accessorKey: 'location', header: 'Lessee Location' },
+  { accessorKey: 'lesseeTerm', header: 'Lessee Term' },
+  { accessorKey: 'classification', header: 'Classification' },
+    { accessorKey: 'remarks', header: 'Remarks' },
+
+
+
 ];
 
 const rawWaterStatementColumns: ColumnDef<any>[] = [
@@ -137,7 +148,7 @@ const concessionFeeColumns: ColumnDef<any>[] = [
  * - 'demand-to-pay'
  * - 'journal-entry'
  * - 'invoice-tracking'
- * - 'tenant-information'
+ * - 'lessee-information'
  * - 'raw-water-statement'
  * - 'raw-water-payment'
  * - 'concession-fee'
@@ -156,7 +167,7 @@ const columnConfigs: Record<ViewType, ColumnDef<any>[]> = {
   'demand-to-pay': demandColumns,
   'journal-entry': journalColumns,
   'invoice-tracking': invoiceColumns,
-  'tenant-information': tenantColumns,
+  'lessee-information': tenantColumns,
   'raw-water-statement': rawWaterStatementColumns,
   'raw-water-payment': rawWaterPaymentColumns,
   'concession-fee': concessionFeeColumns,

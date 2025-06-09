@@ -29,7 +29,7 @@ export enum ActiveRoute {
   PAYMENT_HISTORY = '/finance/income-management/payments/history',
   PAYMENT_REMINDER = '/finance/income-management/payments/reminder',
   INVOICE_GENERATION_TRACKING = '/finance/income-management/invoice-tracking',
-  TENANT_INFORMATION_MANAGEMENT = '/finance/income-management/tenants',
+  TENANT_INFORMATION_MANAGEMENT = '/finance/income-management/lessee-information',
 
   // ===============================
   // RAW WATER MANAGEMENT

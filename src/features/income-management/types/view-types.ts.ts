@@ -12,7 +12,7 @@
  * @property 'journal-entry' - View for journal entry records.
  * @property 'payment-monitoring' - View for monitoring payments.
  * @property 'invoice-tracking' - View for tracking invoices.
- * @property 'tenant-information' - View for displaying tenant information.
+ * @property 'leessee-information' - View for displaying tenant information.
  * @property 'raw-water-statement' - View for raw water statements.
  * @property 'raw-water-payment' - View for raw water payment records.
  * @property 'concession-fee' - View for concession fee details.
@@ -28,7 +28,7 @@ export type ViewType =
   | 'payment-history'
   | 'payment-reminder'
   | 'invoice-tracking'
-  | 'tenant-information'
+  | 'lessee-information'
   | 'raw-water-statement'
   | 'raw-water-payment'
   | 'concession-fee';

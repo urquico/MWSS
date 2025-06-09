@@ -7,7 +7,7 @@ export type StatusType =
   | 'active' | 'inactive' | 'for review'| 'returned' | 'pending' 
   | 'warning' | 'completed' | 'failed' 
   | 'paid' | 'unpaid' | 'overdue' 
-  | 'approved' | 'rejected' | 'settled' | string;
+  | 'approved' | 'rejected' | 'settled' | 'expired'| string;
 
 export interface StatusConfig {
   icon: ReactNode;
@@ -73,7 +73,17 @@ settled: {
   color: 'green',
   label: 'Settled'
 },
+active: {
+  icon: <IconCircleCheck size={16} />,
+  color: 'green',
+  label: 'Active'
+},
 
+  expired: {
+    icon: <IconX size={16} />,
+    color: 'red',
+    label: 'Expired'
+  },
   // Default fallback
   default: {
     icon: <IconAlertCircle size={16} />,

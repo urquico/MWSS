@@ -8,9 +8,8 @@ interface GenerateTemplateProps {
 }
 
 // Lazy load view-specific templates
-const BSTemplate = lazy(() => import("./generate-templates/BSTemplate"));
-const DPTemplate = lazy(() => import("./generate-templates/DPTemplate"));
-// Add more as needed...
+const BSTemplate = lazy(() => import("./templates/BSTemplate"));
+const DPTemplate = lazy(() => import("./templates/DPTemplate"));
 
 const GenerateTemplate: React.FC<GenerateTemplateProps> = ({ data, onClose, viewType }) => {
   const templateMap: Record<string, JSX.Element> = {

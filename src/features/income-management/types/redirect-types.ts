@@ -9,8 +9,8 @@ export const viewTypeModalMap: Record<ViewType, Exclude<ModalType, null>> = {
   'payment-history':'generate',
   'payment-reconciliation':'generate',
   'payment-reminder':'generate',
-  'invoice-tracking': 'template',
-  'tenant-information': 'generate',
+  'invoice-tracking': 'generate',
+  'lessee-information': 'generate',
   'raw-water-statement': 'generate',
   'raw-water-payment': 'generate',
   'concession-fee': 'generate'

@@ -10,12 +10,14 @@ import { getRowActionsConfig } from './config/row-action-config';
 import GenerateModal from './components/generate-modal-components/GenerateModal';
 import BSToolbar from './components/toolbar/BSToolbar';
 import CreateModal from './components/create-modal-components/CreateModal';
-import GenerateTemplate from './components/generate-modal-components/GenerateTemplate';
+import GenerateTemplate from './components/template-modal-components/GenerateTemplate';
 import  ViewHistory  from './components/view-history/ViewHistory';
 import { viewTypeModalMap } from '../../types/redirect-types';
 import { DPToolbar } from './components/toolbar/DPToolbar';
 import { PHToolbar } from './components/toolbar/PHToolbar';
 import { InvoiceToolbar } from './components/toolbar/InvoiceToolbar';
+import { LesseeInformationToolbar } from './components/toolbar/LesseeInformationToolbar';
+
 interface DataViewProps {
   config: ViewConfig;
 }
@@ -79,6 +81,8 @@ useEffect(() => {
     />
     ),
     'invoice-tracking':( <InvoiceToolbar  onCreate={handleCreate}/>),
+    'lessee-information':(<LesseeInformationToolbar />
+    ),
   };
 
   const topToolbarSlot = toolbarMap[config.viewType] || null;
@@ -110,7 +114,8 @@ useEffect(() => {
       )}
       
 
-      <Box className="flex justify-end mb-4">
+      <Box className="flex justify<Box className={`flex mb-4 ${config.viewType !== 'lessee-information' ? 'justify-end' : ''}`}>
+-end mb-4">
         {topToolbarSlot}
       </Box>
 

@@ -81,8 +81,8 @@ export const routeViewConfig: RouteConfig = {
     enableFilters: true,
   },
   [ActiveRoute.TENANT_INFORMATION_MANAGEMENT]: {
-    viewType: 'tenant-information',
-    title: 'Tenant Information',
+    viewType: 'lessee-information',
+    title: 'Lessee Information Management',
     enableExport: true,
     enableFilters: true,
   },

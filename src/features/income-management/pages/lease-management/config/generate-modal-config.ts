@@ -109,15 +109,89 @@ export const generateModalConfigs: Record<string, GenerateModalConfig> = {
       { accessorKey: 'orNo', header: 'O.R. No.' },
     ],
   },
-    
-};
+ 'invoice-tracking': {
+  fields: [
+    {
+      name: 'cashSale',
+      label: 'Cash Sales',
+      value: 'Checked',
+      span: 3,
+    },
+    {
+      name: 'chargeSale',
+      label: 'Charge Sales',
+            value: 'Checked',
 
+      span: 3,
+    },
+    {
+      name: 'date',
+      label: 'Date',
+      value: '2025-06-06',
+      span: 6,
+    },
+    {
+      name: 'registeredName',
+      label: 'Registered Name:',
+      value: 'Jessica Hernandez',
+      span: 7,
+    },
+    {
+      name: 'tin',
+      label: 'TIN No.',
+      value: '124-512-654-000',
+      span: 5,
+    },
+    {
+      name: 'businessAddress',
+      label: 'Business Address',
+      value: 'Original Pares',
+      span: 12,
+    },
+  ],
+  tableData: [
+    {
+      invoiceNo: 'INV-001',
+      dateIssued: '2025-06-01',
+      clientName: 'Acme Corp.',
+      amount: 12000.0,
+      paymentStatus: 'Paid',
+      orNo: 'OR-1001',
+    },
+    {
+      invoiceNo: 'INV-002',
+      dateIssued: '2025-06-02',
+      clientName: 'Beta Enterprises',
+      amount: 8500.0,
+      paymentStatus: 'Unpaid',
+      orNo: '',
+    },
+    {
+      invoiceNo: 'INV-003',
+      dateIssued: '2025-06-03',
+      clientName: 'Gamma Trading',
+      amount: 15000.0,
+      paymentStatus: 'Partial',
+      orNo: 'OR-1002',
+    },
+  ],
+  columns: [
+    { accessorKey: 'invoiceNo', header: 'Invoice No.' },
+    { accessorKey: 'dateIssued', header: 'Date Issued' },
+    { accessorKey: 'clientName', header: 'Client Name' },
+    { accessorKey: 'amount', header: 'Amount (₱)' },
+    { accessorKey: 'paymentStatus', header: 'Payment Status' },
+    { accessorKey: 'orNo', header: 'O.R. No.' },
+  ],
+}
+
+};
 
 export const getTitle = (viewType: string): string => {
   if (viewType === 'invoice-tracking') return 'Sales Invoice';
 
   return viewType
     .split('-')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
-}
+};

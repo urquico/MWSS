@@ -531,10 +531,62 @@ const dummyDataMap: Record<ViewType, any[]> = {
   },
 ],
 
-  'tenant-information': [
-    { tenantId: 'TEN-001', name: 'Tenant A', unit: '101-A' },
-    { tenantId: 'TEN-002', name: 'Tenant B', unit: '102-B' },
-  ],
+ 'lessee-information': [
+  {
+    status: 'Active',
+    lesseeNo: 'LES-001',
+    nameOfLessee: 'Juan Dela Cruz',
+    location: 'Unit 101-A',
+    lesseeTerm: 'Jan 2024 - Dec 2024',
+    classification: 'Retail',
+    remarks: 'On time'
+  },
+  {
+    status: 'Expired',
+    lesseeNo: 'LES-002',
+    nameOfLessee: 'Maria Santos',
+    location: 'Unit 102-B',
+    lesseeTerm: 'Feb 2023 - Jan 2024',
+    classification: 'Food',
+    remarks: 'Contract ended'
+  },
+  {
+    status: 'Active',
+    lesseeNo: 'LES-003',
+    nameOfLessee: 'Jose Rizal',
+    location: 'Unit 103-C',
+    lesseeTerm: 'Mar 2024 - Feb 2025',
+    classification: 'Service',
+    remarks: 'New tenant'
+  },
+  {
+    status: 'Expired',
+    lesseeNo: 'LES-004',
+    nameOfLessee: 'Andres Bonifacio',
+    location: 'Unit 104-D',
+    lesseeTerm: 'Apr 2024 - Mar 2025',
+    classification: 'Retail',
+    remarks: 'For approval'
+  },
+  {
+    status: 'Active',
+    lesseeNo: 'LES-005',
+    nameOfLessee: 'Gregoria de Jesus',
+    location: 'Unit 105-E',
+    lesseeTerm: 'May 2024 - Apr 2025',
+    classification: 'Food',
+    remarks: 'Renewed'
+  },
+  {
+    status: 'Expired',
+    lesseeNo: 'LES-006',
+    nameOfLessee: 'Emilio Aguinaldo',
+    location: 'Unit 106-F',
+    lesseeTerm: 'Jun 2023 - May 2024',
+    classification: 'Office',
+    remarks: 'Moved out'
+  }
+],
   'raw-water-statement': [
     { statementId: 'RW-001', usage: 500, period: 'April 2025' },
     { statementId: 'RW-002', usage: 750, period: 'May 2025' },
