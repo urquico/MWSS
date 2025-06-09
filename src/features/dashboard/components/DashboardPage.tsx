@@ -1,7 +1,5 @@
 
 import Text from '@/components/ui/Text';
-import { useDashboardQuery } from '@/features/dashboard/api/query/dashboard';
-
 import { AdminDashboardProvider } from '@/features/dashboard/provider/admin-dashboard-provider';
 import DashboardSummary from './DashboardSummary';
 import TrendLineChart from '../chart/TrendLineChart';

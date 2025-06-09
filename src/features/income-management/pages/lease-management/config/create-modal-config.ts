@@ -407,6 +407,21 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
     },
   ],
 };
+export type MainTableItem = {
+  description: string; 
+  quantity: number;
+  unitPrice: number;
+  amount: number;
+};
+
+export type LabelValueItem = {
+  label: string;
+  value: string;
+  isBold?: boolean;
+};
+
+export type TableDataItem = MainTableItem | LabelValueItem;
+
 
 // Add this new function to handle computed fields
 export const getComputedFields = (viewType: string, values: any) => {
@@ -441,6 +456,50 @@ export const getComputedFields = (viewType: string, values: any) => {
   }
   return {};
 };
+
+export const invoiceTrackingTables = [
+  {
+    name: 'main',
+    columns: [
+      { header: 'Description', accessor: 'description' },
+      { header: 'Quantity', accessor: 'quantity' },
+      { header: 'Unit Price', accessor: 'unitPrice' },
+      { header: 'Amount', accessor: 'amount' },
+    ],
+    data: [
+      { description: '', quantity: 0, unitPrice: 0, amount: 0 },
+    ],
+  },
+  {
+    name: 'salesInfo',
+    data: [
+      { label: 'Vatable Sales', value: '0.00' },
+      { label: 'VAT', value: '0.00' },
+      { label: 'Zero-Rated Sales', value: '0.00' },
+      { label: 'VAT-Exempt Sales', value: '0.00' },
+    ],
+  },
+  {
+    name: 'discounts',
+    data: [
+      { label: '(SC/PWD/NAAC/MOV/) Solo Parent ID No.:', value: '' },
+      { label: '(SC/PWD/NAAC/MOV/SP) Signature:', value: '' },
+    ],
+  },
+  {
+    name: 'totals',
+    data: [
+      { label: 'Total Sales (VAT Inclusive)', value: '0.00' },
+      { label: 'Less: VAT', value: '0.00' },
+      { label: 'Amount: Net of VAT', value: '0.00' },
+      { label: 'Less: Discount (SC/PWD/NAAC/MOV/SP)', value: '0.00' },
+      { label: 'Add: VAT', value: '0.00' },
+      { label: 'Less: Withholding Tax', value: '0.00' },
+      { label: 'TOTAL AMOUNT DUE', value: '0.00', isBold: true },
+    ],
+  },
+];
+
 
 export const getSubmitButtonLabel = (viewType: string): string => {
   const labels: Record<string, string> = {

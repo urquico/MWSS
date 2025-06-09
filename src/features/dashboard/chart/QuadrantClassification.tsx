@@ -9,7 +9,7 @@ import {
   Stack,
   Grid,
 } from '@mantine/core';
-import { IconInfoCircle, IconInfoCircleFilled } from '@tabler/icons-react';
+import {  IconInfoCircleFilled } from '@tabler/icons-react';
 
 interface QuadrantItem {
   label: string;

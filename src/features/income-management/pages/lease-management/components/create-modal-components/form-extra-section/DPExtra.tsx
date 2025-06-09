@@ -7,7 +7,7 @@ import {
   Grid,
   Group,
   NumberInput,
-  Stack,
+ 
   Table,
 } from '@mantine/core';
 import { UseFormReturnType } from '@mantine/form';
@@ -220,7 +220,7 @@ const paymentInstructions = [
           {paymentInstructions.map((item) => (
             <Table.Tr key={item.label}>
               {/* Label Cell */}
-              <Table.Td   style={{ backgroundColor: '#98B8F9', fontWeight: 500, verticalAlign: 'top', width: '40%' }}>
+<Table.Td className="bg-skyBlue font-medium align-top w-[40%]">
                 <Text size="sm" c='white' fw={600}>{item.label}:</Text>
               </Table.Td>
 

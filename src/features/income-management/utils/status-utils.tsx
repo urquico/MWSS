@@ -1,5 +1,5 @@
 // src/utils/status-utils.ts
-import { IconCheck, IconX, IconAlertCircle, IconCircleCheck, IconCircleX, IconCircle, IconCircleFilled } from '@tabler/icons-react';
+import { IconCheck, IconX, IconAlertCircle, IconCircleCheck, IconCircleFilled } from '@tabler/icons-react';
 import { ReactNode } from 'react';
 import { Badge } from '@mantine/core';
 

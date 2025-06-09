@@ -1,7 +1,7 @@
 import { viewHistoryConfigs } from "../../config/view-history-config";
 import BaseModal from "@/features/income-management/components/BaseModal";
 import Table from '@/components/ui/table/components/Table';
-import { Text, Divider } from "@mantine/core";
+import { Text } from "@mantine/core";
 
 interface ViewHistoryProps {
   data?: any;
@@ -9,9 +9,9 @@ interface ViewHistoryProps {
   viewType: string;
 }
 
-const ViewHistory: React.FC<ViewHistoryProps> = ({ data, onClose, viewType }) => {
+const ViewHistory: React.FC<ViewHistoryProps> = ({ onClose, viewType }) => {
   const config = viewHistoryConfigs[viewType];
-  if (!config) return null;
+if (!config) throw new Error("Config is required")
 
   const { title, tableData, columns, label } = config;
 

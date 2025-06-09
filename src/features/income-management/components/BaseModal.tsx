@@ -27,6 +27,7 @@ interface GenerateModalProps {
   onEdit?: () => void;
   onClose: () => void;
   onSave?: () => void;
+
 }
 
 const GenerateModal: React.FC<GenerateModalProps> = ({

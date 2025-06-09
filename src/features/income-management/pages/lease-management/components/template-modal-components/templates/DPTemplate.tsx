@@ -1,5 +1,5 @@
 import BaseModal from "@/features/income-management/components/BaseModal";
-import { Grid, Text, Divider, Paper, Table } from "@mantine/core";
+import {  Text, Divider, Paper, Table } from "@mantine/core";
 import { getTitle } from "../../../config/generate-modal-config";
 
 interface DPTemplateProps {

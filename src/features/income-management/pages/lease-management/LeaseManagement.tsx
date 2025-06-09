@@ -114,10 +114,10 @@ useEffect(() => {
       )}
       
 
-      <Box className="flex justify<Box className={`flex mb-4 ${config.viewType !== 'lessee-information' ? 'justify-end' : ''}`}>
--end mb-4">
-        {topToolbarSlot}
-      </Box>
+      <Box className={`flex mb-4 ${config.viewType !== 'lessee-information' ? 'justify-end' : ''}`}>
+  {topToolbarSlot}
+</Box>
+
 
       <Table
         data={config.viewType === 'payment-history' ? filteredData : data || []}

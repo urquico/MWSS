@@ -56,7 +56,6 @@ export const generateModalConfigs: Record<string, GenerateModalConfig> = {
       { accessorKey: 'orNo', header: 'O.R. No.' },
     ],
   },
-
   'billing-statement': {
     fields: [
       {
