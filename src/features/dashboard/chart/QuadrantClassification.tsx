@@ -9,7 +9,7 @@ import {
   Stack,
   Grid,
 } from '@mantine/core';
-import {  IconInfoCircleFilled } from '@tabler/icons-react';
+import { IconInfoCircleFilled } from '@tabler/icons-react';
 
 interface QuadrantItem {
   label: string;
@@ -53,7 +53,7 @@ export function QuadrantClassificationCard({ data }: QuadrantClassificationCardP
       style={{
         backgroundColor: '#f1f3f5',
         borderRadius: 10,
-        padding: '10px 10px',
+        padding: '1px 1px',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -66,12 +66,13 @@ export function QuadrantClassificationCard({ data }: QuadrantClassificationCardP
           backgroundColor: item.color,
           color: 'white',
           borderRadius: 8,
-          width: 55,
-          height: 52,
+          width: '4rem',
+          height: '4.7rem',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           fontWeight: 700,
+          fontSize: '1rem' 
         }}
       >
         {item.value}
@@ -105,7 +106,7 @@ export function QuadrantClassificationCard({ data }: QuadrantClassificationCardP
               aria-label="Quadrant info"
               style={{ position: 'relative', zIndex: 1 }}
             >
-              <IconInfoCircleFilled size={20} color='gray'/>
+              <IconInfoCircleFilled size={20} color='gray' />
             </Button>
           </Popover.Target>
           <Popover.Dropdown

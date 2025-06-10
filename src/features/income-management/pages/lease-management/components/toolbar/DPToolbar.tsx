@@ -16,7 +16,7 @@ interface DPToolbarProps {
 }
 
 {/* Top toolbar with a Create button */}
-const DPToolbar: React.FC<DPToolbarProps> = ({
+export const DPToolbar: React.FC<DPToolbarProps> = ({
   onCreate,
 }) => {
   return (
@@ -29,4 +29,3 @@ const DPToolbar: React.FC<DPToolbarProps> = ({
     </>
   );
 };
-export { DPToolbar };

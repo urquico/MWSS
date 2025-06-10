@@ -46,3 +46,49 @@ export const viewHistoryConfigs: Record<string, ViewHistoryConfig> = {
     ]
   }
 };
+
+// lessee information data
+export const quadrantData = [
+    { label: 'Quadrant 1', value: 10, color: '#e5b4f2' },
+    { label: 'Quadrant 2', value: 2, color: '#b5ccfa' },
+    { label: 'Quadrant 3', value: 6, color: '#a4e4f5' },
+    { label: 'Quadrant 4', value: 7, color: '#ffcb94' },
+];
+
+export const dashboardSummaryItems = [
+    {
+      label: 'RIGHT OF WAY',
+      value: 25,
+      color: '#E3F2FD',
+      textColor: '#0D47A1',
+       showHalfCircle: true,
+    },
+    {
+      label: 'LESSEE SPACE',
+      value: 87,
+      color: '#E8F5E9',
+      textColor: '#1B5E20',
+       showHalfCircle: true,
+    },
+    {
+      label: 'LESSEE PARKING',
+      value: 15,
+      color: '#FFF3E0',
+      textColor: '#E65100',
+       showHalfCircle: true,
+    },
+    {
+      label: 'LESSEE BUILDING',
+      value: 10,
+      color: '#FCE4EC',
+      textColor: '#880E4F',
+       showHalfCircle: true,
+    },
+    {
+      label: 'TOTAL TENANT',
+      value: '435',
+      color: '#EDE7F6',
+      textColor: '#4A148C',
+       showHalfCircle: true,
+    }
+  ];

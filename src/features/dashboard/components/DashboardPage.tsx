@@ -1,13 +1,13 @@
 
-import Text from '@/components/ui/Text';
+import { Grid } from '@mantine/core';
+import { useDashboardDummyData } from '../types/dummy';
 import { AdminDashboardProvider } from '@/features/dashboard/provider/admin-dashboard-provider';
 import DashboardSummary from './DashboardSummary';
 import TrendLineChart from '../chart/TrendLineChart';
 import LesseeTypePieChart from '../chart/PieChart';
-import { useDashboardDummyData } from '../types/dummy';
+import Text from '@/components/ui/Text';
 import LesseeTypeBarChart from '../chart/BarChart';
 import BillingDonutChart from '../chart/DonutChart';
-import { Grid } from '@mantine/core';
 
 
 function DashboardPage() {

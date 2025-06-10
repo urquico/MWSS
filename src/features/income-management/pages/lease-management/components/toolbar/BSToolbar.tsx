@@ -16,7 +16,7 @@ interface BSToolbarProps {
   onGenerateRow: (row: any) => void;
 }
 
-const BSToolbar: React.FC<BSToolbarProps> = ({
+export const BSToolbar: React.FC<BSToolbarProps> = ({
   onCreate,
 }) => {
 
@@ -55,8 +55,9 @@ export function getBSRowActions(viewType: string) {
         openModal('viewHistory', row, viewType);
       }}>
         View Billing History
-      </Menu.Item></>);
+      </Menu.Item>
+    </>
+  );
 }
 
 
-export default BSToolbar;

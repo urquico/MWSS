@@ -328,35 +328,32 @@ const dummyDataMap: Record<ViewType, any[]> = {
     balanceDue: 2000,
   },
   ],
-  'payment-reminder': [
-    {
-      reminderId: 'REM-001',
-      lessee: 'John Doe',
-      companyName: 'Acme Corp',
-      dueDate: '2024-06-10',
-      amountDue: 12000,
-      status: 'Unpaid',
-      lastReminderSent: '2024-06-01'
-    },
-    {
-      reminderId: 'REM-002',
-      lessee: 'Jane Smith',
-      companyName: 'Beta LLC',
-      dueDate: '2024-06-12',
-      amountDue: 2500,
-      status: 'Paid',
-      lastReminderSent: '2024-06-02'
-    },
-    {
-      reminderId: 'REM-003',
-      lessee: 'Alice Johnson',
-      companyName: 'Gamma Inc',
-      dueDate: '2024-06-15',
-      amountDue: 3400,
-      status: 'Unpaid',
-      lastReminderSent: '2024-06-05'
-    }
-  ],
+ 'payment-reminder': [
+  {
+    lessee: 'John Doe',
+    noticeCount: 2,
+    demandDate: '2024-06-10',
+    controlNumber: 'DTP-001',
+    amount: 12000,
+    remarks: 'Pending payment, last notice sent 2024-06-01'
+  },
+  {
+    lessee: 'Jane Smith',
+    noticeCount: 1,
+    demandDate: '2024-06-12',
+    controlNumber: 'DTP-002',
+    amount: 2500,
+    remarks: 'Paid on 2024-06-05'
+  },
+  {
+    lessee: 'Alice Johnson',
+    noticeCount: 3,
+    demandDate: '2024-06-15',
+    controlNumber: 'DTP-003',
+    amount: 3400,
+    remarks: 'Unpaid, last reminder sent 2024-06-05'
+  }
+],
  'demand-to-pay': [
   {
     status: 'approved',

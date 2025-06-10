@@ -20,7 +20,7 @@ const BSTemplate: React.FC<BSTemplateProps> = ({ onClose, viewType }) => {
   return (
     <BaseModal
       title={`Create ${getTitle(viewType)}`}
-      printText="Print & Save"
+      printText="Print"
       tableData={tableData}
       opened={true}
       onClose={onClose}

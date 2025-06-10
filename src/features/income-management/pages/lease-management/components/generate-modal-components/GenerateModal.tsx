@@ -10,11 +10,13 @@ interface GenerateModalProps {
 // Lazy load the SOAGenerate component
 const SOAGenerate = lazy(() => import("./generate-modal/SOAGenerate"));
 const InvoiceGenerate = lazy(() => import("./generate-modal/InvoiceGenerate"));
+const LesseeInformationGenerate = lazy(() => import("./generate-modal/LesseeInformationGenerate"));
+
 const GenerateModal: React.FC<GenerateModalProps> = ({ onClose, viewType, data }) => {
   const modalContentMap: Record<string, JSX.Element> = {
     "statement-of-account": <SOAGenerate data={data} onClose={onClose} viewType={viewType} />,
     "invoice-tracking": <InvoiceGenerate data={data} onClose={onClose} viewType={viewType} />,
-
+    "lessee-information": <LesseeInformationGenerate  onClose={onClose} viewType={viewType}/>
   };
 
   const ModalContent = modalContentMap[viewType];

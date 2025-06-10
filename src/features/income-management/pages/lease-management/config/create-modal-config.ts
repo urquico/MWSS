@@ -5,7 +5,9 @@ type FieldType =
   | 'select'
   | 'textarea'
   | 'dateRange'
-  | 'checkbox';
+  | 'checkbox'
+    | 'switch';
+;
 
 interface FormFieldConfig {
   name: string;
@@ -20,6 +22,7 @@ interface FormFieldConfig {
   defaultValue?: any;
   description?: string;
  displayIn?: string | string[];
+ withSwitch?: boolean;
 
 }
 
@@ -77,14 +80,16 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       displayIn: 'createModal',
     },
 
-    {
-      name: 'retailAdjustment',
-      label: 'Retail Adjustment',
-      description: '(if applicable)',
-      type: 'number',
-      cols: 4,
-      displayIn: 'createModal',
-    },
+   {
+  name: 'retailAdjustment',
+  label: 'Rental Adjustment',
+  description: '(if applicable)',
+  type: 'number',
+  cols: 4,
+  displayIn: 'createModal',
+  disabled: true,
+  withSwitch: true 
+},
     {
       name: 'arrearages',
       label: 'Arrearages',
@@ -92,7 +97,7 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       computed: true,
 
       type: 'number',
-      cols: 4,
+      cols: 6,
       required: true,
       displayIn: 'createModal',
     },
@@ -102,17 +107,19 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       label: 'Due for the Month',
       description: '(a + c + d):',
       type: 'number',
-      cols: 4,
+      cols: 6,
       disabled: true,
       computed: true,
       displayIn: 'createModal',
     },
-    {
-      name: 'periodFromTo',
-      label: 'Period',
-      type: 'dateRange',
-      description: '(From - To)',
-      cols: 4,
+   {
+      name: 'natureOfAdjustment',
+      label: 'Nature of Adjustment',
+      
+      type: 'text',
+      cols: 12,
+      disabled: true,
+      computed: true,
       displayIn: 'createModal',
     },
 
@@ -122,9 +129,26 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       description: '(d)',
 
       type: 'number',
-      cols: 12,
+      cols: 6,
       disabled: true,
       computed: true,
+      displayIn: 'createModal',
+    },
+        {
+      name: 'periodFrom',
+      label: 'Period: From',
+      description:'(from)',
+      type: 'date',
+      cols: 3,
+      displayIn: 'createModal',
+    },
+    {
+      name: 'periodTo',
+      label: 'Period: To',
+      description:'(to)',
+
+      type: 'date',
+      cols: 3,
       displayIn: 'createModal',
     },
   ],
@@ -390,9 +414,9 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
     },
     {
       name: 'tin',
-      label: 'TIN No.',
+      label: 'TIN',
       type: 'text',
-      placeholder: 'TIN No.', // Populate with control number options as needed
+      placeholder: 'TIN', // Populate with control number options as needed
       required: true,
       cols: 5,
       displayIn: 'createModal',

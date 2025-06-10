@@ -1,6 +1,7 @@
 // components/chart/LesseeTypeBarChart.tsx
 import { Card, Group, Text, Stack, Box, Table, SimpleGrid } from '@mantine/core';
 import { BarChart } from '@mantine/charts';
+import { formatPrice } from '@/utils/price-formatter';
 
 type LesseeItem = {
     type: string;
@@ -26,7 +27,7 @@ const LesseeTypeBarChart = ({ data, title = "Percentage Per Lessee Type", descri
     const rows = data.map((item) => (
         <Table.Tr key={item.type}>
             <Table.Td>{item.type}</Table.Td>
-            <Table.Td>{item.value}%</Table.Td>
+            <Table.Td>{formatPrice(item.value)}</Table.Td>
         </Table.Tr>
     ));
 
@@ -62,6 +63,7 @@ const LesseeTypeBarChart = ({ data, title = "Percentage Per Lessee Type", descri
                     <Stack gap="xs" align="center">
                         <BarChart
                             h={300}
+                            w={300}
                             data={chartData}
                             dataKey="type"
                             series={[{ name: 'value', color: 'color' }]}

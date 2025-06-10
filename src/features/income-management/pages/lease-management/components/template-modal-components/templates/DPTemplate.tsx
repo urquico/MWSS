@@ -1,5 +1,5 @@
 import BaseModal from "@/features/income-management/components/BaseModal";
-import {  Text, Divider, Paper, Table } from "@mantine/core";
+import { Text, Divider, Paper, Table } from "@mantine/core";
 import { getTitle } from "../../../config/generate-modal-config";
 
 interface DPTemplateProps {
@@ -20,8 +20,8 @@ const DPTemplate: React.FC<DPTemplateProps> = ({ onClose, viewType }) => {
     };
     return (
         <BaseModal
-      title={`Create ${getTitle(viewType)}`}
-            printText="Print & Save"
+            title={`Create ${getTitle(viewType)}`}
+            printText="Print"
             opened={true}
             onClose={onClose}
             showExportButton={false}

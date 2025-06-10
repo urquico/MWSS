@@ -3,4 +3,6 @@ export type ModalType =
   | 'generate'
   | 'template'
   | 'viewHistory'
+  | 'addRemarks'
+  | 'edit'
   | null;

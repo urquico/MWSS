@@ -13,9 +13,13 @@ interface SOAGenerateProps {
 
 const SOAGenerate: React.FC<SOAGenerateProps> = ({ data, onClose, viewType }) => {
   const configuration = generateModalConfigs[viewType];
-  if (!configuration) return null;
-  console.log(configuration)
-  const { fields, columns } = configuration;
+  if (!configuration) {
+    return <div>No configuration found.</div>;
+  }
+
+  const fields = configuration.fields ?? [];
+  const columns = configuration.columns ?? [];
+
   const tableData = data
     ? [{
       date: data.date,
@@ -30,7 +34,7 @@ const SOAGenerate: React.FC<SOAGenerateProps> = ({ data, onClose, viewType }) =>
       payment: data.payment ?? "",
       orNo: data.orNo ?? "",
     }]
-    : configuration.tableData;
+    : configuration.tableData ?? [];
   return (
     <BaseModal
       title={`Create ${getTitle(viewType)}`}
