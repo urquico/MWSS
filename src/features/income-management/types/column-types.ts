@@ -1,7 +1,7 @@
 import { ViewType } from '@/features/income-management/types/view-types.ts';
 import { ColumnDef } from '@tanstack/react-table';
-
 import { renderStatusCell } from '../utils/status-utils';
+import { renderLesseeNameCell } from '../utils/cell-onclick';
 
 const billingColumns: ColumnDef<any>[] = [
   { accessorKey: 'date', header: 'Date' },
@@ -105,7 +105,9 @@ const tenantColumns: ColumnDef<any>[] = [
     cell: ({ row }) => renderStatusCell(row.original.status),
   },
   { accessorKey: 'lesseeNo', header: 'Lessee No.' },
-  { accessorKey: 'nameOfLessee', header: 'Name of Lessee' },
+  { accessorKey: 'nameOfLessee', header: 'Name of Lessee',
+    cell: renderLesseeNameCell,
+   },
   { accessorKey: 'location', header: 'Lessee Location' },
   { accessorKey: 'lesseeTerm', header: 'Lessee Term' },
   { accessorKey: 'classification', header: 'Classification' },

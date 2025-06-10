@@ -59,7 +59,7 @@ const GenerateModal: React.FC<GenerateModalProps> = ({
     if (!element) return;
 
     element.classList.add('print-area');
-
+await new Promise((resolve) => setTimeout(resolve, 100)); 
     const opt = {
       margin: 10,
       filename: 'Statement_of_Account.pdf',

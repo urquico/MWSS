@@ -8,11 +8,11 @@ export const useDashboardDummyData = (): AdminDashboard => {
   return {
     summaryData: {
       items: [
-        { label: 'Total No. Lessees', value: '25', color: theme.colors.red[1], },
-        { label: 'Monthly Rentals per Lessee Type', value: '40', color: theme.colors.yellow[1], },
-        { label: 'Monthly Rentals vs. Projected', value: '80', color: theme.colors.green[1], },
-        { label: 'Billing Summary (Issued vs. Unissued)', value: '100', color: theme.colors.violet[1], },
-        { label: 'Expiring Contracts', value: '251', color: theme.colors.blue[1], },
+        { label: 'Total No. Lessees', value: '25', color: '#FFE3E3', },
+        { label: 'Monthly Rentals per Lessee Type', value: '40', color: '#FFF3BF', },
+        { label: 'Monthly Rentals vs. Projected', value: '80', color: '#D3F9D8', },
+        { label: 'Billing Summary (Issued vs. Unissued)', value: '100',color: '#E5DBFF' },
+        { label: 'Expiring Contracts', value: '251', color: '#D0EBFF', },
       ]
     },
 
@@ -32,55 +32,50 @@ export const useDashboardDummyData = (): AdminDashboard => {
       series: [
         {
           name: 'Projected',
-          color: '#003366',
+          color: '#78A7F8',
           label: 'Projected'
         },
         {
           name: 'Actual',
-          color: '#A2D2FC',
+          color: '#FE7D79',
           label: 'Actual'
         }
       ]
 
     },
     lesseeTypeData: [
-      { type: 'Row', value: 10, color: theme.colors.blue[2] },
-      { type: 'Big Accounts', value: 25, color: theme.colors.blue[4] },
-      { type: 'MLPB', value: 25, color: theme.colors.blue[5] },
-      { type: 'Others', value: 40, color: theme.colors.blue[8] }
+      { type: 'Row', value: 10, color: '#FFC16E' },
+      { type: 'Big Accounts', value: 25, color:'#DDA1FA' },
+      { type: 'MLPB', value: 25, color: '#FE7D79' },
+      { type: 'Others', value: 40, color: '#78A7F8' }
     ],
 
     lesseeTypeBarData: [
       {
-        type: 'Residential',
-        value: 35,
-        color: theme.colors.blue[6],
-        description: 'Individual home rentals'
+        type: 'Row',
+        value: 120000,
+        color: '#FE7D79',
+        description: 'A'
       },
       {
-        type: 'Commercial',
-        value: 28,
-        color: theme.colors.green[6],
-        description: 'Office and retail spaces'
+        type: 'Big Accounts',
+        value: 90000,
+        color: '#FFC16E',
+        description: 'B'
       },
       {
-        type: 'Industrial',
-        value: 20,
-        color: theme.colors.orange[6],
-        description: 'Warehouses and factories'
+        type: 'MLPB Lessee',
+        value: 125000,
+        color:'#DDA1FA',
+        description: 'C'
       },
       {
-        type: 'Agricultural',
-        value: 12,
-        color: theme.colors.yellow[6],
-        description: 'Farmland and barns'
+        type: 'Others',
+        value: 125000,
+        color: '#78A7F8',
+        description: 'D'
       },
-      {
-        type: 'Special Purpose',
-        value: 5,
-        color: theme.colors.red[6],
-        description: 'Schools, hospitals, etc.'
-      }
+    
     ],
     donutChartData: [
       { label: 'Issued', value: 70, color: theme.colors.green[6] },

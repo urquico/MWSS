@@ -15,7 +15,7 @@ interface InvoiceToolbarProps {
 }
 
 {/* Top toolbar with a Create button */}
-const InvoiceToolbar: React.FC<InvoiceToolbarProps> = ({
+export const InvoiceToolbar: React.FC<InvoiceToolbarProps> = ({
   onCreate,
 }) => {
   return (
@@ -28,4 +28,3 @@ const InvoiceToolbar: React.FC<InvoiceToolbarProps> = ({
     </>
   );
 };
-export { InvoiceToolbar };

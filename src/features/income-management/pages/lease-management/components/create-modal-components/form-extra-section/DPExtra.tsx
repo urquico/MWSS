@@ -78,7 +78,7 @@ function DisabledLabeledInput({
 }) {
   return (
     <Group justify="space-between" mb="xs">
-      <Text>{label}</Text>
+      <Text size="sm">{label}</Text>
       <TextInput w={width} disabled {...form.getInputProps(field)} />
     </Group>
   );
@@ -253,8 +253,8 @@ const paymentInstructions = [
 
         <Text mt="sm" size="sm">Thank you.</Text>
 
-        <Text mt="md" fw={500}>Very truly yours,</Text>
-        <Select
+        <Text mt="md" size="sm"  fw={600}>Very truly yours,</Text>
+        <Select w='50%'
           placeholder="Administrator"
           data={['Administrator', 'Billing Officer', 'Finance Officer']}
           {...form.getInputProps('preparedBy')}

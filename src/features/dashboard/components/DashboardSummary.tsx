@@ -23,7 +23,7 @@ function DashboardSummary({
   title = 'Lessee Dashboard Summary',
   items,
   showHeader = true,
-  cardHeight = '100%' 
+  cardHeight = '100%'
 }: DashboardSummaryProps) {
   const theme = useMantineTheme();
   const contextData = useContext(AdminDashboardContext);
@@ -56,6 +56,10 @@ function DashboardSummary({
               backgroundColor: item.color || theme.colors.gray[0],
               color: item.textColor || theme.black,
               height: cardHeight || '100%',
+              width: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              position: 'relative', // Required for absolute child like the half-circle
             }}
           >
             {/* Half-circle decoration */}
@@ -65,22 +69,30 @@ function DashboardSummary({
                   position: 'absolute',
                   top: 0,
                   right: 0,
-                  width: '80px',
-                  height: '80px',
-                  borderBottomLeftRadius: '80px',
+                  width: '5rem',
+                  height: '5rem',
+                  borderBottomLeftRadius: '5rem',
                   backgroundColor: '#FFF5F580',
                   zIndex: 0,
                 }}
               />
             )}
 
-            <Text fz={16} fw={600} mb="xs" className='z-10' >
-              {item.label}
-            </Text>
-            <Title fz={25} fw={700} order={3} className='mt-5'>
+            <Title fz="1.5rem" fw={700} order={3}>
               {item.value}
             </Title>
+
+            {/* Push label to bottom */}
+            <Text
+              fz="1.1rem"
+              fw={600}
+              mt="auto"
+              className="z-10"
+            >
+              {item.label}
+            </Text>
           </Card>
+
         ))}
       </SimpleGrid>
 

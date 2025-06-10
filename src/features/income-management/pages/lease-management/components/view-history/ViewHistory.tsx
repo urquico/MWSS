@@ -18,7 +18,7 @@ if (!config) throw new Error("Config is required")
   return (
     <BaseModal
       title={title}
-      printText="Print & Save"
+      printText="Print"
       tableData={tableData}
       opened={true}
       onClose={onClose}

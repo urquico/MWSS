@@ -17,7 +17,7 @@ interface PHToolbarProps {
     onFilteredData: (filtered: PaymentRecord[]) => void;
 }
 
-const PHToolbar: React.FC<PHToolbarProps> = ({ originalData, onFilteredData }) => {
+export const PHToolbar: React.FC<PHToolbarProps> = ({ originalData, onFilteredData }) => {
     const [lessee, setLessee] = useState('');
     const [dateRange, setDateRange] = useState<DatesRangeValue>([null, null]);
     const [totalPayments, setTotalPayments] = useState<number | null>(null);
@@ -126,4 +126,3 @@ const PHToolbar: React.FC<PHToolbarProps> = ({ originalData, onFilteredData }) =
     );
 };
 
-export { PHToolbar };
