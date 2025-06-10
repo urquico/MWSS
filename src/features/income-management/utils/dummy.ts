@@ -328,35 +328,32 @@ const dummyDataMap: Record<ViewType, any[]> = {
     balanceDue: 2000,
   },
   ],
-  'payment-reminder': [
-    {
-      reminderId: 'REM-001',
-      lessee: 'John Doe',
-      companyName: 'Acme Corp',
-      dueDate: '2024-06-10',
-      amountDue: 12000,
-      status: 'Unpaid',
-      lastReminderSent: '2024-06-01'
-    },
-    {
-      reminderId: 'REM-002',
-      lessee: 'Jane Smith',
-      companyName: 'Beta LLC',
-      dueDate: '2024-06-12',
-      amountDue: 2500,
-      status: 'Paid',
-      lastReminderSent: '2024-06-02'
-    },
-    {
-      reminderId: 'REM-003',
-      lessee: 'Alice Johnson',
-      companyName: 'Gamma Inc',
-      dueDate: '2024-06-15',
-      amountDue: 3400,
-      status: 'Unpaid',
-      lastReminderSent: '2024-06-05'
-    }
-  ],
+ 'payment-reminder': [
+  {
+    lessee: 'John Doe',
+    noticeCount: 2,
+    demandDate: '2024-06-10',
+    controlNumber: 'DTP-001',
+    amount: 12000,
+    remarks: 'Pending payment, last notice sent 2024-06-01'
+  },
+  {
+    lessee: 'Jane Smith',
+    noticeCount: 1,
+    demandDate: '2024-06-12',
+    controlNumber: 'DTP-002',
+    amount: 2500,
+    remarks: 'Paid on 2024-06-05'
+  },
+  {
+    lessee: 'Alice Johnson',
+    noticeCount: 3,
+    demandDate: '2024-06-15',
+    controlNumber: 'DTP-003',
+    amount: 3400,
+    remarks: 'Unpaid, last reminder sent 2024-06-05'
+  }
+],
  'demand-to-pay': [
   {
     status: 'approved',
@@ -486,14 +483,107 @@ const dummyDataMap: Record<ViewType, any[]> = {
   }
 ],
 
-  'invoice-tracking': [
-    { invoiceNo: 'INV-001', status: 'Paid', total: 1000 },
-    { invoiceNo: 'INV-002', status: 'Pending', total: 2500 },
-  ],
-  'tenant-information': [
-    { tenantId: 'TEN-001', name: 'Tenant A', unit: '101-A' },
-    { tenantId: 'TEN-002', name: 'Tenant B', unit: '102-B' },
-  ],
+ 'invoice-tracking': [
+  {
+    lessee: 'Acme Corp.',
+    invoiceDate: '2025-06-01',
+    invoiceNo: 'INV-001',
+    amount: 1000,
+    status: 'Paid',
+  },
+  {
+    lessee: 'Beta Solutions',
+    invoiceDate: '2025-06-02',
+    invoiceNo: 'INV-002',
+    amount: 2500,
+    status: 'Pending',
+  },
+  {
+    lessee: 'Cyber Systems',
+    invoiceDate: '2025-06-03',
+    invoiceNo: 'INV-003',
+    amount: 1850,
+    status: 'Overdue',
+  },
+  {
+    lessee: 'Delta Logistics',
+    invoiceDate: '2025-06-04',
+    invoiceNo: 'INV-004',
+    amount: 3200,
+    status: 'Paid',
+  },
+  {
+    lessee: 'Eco Rentals',
+    invoiceDate: '2025-06-05',
+    invoiceNo: 'INV-005',
+    amount: 1450,
+    status: 'Cancelled',
+  },
+  {
+    lessee: 'FastTrack Inc.',
+    invoiceDate: '2025-06-06',
+    invoiceNo: 'INV-006',
+    amount: 2750,
+    status: 'Pending',
+  },
+],
+
+ 'lessee-information': [
+  {
+    status: 'Active',
+    lesseeNo: 'LES-001',
+    nameOfLessee: 'Juan Dela Cruz',
+    location: 'Unit 101-A',
+    lesseeTerm: 'Jan 2024 - Dec 2024',
+    classification: 'Retail',
+    remarks: 'On time'
+  },
+  {
+    status: 'Expired',
+    lesseeNo: 'LES-002',
+    nameOfLessee: 'Maria Santos',
+    location: 'Unit 102-B',
+    lesseeTerm: 'Feb 2023 - Jan 2024',
+    classification: 'Food',
+    remarks: 'Contract ended'
+  },
+  {
+    status: 'Active',
+    lesseeNo: 'LES-003',
+    nameOfLessee: 'Jose Rizal',
+    location: 'Unit 103-C',
+    lesseeTerm: 'Mar 2024 - Feb 2025',
+    classification: 'Service',
+    remarks: 'New tenant'
+  },
+  {
+    status: 'Expired',
+    lesseeNo: 'LES-004',
+    nameOfLessee: 'Andres Bonifacio',
+    location: 'Unit 104-D',
+    lesseeTerm: 'Apr 2024 - Mar 2025',
+    classification: 'Retail',
+    remarks: 'For approval'
+  },
+  {
+    status: 'Active',
+    lesseeNo: 'LES-005',
+    nameOfLessee: 'Gregoria de Jesus',
+    location: 'Unit 105-E',
+    lesseeTerm: 'May 2024 - Apr 2025',
+    classification: 'Food',
+    remarks: 'Renewed'
+  },
+  {
+    status: 'Expired',
+    lesseeNo: 'LES-006',
+    nameOfLessee: 'Emilio Aguinaldo',
+    location: 'Unit 106-F',
+    lesseeTerm: 'Jun 2023 - May 2024',
+    classification: 'Office',
+    remarks: 'Moved out'
+  }
+],
   'raw-water-statement': [
     { statementId: 'RW-001', usage: 500, period: 'April 2025' },
     { statementId: 'RW-002', usage: 750, period: 'May 2025' },

@@ -1,13 +1,22 @@
-import { Grid, Select, Textarea, NumberInput } from '@mantine/core';
+import { Grid, Select, Textarea, NumberInput, Checkbox, Switch, Input, Text } from '@mantine/core';
 import { DateInput, DatePickerInput } from '@mantine/dates';
 import TextInput from "@/components/ui/TextInput";
 import formConfigs, { getComputedFields } from "../../config/create-modal-config";
 import { useForm } from '@mantine/form';
-import { useEffect, useRef } from 'react';
-import { IconCalendarWeek } from '@tabler/icons-react';
+import { useEffect, useRef, useState } from 'react';
+import { IconCalendarWeek, IconCheck, IconX } from '@tabler/icons-react';
+import { getTitle } from '../../config/create-modal-config';
 import BaseModal from '@/features/income-management/components/BaseModal';
 import FormExtras from './FormExtras';
 
+
+/**
+ * PLEASE NOTE, the submit logic is passed to the parent component LeaseManagement.tsx
+ * 
+ * 
+ * 
+ * 
+ */
 interface CreateModalProps {
   viewType: string;
   onSubmit: (values: any) => void;
@@ -17,15 +26,18 @@ interface CreateModalProps {
 function CreateModal({ viewType, onSubmit, onClose }: CreateModalProps) {
   const formRef = useRef<HTMLFormElement>(null);
   const fields = formConfigs[viewType] || [];
-  
+  const [enableRentalAdjustment, setEnableRentalAdjustment] = useState(false);
+
   // Filter fields that should appear in the modal (default to 'createModal' if not specified)
-  const modalFields = fields.filter(field => 
+  const modalFields = fields.filter(field =>
     !field.displayIn || field.displayIn === 'createModal'
   );
-
-  const form = useForm({
+const form = useForm({
     initialValues: fields.reduce((acc, field) => {
       acc[field.name] = field.type === 'dateRange' ? [null, null] : field.defaultValue || '';
+      if (field.withSwitch) {
+        acc[field.name] = null;
+      }
       return acc;
     }, {} as Record<string, any>),
 
@@ -34,6 +46,9 @@ function CreateModal({ viewType, onSubmit, onClose }: CreateModalProps) {
       fields.forEach(field => {
         if (field.required && !values[field.name]) {
           errors[field.name] = 'This field is required';
+        }
+        if (field.name === 'retailAdjustment' && enableRentalAdjustment && !values[field.name]) {
+          errors[field.name] = 'Please enter rental adjustment details';
         }
       });
       return errors;
@@ -65,9 +80,62 @@ function CreateModal({ viewType, onSubmit, onClose }: CreateModalProps) {
       placeholder: field.placeholder,
       disabled: field.disabled,
       description: field.description,
-      ...form.getInputProps(field.name),
+      ...form.getInputProps(field.name, { type: field.type === 'checkbox' ? 'checkbox' : 'input' }),
     };
-
+    // Special case for retailAdjustment with switch
+    if (field.name === 'retailAdjustment' && field.withSwitch) {
+      return (
+        <div>
+        
+          {enableRentalAdjustment ? (
+            <TextInput
+              {...commonProps}
+              type="text"
+              disabled={false}
+              mt="xs"
+            />
+          ) : (
+            <NumberInput
+              {...commonProps}
+              disabled
+              mt="xs"
+            />
+          )}
+          <Switch
+            size="sm"
+            color="teal"
+            checked={enableRentalAdjustment}
+            onChange={(event) => {
+              setEnableRentalAdjustment(event.currentTarget.checked);
+              form.setFieldValue('retailAdjustment', event.currentTarget.checked ? '' : null);
+            }}
+            label={<Text fz={13}>Enable rental adjustment</Text>}
+            thumbIcon={
+              enableRentalAdjustment ? (
+                <IconCheck size={12} color="var(--mantine-color-teal-6)" stroke={3} />
+              ) : (
+                <IconX size={12} color="var(--mantine-color-red-6)" stroke={3} />
+              )
+            }
+            mt="xs"
+            styles={{
+              root: {
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+              },
+              label: {
+                marginLeft: 0,
+                order: 1, // Makes label appear after the switch
+              },
+              body: {
+                order: 2, // Makes switch appear before the label
+              }
+            }}
+          />
+        </div>
+      );
+    }
     switch (field.type) {
       case 'text':
         return <TextInput {...commonProps} />;
@@ -88,6 +156,15 @@ function CreateModal({ viewType, onSubmit, onClose }: CreateModalProps) {
             value={form.values[field.name]}
             onChange={(value) => form.setFieldValue(field.name, value)}
           />
+        ); case 'checkbox':
+        return (
+          <Checkbox
+            label={field.label}
+            disabled={field.disabled}
+            description={field.description}
+            checked={form.values[field.name]}
+            onChange={(event) => form.setFieldValue(field.name, event.currentTarget.checked)}
+          />
         );
       default:
         return null;
@@ -98,7 +175,7 @@ function CreateModal({ viewType, onSubmit, onClose }: CreateModalProps) {
     <BaseModal
       opened={true}
       onClose={onClose}
-      title={`Create ${viewType.replace(/-/g, ' ')}`}
+      title={`Create ${getTitle(viewType)}`}
       size="55rem"
       showSaveButton={true}
       showExportButton={false}
@@ -119,10 +196,10 @@ function CreateModal({ viewType, onSubmit, onClose }: CreateModalProps) {
           <button type="submit" style={{ display: 'none' }} />
         </Grid>
       </form>
-      <FormExtras 
-        viewType={viewType} 
-        fields={fields.filter(f => f.displayIn === 'formExtra')} 
-        form={form} 
+      <FormExtras
+        viewType={viewType}
+        fields={fields.filter(f => f.displayIn === 'formExtra')}
+        form={form}
       />
     </BaseModal>
   );

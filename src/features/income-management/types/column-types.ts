@@ -1,7 +1,7 @@
 import { ViewType } from '@/features/income-management/types/view-types.ts';
 import { ColumnDef } from '@tanstack/react-table';
-
 import { renderStatusCell } from '../utils/status-utils';
+import { renderLesseeNameCell } from '../utils/cell-onclick';
 
 const billingColumns: ColumnDef<any>[] = [
   { accessorKey: 'date', header: 'Date' },
@@ -87,15 +87,34 @@ const paymentReminderColumns: ColumnDef<any>[] = [
 ];
 
 const invoiceColumns: ColumnDef<any>[] = [
-  { accessorKey: 'invoiceNo', header: 'Invoice Number' },
-  { accessorKey: 'status', header: 'Status' },
-  { accessorKey: 'total', header: 'Total' },
+  { accessorKey: 'lessee', header: 'Lessee Name' },
+  { accessorKey: 'invoiceDate', header: 'Invoice Date' },
+  { accessorKey: 'invoiceNo', header: 'Invoice No.' },
+  { accessorKey: 'amount', header: 'Amount' },
+{
+    accessorKey: 'status',
+    header: 'Status',
+    cell: ({ row }) => renderStatusCell(row.original.status),
+  }
 ];
 
 const tenantColumns: ColumnDef<any>[] = [
-  { accessorKey: 'tenantId', header: 'Tenant ID' },
-  { accessorKey: 'name', header: 'Name' },
-  { accessorKey: 'unit', header: 'Unit' },
+  {
+    accessorKey: 'status',
+    header: 'Status',
+    cell: ({ row }) => renderStatusCell(row.original.status),
+  },
+  { accessorKey: 'lesseeNo', header: 'Lessee No.' },
+  { accessorKey: 'nameOfLessee', header: 'Name of Lessee',
+    cell: renderLesseeNameCell,
+   },
+  { accessorKey: 'location', header: 'Lessee Location' },
+  { accessorKey: 'lesseeTerm', header: 'Lessee Term' },
+  { accessorKey: 'classification', header: 'Classification' },
+    { accessorKey: 'remarks', header: 'Remarks' },
+
+
+
 ];
 
 const rawWaterStatementColumns: ColumnDef<any>[] = [
@@ -131,7 +150,7 @@ const concessionFeeColumns: ColumnDef<any>[] = [
  * - 'demand-to-pay'
  * - 'journal-entry'
  * - 'invoice-tracking'
- * - 'tenant-information'
+ * - 'lessee-information'
  * - 'raw-water-statement'
  * - 'raw-water-payment'
  * - 'concession-fee'
@@ -150,7 +169,7 @@ const columnConfigs: Record<ViewType, ColumnDef<any>[]> = {
   'demand-to-pay': demandColumns,
   'journal-entry': journalColumns,
   'invoice-tracking': invoiceColumns,
-  'tenant-information': tenantColumns,
+  'lessee-information': tenantColumns,
   'raw-water-statement': rawWaterStatementColumns,
   'raw-water-payment': rawWaterPaymentColumns,
   'concession-fee': concessionFeeColumns,

@@ -1,5 +1,5 @@
 import { Flex, Box, Image, Text, Stack, Divider } from '@mantine/core';
-import { IconPhoneCalling, IconGlobe, IconInfoCircle, IconPhoneFilled, IconWorld, IconInfoCircleFilled } from '@tabler/icons-react';
+import { IconPhoneFilled, IconWorld, IconInfoCircleFilled } from '@tabler/icons-react';
 
 const ModalFooter = () => {
   return (

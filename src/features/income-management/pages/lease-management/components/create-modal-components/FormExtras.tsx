@@ -11,13 +11,14 @@ interface FormExtrasProps {
 // Lazy imports for each viewType component
 const BillingStatementExtras = lazy(() => import('./form-extra-section/BSExtra'));
 const DemandToPayExtras = lazy(() => import('./form-extra-section/DPExtra'));
+const InvoiceExtras = lazy(() => import('./form-extra-section/InvoiceExtras'));
 // Add more lazy imports as needed
 
 function FormExtras({ viewType, fields, form }: FormExtrasProps) {
   const componentMap: Record<string, JSX.Element> = {
     'billing-statement': <BillingStatementExtras fields={fields} form={form} />,
     'demand-to-pay': <DemandToPayExtras  form={form} fields={fields} />,
-    // Add more mappings here like 'purchase-order': <PurchaseOrderExtras ... />
+    'invoice-tracking': <InvoiceExtras />
   };
 
   const ViewComponent = componentMap[viewType];

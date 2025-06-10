@@ -36,6 +36,7 @@ export default {
         gray: '#7c7c7c',
         lightGray: '#7c8594',
         mustard: '#fcd116',
+        skyBlue: '#98B8F9',
       },
       textColor: {
         primary: '#0e2f65',

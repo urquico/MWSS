@@ -96,7 +96,7 @@ function DataTable<TData extends Record<string, any>>({
 
 
         <Table highlightOnHover withTableBorder>
-          <Table.Thead className='bg-[#98B8F9] text-white'>
+          <Table.Thead className='text-white bg-skyBlue'>
             {table.getHeaderGroups().map((headerGroup) => (
               <Table.Tr key={headerGroup.id}>
                 {features.rowActions && <Table.Th className='text-center'>Action</Table.Th>}

@@ -68,7 +68,7 @@ export const sidebarModules: LinkItem[] = [
         link: ActiveRoute.INVOICE_GENERATION_TRACKING,
       },
       {
-        label: 'Tenant Information Management',
+        label: 'Lessee Information Management',
         path: ActiveRoute.TENANT_INFORMATION_MANAGEMENT,
         link: ActiveRoute.TENANT_INFORMATION_MANAGEMENT,
       },

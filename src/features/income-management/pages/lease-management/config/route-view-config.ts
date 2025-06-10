@@ -74,15 +74,15 @@ export const routeViewConfig: RouteConfig = {
   },
 
   
-  [ActiveRoute.INVOICE_TRACKING]: {
+  [ActiveRoute.INVOICE_GENERATION_TRACKING]: {
     viewType: 'invoice-tracking',
-    title: 'Invoice Tracking',
+    title: 'Invoice Generation and Tracking',
     enableExport: true,
     enableFilters: true,
   },
   [ActiveRoute.TENANT_INFORMATION_MANAGEMENT]: {
-    viewType: 'tenant-information',
-    title: 'Tenant Information',
+    viewType: 'lessee-information',
+    title: 'Lessee Information Management',
     enableExport: true,
     enableFilters: true,
   },

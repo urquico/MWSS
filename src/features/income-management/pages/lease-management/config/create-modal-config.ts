@@ -5,7 +5,9 @@ type FieldType =
   | 'select'
   | 'textarea'
   | 'dateRange'
-  | 'checkbox';
+  | 'checkbox'
+    | 'switch';
+;
 
 interface FormFieldConfig {
   name: string;
@@ -20,6 +22,7 @@ interface FormFieldConfig {
   defaultValue?: any;
   description?: string;
  displayIn?: string | string[];
+ withSwitch?: boolean;
 
 }
 
@@ -77,14 +80,16 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       displayIn: 'createModal',
     },
 
-    {
-      name: 'retailAdjustment',
-      label: 'Retail Adjustment',
-      description: '(if applicable)',
-      type: 'number',
-      cols: 4,
-      displayIn: 'createModal',
-    },
+   {
+  name: 'retailAdjustment',
+  label: 'Rental Adjustment',
+  description: '(if applicable)',
+  type: 'number',
+  cols: 4,
+  displayIn: 'createModal',
+  disabled: true,
+  withSwitch: true 
+},
     {
       name: 'arrearages',
       label: 'Arrearages',
@@ -92,7 +97,7 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       computed: true,
 
       type: 'number',
-      cols: 4,
+      cols: 6,
       required: true,
       displayIn: 'createModal',
     },
@@ -102,17 +107,19 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       label: 'Due for the Month',
       description: '(a + c + d):',
       type: 'number',
-      cols: 4,
+      cols: 6,
       disabled: true,
       computed: true,
       displayIn: 'createModal',
     },
-    {
-      name: 'periodFromTo',
-      label: 'Period',
-      type: 'dateRange',
-      description: '(From - To)',
-      cols: 4,
+   {
+      name: 'natureOfAdjustment',
+      label: 'Nature of Adjustment',
+      
+      type: 'text',
+      cols: 12,
+      disabled: true,
+      computed: true,
       displayIn: 'createModal',
     },
 
@@ -122,9 +129,26 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       description: '(d)',
 
       type: 'number',
-      cols: 12,
+      cols: 6,
       disabled: true,
       computed: true,
+      displayIn: 'createModal',
+    },
+        {
+      name: 'periodFrom',
+      label: 'Period: From',
+      description:'(from)',
+      type: 'date',
+      cols: 3,
+      displayIn: 'createModal',
+    },
+    {
+      name: 'periodTo',
+      label: 'Period: To',
+      description:'(to)',
+
+      type: 'date',
+      cols: 3,
       displayIn: 'createModal',
     },
   ],
@@ -251,7 +275,7 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       name: 'date',
       label: 'Date',
       type: 'date',
-      required: true,
+      required: false,
       cols: 12,
       placeholder: 'mm/dd/yyyy',
       displayIn: 'createModal',
@@ -261,7 +285,7 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       label: 'Tenant Name:',
       type: 'text',
       placeholder: 'Search',
-      required: true,
+      required: false,
       cols: 7,
       displayIn: 'createModal',
     },
@@ -270,7 +294,7 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       label: 'Control No.',
       type: 'text',
       placeholder: 'Control No.', // Populate with control number options as needed
-      required: true,
+      required: false,
       cols: 5,
       displayIn: 'createModal',
     },
@@ -306,7 +330,7 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       name: 'buildingSpace',
       label: 'Building Space',
       type: 'text',
-      required: true,
+      required: false,
       cols: 6,
       displayIn: 'formExtra',
     },
@@ -314,7 +338,7 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       name: 'contractName',
       label: 'Contract of Lease',
       type: 'text',
-      required: true,
+      required: false,
       cols: 6,
       displayIn: 'formExtra',
     },
@@ -322,7 +346,7 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       name: 'contractLocation',
       label: 'Contract Location',
       type: 'text',
-      required: true,
+      required: false,
       cols: 6,
       displayIn: 'formExtra',
     },
@@ -330,7 +354,7 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       name: 'squareMeters',
       label: 'Square Meter',
       type: 'number',
-      required: true,
+      required: false,
       cols: 6,
       displayIn: 'formExtra',
     },
@@ -338,7 +362,7 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       name: 'amountInWords',
       label: 'Amount in Words',
       type: 'text',
-      required: true,
+      required: false,
       cols: 12,
       displayIn: 'formExtra',
     },
@@ -346,13 +370,82 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       name: 'rentalPeriod',
       label: 'Rental Period',
       type: 'text',
-      required: true,
+      required: false,
       placeholder: 'e.g. March - April 2025',
       cols: 12,
       displayIn: 'formExtra',
     },
   ],
+  'invoice-tracking':[
+ {
+      name: 'cashSale',
+      label: 'Cash Sales',
+      type: 'checkbox',
+       defaultValue: false,
+      cols: 3,
+      displayIn: 'createModal',
+    },
+     {
+      name: 'chargeSale',
+      label: 'Charge Sales',
+      type: 'checkbox',
+       defaultValue: false,
+
+      cols: 3,
+      displayIn: 'createModal',
+    },
+ {
+      name: 'date',
+      label: 'Date',
+      type: 'date',
+      required: true,
+      cols: 6,
+      placeholder: 'mm/dd/yyyy',
+      displayIn: 'createModal',
+    },
+    {
+      name: 'registeredName',
+      label: 'Registered Name:',
+      type: 'text',
+      placeholder: 'Search',
+      required: true,
+      cols: 7,
+      displayIn: 'createModal',
+    },
+    {
+      name: 'tin',
+      label: 'TIN',
+      type: 'text',
+      placeholder: 'TIN', // Populate with control number options as needed
+      required: true,
+      cols: 5,
+      displayIn: 'createModal',
+    },
+    {  name: 'businessAddress',
+      label: 'Business Address',
+      type: 'text',
+      required: true,
+      placeholder: 'Business Address',
+      cols: 12,
+      displayIn: 'createModal',
+    },
+  ],
 };
+export type MainTableItem = {
+  description: string; 
+  quantity: number;
+  unitPrice: number;
+  amount: number;
+};
+
+export type LabelValueItem = {
+  label: string;
+  value: string;
+  isBold?: boolean;
+};
+
+export type TableDataItem = MainTableItem | LabelValueItem;
+
 
 // Add this new function to handle computed fields
 export const getComputedFields = (viewType: string, values: any) => {
@@ -388,6 +481,50 @@ export const getComputedFields = (viewType: string, values: any) => {
   return {};
 };
 
+export const invoiceTrackingTables = [
+  {
+    name: 'main',
+    columns: [
+      { header: 'Description', accessor: 'description' },
+      { header: 'Quantity', accessor: 'quantity' },
+      { header: 'Unit Price', accessor: 'unitPrice' },
+      { header: 'Amount', accessor: 'amount' },
+    ],
+    data: [
+      { description: '', quantity: 0, unitPrice: 0, amount: 0 },
+    ],
+  },
+  {
+    name: 'salesInfo',
+    data: [
+      { label: 'Vatable Sales', value: '0.00' },
+      { label: 'VAT', value: '0.00' },
+      { label: 'Zero-Rated Sales', value: '0.00' },
+      { label: 'VAT-Exempt Sales', value: '0.00' },
+    ],
+  },
+  {
+    name: 'discounts',
+    data: [
+      { label: '(SC/PWD/NAAC/MOV/) Solo Parent ID No.:', value: '' },
+      { label: '(SC/PWD/NAAC/MOV/SP) Signature:', value: '' },
+    ],
+  },
+  {
+    name: 'totals',
+    data: [
+      { label: 'Total Sales (VAT Inclusive)', value: '0.00' },
+      { label: 'Less: VAT', value: '0.00' },
+      { label: 'Amount: Net of VAT', value: '0.00' },
+      { label: 'Less: Discount (SC/PWD/NAAC/MOV/SP)', value: '0.00' },
+      { label: 'Add: VAT', value: '0.00' },
+      { label: 'Less: Withholding Tax', value: '0.00' },
+      { label: 'TOTAL AMOUNT DUE', value: '0.00', isBold: true },
+    ],
+  },
+];
+
+
 export const getSubmitButtonLabel = (viewType: string): string => {
   const labels: Record<string, string> = {
     'statement-of-account': 'Generate SOA',
@@ -396,5 +533,13 @@ export const getSubmitButtonLabel = (viewType: string): string => {
   };
   return labels[viewType] || 'Submit';
 };
+export const getTitle = (viewType: string): string => {
+  if (viewType === 'invoice-tracking') return 'Sales Invoice';
+
+  return viewType
+    .split('-')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
 
 export default formConfigs;

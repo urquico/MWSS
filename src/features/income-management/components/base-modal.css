@@ -1,14 +1,40 @@
+.print-area {
+  font-size: 13px !important;
+  line-height: 1 !important;
+  font-family: Arial, sans-serif !important;
+  color: #000 !important;
+  background: #fff !important;
+}
 
-  .print-area {
-    background: #fff !important;
-    color: #000 !important;
+.print-area *,
+.print-area *::before,
+.print-area *::after {
+  font-size: 13px !important;
+  line-height: 1 !important;
+  color: #000 !important;
+  background: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
 
-  }
-    .print-area, .print-area *{
+}
 
- font-size: 14px !important;
+.print-area input,
+.print-area select,
+.print-area textarea {
+  font-size: 13px !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #000 !important;
+  pointer-events: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+}
 
-  }
-  body {
-    background: #fff !important;
-  }
+.print-area label,
+.print-area .mantine-TextInput-label,
+.print-area .mantine-Select-label,
+.print-area .mantine-InputWrapper {
+  display: none !important;
+}

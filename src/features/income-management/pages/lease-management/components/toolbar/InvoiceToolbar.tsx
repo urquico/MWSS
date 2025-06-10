@@ -2,7 +2,6 @@
 import React from 'react';
 import { Group, Button } from '@mantine/core';
 import { IconPlus } from '@tabler/icons-react';
-import { useModalStore } from '@/features/income-management/stores/useModalStore';
 /**
  * `DBTOOLBAR` component is responsible for:
  * 
@@ -11,12 +10,12 @@ import { useModalStore } from '@/features/income-management/stores/useModalStore
  * - Supplying the text label for the row actions button through the `actionBtnText` property.
  */
 
-interface DPToolbarProps {
+interface InvoiceToolbarProps {
   onCreate: () => void;
 }
 
 {/* Top toolbar with a Create button */}
-export const DPToolbar: React.FC<DPToolbarProps> = ({
+export const InvoiceToolbar: React.FC<InvoiceToolbarProps> = ({
   onCreate,
 }) => {
   return (
