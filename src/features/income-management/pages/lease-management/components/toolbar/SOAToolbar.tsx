@@ -32,24 +32,6 @@ export const SOAToolbar: React.FC<SOAToolbarProps> = ({
 };
 
 
-{/*Export this function to render the button per row */}
-// function renderSOARowButton(viewType: string) {
-//   const openModal = useModalStore.getState().openModal;
-
-//   return {
-//     renderButton: (row: any) => (
-//       <Button
-//         variant="outline"
-//         color="gray"
-//         onClick={() => openModal('generate', row, viewType)}
-//       >
-//         View
-//       </Button>
-//     ),
-//     renderMenu: undefined
-//   };
-// }
-
 export function getSOARowActions(viewType: string) {
  
   const openModal = useModalStore.getState().openModal;

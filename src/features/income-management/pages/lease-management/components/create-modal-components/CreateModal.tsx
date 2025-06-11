@@ -8,7 +8,7 @@ import { IconCalendarWeek, IconCheck, IconX } from '@tabler/icons-react';
 import { getTitle } from '../../config/create-modal-config';
 import BaseModal from '@/features/income-management/components/BaseModal';
 import FormExtras from './FormExtras';
-
+import CurrentDate from '@/utils/CurrentDate';
 
 /**
  * PLEASE NOTE, the submit logic is passed to the parent component LeaseManagement.tsx
@@ -19,25 +19,51 @@ import FormExtras from './FormExtras';
  */
 interface CreateModalProps {
   viewType: string;
+  data?: Record<string, any>; 
   onSubmit: (values: any) => void;
   onClose: () => void;
 }
 
-function CreateModal({ viewType, onSubmit, onClose }: CreateModalProps) {
+function CreateModal({ viewType, onSubmit, onClose,data  }: CreateModalProps) {
+  const { currentDate } = CurrentDate();
+
   const formRef = useRef<HTMLFormElement>(null);
   const fields = formConfigs[viewType] || [];
   const [enableRentalAdjustment, setEnableRentalAdjustment] = useState(false);
 
-  // Filter fields that should appear in the modal (default to 'createModal' if not specified)
-  const modalFields = fields.filter(field =>
-    !field.displayIn || field.displayIn === 'createModal'
-  );
-const form = useForm({
+   // Determine the context for filtering fields
+  const filterContext = viewType === 'journal-entry' ? data?.jevType || 'general' : 'createModal';
+
+  // Filter fields based on the context
+  const modalFields = fields.filter(field => {
+    if (!field.displayIn) return true;
+    
+    if (Array.isArray(field.displayIn)) {
+      return field.displayIn.includes(filterContext);
+    }
+    
+    return field.displayIn === filterContext;
+  });
+
+   const form = useForm({
     initialValues: fields.reduce((acc, field) => {
-      acc[field.name] = field.type === 'dateRange' ? [null, null] : field.defaultValue || '';
+      // Set initial values based on field type
+      if (field.type === 'date' && field.autoFillCurrentDate) {
+        acc[field.name] = currentDate;
+      } else {
+        acc[field.name] = field.type === 'dateRange' ? [null, null] : field.defaultValue || '';
+      }
+      
+      // Handle switch fields
       if (field.withSwitch) {
         acc[field.name] = null;
       }
+      
+      // Apply external data if available
+      if (data && data[field.name]) {
+        acc[field.name] = data[field.name];
+      }
+
       return acc;
     }, {} as Record<string, any>),
 
@@ -54,7 +80,6 @@ const form = useForm({
       return errors;
     }
   });
-
   useEffect(() => {
     const computedValues = getComputedFields(viewType, form.values);
     form.setValues({
@@ -78,7 +103,7 @@ const form = useForm({
     const commonProps = {
       label: field.label,
       placeholder: field.placeholder,
-      disabled: field.disabled,
+    disabled: field.disabled || (field.type === 'date' && field.autoFillCurrentDate),
       description: field.description,
       ...form.getInputProps(field.name, { type: field.type === 'checkbox' ? 'checkbox' : 'input' }),
     };
@@ -86,19 +111,18 @@ const form = useForm({
     if (field.name === 'retailAdjustment' && field.withSwitch) {
       return (
         <div>
-        
           {enableRentalAdjustment ? (
             <TextInput
               {...commonProps}
               type="text"
               disabled={false}
-              mt="xs"
+
             />
           ) : (
             <NumberInput
               {...commonProps}
               disabled
-              mt="xs"
+
             />
           )}
           <Switch

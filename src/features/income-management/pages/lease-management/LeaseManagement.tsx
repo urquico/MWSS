@@ -13,7 +13,8 @@ import {
   PHToolbar,
   BSToolbar,
   InvoiceToolbar,
-  LesseeInformationToolbar
+  LesseeInformationToolbar,
+  JEVToolbar
 } from './components/toolbar/index';
 import CreateModal from './components/create-modal-components/CreateModal';
 import Edit from './components/edit-modal-components/Edit';
@@ -63,23 +64,23 @@ function LeaseManagement({ config }: DataViewProps) {
       console.error('Error submitting form:', error);
     }
   };
-const handleAddRemarks = async (values: any) => {
-  try {
-    console.log('Adding remarks:', values);
-    useModalStore.getState().closeModal(); 
-  } catch (error) {
-    console.error('Error adding remarks:', error);
-  }
-};
+  const handleAddRemarks = async (values: any) => {
+    try {
+      console.log('Adding remarks:', values);
+      useModalStore.getState().closeModal();
+    } catch (error) {
+      console.error('Error adding remarks:', error);
+    }
+  };
 
-const handleEdit = async (values: any) => {
-  try {
-    console.log('Update succesfull:', values);
-    useModalStore.getState().closeModal(); 
-  } catch (error) {
-    console.error('Error updateing:', error);
-  }
-};
+  const handleEdit = async (values: any) => {
+    try {
+      console.log('Update succesfull:', values);
+      useModalStore.getState().closeModal();
+    } catch (error) {
+      console.error('Error updateing:', error);
+    }
+  };
 
   const handleGenerateRow = (row: any) => {
     console.log('Generating billing statement for row:', row);
@@ -102,8 +103,9 @@ const handleEdit = async (values: any) => {
       />
     ),
     'invoice-tracking': (<InvoiceToolbar onCreate={handleCreate} />),
-    'lessee-information': (<LesseeInformationToolbar />
-    ),
+    'lessee-information': (<LesseeInformationToolbar />),
+    'journal-entry': (<JEVToolbar  onGenerateRow={handleGenerateRow} viewType={config.viewType}/>),
+
   };
 
   const topToolbarSlot = toolbarMap[config.viewType] || null;
@@ -130,17 +132,18 @@ const handleEdit = async (values: any) => {
         <CreateModal
           viewType={config.viewType}
           onSubmit={handleCreateSubmit}
+          data={modalData}
           onClose={closeModal}
         />
       )}
-       {isOpen && type === 'addRemarks' && (
+      {isOpen && type === 'addRemarks' && (
         <AddRemarks
           viewType={config.viewType}
           onSubmit={handleAddRemarks}
           onClose={closeModal}
         />
       )}
-       {isOpen && type === 'edit' && (
+      {isOpen && type === 'edit' && (
         <Edit
           viewType={config.viewType}
           onSubmit={handleEdit}

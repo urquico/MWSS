@@ -54,10 +54,13 @@ const demandColumns: ColumnDef<any>[] = [
 const journalColumns: ColumnDef<any>[] = [
   { accessorKey: 'jevDate', header: 'JEV Date' },
   { accessorKey: 'jevNo', header: 'JEV No.' },
+  { accessorKey: 'responsibilityCenter', header: 'Responsibility Center' },
   { accessorKey: 'accountTitle', header: 'Account Title' },
-  { accessorKey: 'particulars', header: 'Particulars' },
+  { accessorKey: 'accountCode', header: 'Account Code' },
   { accessorKey: 'debit', header: 'Debit' },
   { accessorKey: 'credit', header: 'Credit' },
+  { accessorKey: 'dueDate', header: 'Due Date' },
+
 ];
 
 const paymentReconciliationColumns: ColumnDef<any>[] = [

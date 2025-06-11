@@ -9,6 +9,7 @@ import { IconCalendarWeek, IconCheck, IconX } from '@tabler/icons-react';
 import { getTitle } from '../../config/create-modal-config';
 import BaseModal from '@/features/income-management/components/BaseModal';
 import FormExtras from '../create-modal-components/FormExtras';
+import CurrentDate from '@/utils/CurrentDate';
 
 interface EditProps {
     viewType: string;
@@ -18,6 +19,8 @@ interface EditProps {
 
 function Edit({ viewType, onSubmit, onClose }: EditProps) {
     const [enableRentalAdjustment, setEnableRentalAdjustment] = useState(false);
+    const { currentDate } = CurrentDate();
+    
     const formRef = useRef<HTMLFormElement>(null);
     const fields = formConfigs[viewType] || [];
 
@@ -28,14 +31,17 @@ function Edit({ viewType, onSubmit, onClose }: EditProps) {
 
 
     const form = useForm({
-        initialValues: fields.reduce((acc, field) => {
-            acc[field.name] = field.type === 'dateRange' ? [null, null] : field.defaultValue || '';
-            // Initialize retailAdjustment as null if it has a switch
-            if (field.withSwitch) {
-                acc[field.name] = null;
-            }
-            return acc;
-        }, {} as Record<string, any>),
+ initialValues: fields.reduce((acc, field) => {
+      if (field.type === 'date' && field.autoFillCurrentDate) {
+        acc[field.name] = currentDate;
+      } else {
+        acc[field.name] = field.type === 'dateRange' ? [null, null] : field.defaultValue || '';
+      }
+      if (field.withSwitch) {
+        acc[field.name] = null;
+      }
+      return acc;
+    }, {} as Record<string, any>),
 
         validate: (values) => {
             const errors: Record<string, string> = {};
@@ -75,7 +81,7 @@ function Edit({ viewType, onSubmit, onClose }: EditProps) {
         const commonProps = {
             label: field.label,
             placeholder: field.placeholder,
-            disabled: field.disabled,
+      disabled: field.disabled || (field.type === 'date' && field.autoFillCurrentDate),
             description: field.description,
             ...form.getInputProps(field.name, { type: field.type === 'checkbox' ? 'checkbox' : 'input' }),
         };
@@ -90,13 +96,13 @@ function Edit({ viewType, onSubmit, onClose }: EditProps) {
                      {...commonProps}
                      type="text"
                      disabled={false}
-                     mt="xs"
+                    
                    />
                  ) : (
                    <NumberInput
                      {...commonProps}
                      disabled
-                     mt="xs"
+                   
                    />
                  )}
                  <Switch

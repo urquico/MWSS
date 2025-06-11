@@ -29,20 +29,20 @@ export const generateModalConfigs: Record<string, GenerateModalConfig> = {
       {
         name: 'lessee',
         label: 'Lessee',
-        description: 'Last Name, First Name, & Middle Name',
+        description: '(Last Name, First Name, & Middle Name)',
         value: '',
         span: 12,
       },
-      { name: 'location', label: 'Location', value: '', span: 3 },
-      { name: 'principal', label: 'Principal', value: '', span: 3 },
+      { name: 'location', label: 'Location', value: '', span: 4 },
+      { name: 'totalArea', label: 'Total Area', value: '', span: 4 },
       {
         name: 'retailAdjustment',
         label: 'Retail Adjustment',
         value: '',
-        span: 3,
+        span: 4,
       },
-      { name: 'periodFrom', label: 'Period From', value: '', span: 3 },
-      { name: 'periodTo', label: 'Period To', value: '', span: 3 },
+      { name: 'periodFrom', label: 'Period From', value: '', span: 6 },
+      { name: 'periodTo', label: 'Period To', value: '', span: 6 },
     ],
     tableData: [
       {
@@ -65,6 +65,8 @@ export const generateModalConfigs: Record<string, GenerateModalConfig> = {
       { accessorKey: 'gross', header: 'Gross (a) + (c) + (d)' },
       { accessorKey: 'payment', header: 'Payment' },
       { accessorKey: 'orNo', header: 'O.R. No.' },
+      { accessorKey: 'balance', header: 'Balance' },
+
     ],
   },
   'billing-statement': {

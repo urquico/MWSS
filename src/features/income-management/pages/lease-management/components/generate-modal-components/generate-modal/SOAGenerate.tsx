@@ -1,6 +1,6 @@
 import BaseModal from "@/features/income-management/components/BaseModal";
 import TextInput from "@/components/ui/TextInput";
-import { Grid, Title } from "@mantine/core";
+import { Grid, Title, Text } from "@mantine/core";
 import Table from "@/components/ui/table/components/Table";
 import { getTitle } from "../../../config/generate-modal-config";
 import { generateModalConfigs } from "../../../config/generate-modal-config";
@@ -37,8 +37,8 @@ const SOAGenerate: React.FC<SOAGenerateProps> = ({ data, onClose, viewType }) =>
     : configuration.tableData ?? [];
   return (
     <BaseModal
-      title={`Create ${getTitle(viewType)}`}
-      exportText="Export to Excel"
+      title={`Generate ${getTitle(viewType)}`}
+      exportText="Export"
       printText="Print PDF"
       tableData={tableData}
       opened={true}
@@ -58,11 +58,18 @@ const SOAGenerate: React.FC<SOAGenerateProps> = ({ data, onClose, viewType }) =>
         ))}
       </Grid>
 
-      <Title fz={13} fw={700} fs="italic">
+      <Title fz={13} fw={700} fs="italic" pl='10'>
         *subject to annual selection rate of ten percent (10%)
       </Title>
 
-      <Table data={tableData} columns={columns} className="mt-10" />
+      <Table data={tableData} columns={columns} />
+      <TextInput
+        label='Prepared By'
+        value=''
+        disabled
+        mt="md"
+        pl='10'
+      />
     </BaseModal>
   );
 };

@@ -60,10 +60,10 @@ const InvoiceGenerate: React.FC<InvoiceGenerateProps> = ({ data, onClose, viewTy
 
         {/* Main Horizontal Table */}
         {mainTableConfig && mainTableConfig.columns && (
-          <Paper radius="md" withBorder mb={30}>
+        <Paper radius="md" withBorder mb={30} className='overflow-hidden'>
             <Table withColumnBorders mb="md">
               <Table.Thead>
-                <Table.Tr>
+              <Table.Tr className='bg-skyBlue'>
                   {mainTableConfig.columns.map(column => (
                     <Table.Th key={column.accessor}>{column.header}</Table.Th>
                   ))}
@@ -98,8 +98,8 @@ const InvoiceGenerate: React.FC<InvoiceGenerateProps> = ({ data, onClose, viewTy
                       <Table.Tr key={isLabelValueItem(item) ? item.label : index}>
                         {isLabelValueItem(item) && (
                           <>
-                            <Table.Td className="bg-skyBlue font-medium w-[200px]">
-                              <Text size="sm" color="white" fw={600}>
+                            <Table.Td className=" font-medium w-[200px]">
+                              <Text size="sm"  fw={600}>
                                 {item.label}
                               </Text>
                             </Table.Td>
@@ -124,8 +124,8 @@ const InvoiceGenerate: React.FC<InvoiceGenerateProps> = ({ data, onClose, viewTy
                       <Table.Tr key={isLabelValueItem(item) ? item.label : index}>
                         {isLabelValueItem(item) && (
                           <>
-                            <Table.Td className="bg-skyBlue font-medium w-[200px]">
-                              <Text size="sm" color="white" fw={600}>
+                            <Table.Td className=" font-medium w-[200px]">
+                              <Text size="sm" fw={600}>
                                 {item.label}
                               </Text>
                             </Table.Td>
@@ -153,9 +153,9 @@ const InvoiceGenerate: React.FC<InvoiceGenerateProps> = ({ data, onClose, viewTy
                         {isLabelValueItem(item) && (
                           <>
                             <Table.Td
-                              style={{ backgroundColor: '#98B8F9', fontWeight: 500, width: 200 }}
+                              style={{  fontWeight: 500, width: 200 }}
                             >
-                              <Text size="sm" color="white" fw={600}>
+                              <Text size="sm" fw={600}>
                                 {item.label}
                               </Text>
                             </Table.Td>

@@ -6,9 +6,7 @@ type FieldType =
   | 'textarea'
   | 'dateRange'
   | 'checkbox'
-    | 'switch';
-;
-
+  | 'switch';
 interface FormFieldConfig {
   name: string;
   label: string;
@@ -21,9 +19,9 @@ interface FormFieldConfig {
   computed?: boolean;
   defaultValue?: any;
   description?: string;
- displayIn?: string | string[];
- withSwitch?: boolean;
-
+  displayIn?: string | string[];
+  withSwitch?: boolean;
+  autoFillCurrentDate?: boolean;
 }
 
 const formConfigs: Record<string, FormFieldConfig[]> = {
@@ -47,6 +45,7 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       cols: 6,
       required: true,
       displayIn: 'createModal',
+      autoFillCurrentDate: true,
     },
     {
       name: 'location',
@@ -80,16 +79,16 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       displayIn: 'createModal',
     },
 
-   {
-  name: 'retailAdjustment',
-  label: 'Rental Adjustment',
-  description: '(if applicable)',
-  type: 'number',
-  cols: 4,
-  displayIn: 'createModal',
-  disabled: true,
-  withSwitch: true 
-},
+    {
+      name: 'retailAdjustment',
+      label: 'Rental Adjustment',
+      description: '(if applicable)',
+      type: 'number',
+      cols: 4,
+      displayIn: 'createModal',
+      disabled: true,
+      withSwitch: true,
+    },
     {
       name: 'arrearages',
       label: 'Arrearages',
@@ -112,10 +111,10 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       computed: true,
       displayIn: 'createModal',
     },
-   {
+    {
       name: 'natureOfAdjustment',
       label: 'Nature of Adjustment',
-      
+
       type: 'text',
       cols: 12,
       disabled: true,
@@ -134,10 +133,10 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       computed: true,
       displayIn: 'createModal',
     },
-        {
+    {
       name: 'periodFrom',
       label: 'Period: From',
-      description:'(from)',
+      description: '(from)',
       type: 'date',
       cols: 3,
       displayIn: 'createModal',
@@ -145,7 +144,7 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
     {
       name: 'periodTo',
       label: 'Period: To',
-      description:'(to)',
+      description: '(to)',
 
       type: 'date',
       cols: 3,
@@ -154,13 +153,30 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
   ],
   'billing-statement': [
     {
-      name: 'name',
-      label: 'Name',
-      type: 'text',
-      placeholder: 'Search',
-      required: true,
-      disabled: true,
+      name: 'date',
+      label: 'Date',
+      type: 'date',
       cols: 12,
+      required: true,
+      displayIn: 'createModal',
+      autoFillCurrentDate: true,
+    },
+    {
+      name: 'name',
+      label: 'Tenant Name:',
+      type: 'text',
+      disabled: true,
+      computed: true,
+      defaultValue: 'Auto Populate',
+      cols: 6,
+      displayIn: 'createModal',
+    },
+    {
+      name: 'controlNo',
+      label: 'Control No.:',
+      type: 'text',
+      disabled: true,
+      cols: 6,
       displayIn: 'createModal',
     },
     {
@@ -185,7 +201,7 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
     },
     {
       name: 'subject',
-      label: 'Subject',
+      label: 'Subject To',
       type: 'text',
       disabled: true,
       computed: true,
@@ -195,7 +211,7 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
     },
     {
       name: 'attention',
-      label: 'Attention to:',
+      label: 'Attention To:',
       type: 'text',
       disabled: true,
       computed: true,
@@ -275,10 +291,10 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       name: 'date',
       label: 'Date',
       type: 'date',
-      required: false,
-      cols: 12,
-      placeholder: 'mm/dd/yyyy',
+      cols: 6,
+      required: true,
       displayIn: 'createModal',
+      autoFillCurrentDate: true,
     },
     {
       name: 'tenantName',
@@ -319,7 +335,7 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
     },
     {
       name: 'subject',
-      label: 'Subject',
+      label: 'Subject To',
       type: 'text',
       disabled: true,
       computed: true,
@@ -376,25 +392,25 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       displayIn: 'formExtra',
     },
   ],
-  'invoice-tracking':[
- {
+  'invoice-tracking': [
+    {
       name: 'cashSale',
       label: 'Cash Sales',
       type: 'checkbox',
-       defaultValue: false,
+      defaultValue: false,
       cols: 3,
       displayIn: 'createModal',
     },
-     {
+    {
       name: 'chargeSale',
       label: 'Charge Sales',
       type: 'checkbox',
-       defaultValue: false,
+      defaultValue: false,
 
       cols: 3,
       displayIn: 'createModal',
     },
- {
+    {
       name: 'date',
       label: 'Date',
       type: 'date',
@@ -421,7 +437,8 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       cols: 5,
       displayIn: 'createModal',
     },
-    {  name: 'businessAddress',
+    {
+      name: 'businessAddress',
       label: 'Business Address',
       type: 'text',
       required: true,
@@ -430,9 +447,212 @@ const formConfigs: Record<string, FormFieldConfig[]> = {
       displayIn: 'createModal',
     },
   ],
+'journal-entry': [
+  // ------------------- GENERAL JEV FIELDS -------------------
+  {
+    name: 'fund',
+    label: 'Fund',
+    type: 'select',
+    options: [
+      { value: 'general-fund', label: 'General Fund' },
+      { value: 'special-fund', label: 'Special Fund' },
+      { value: 'trust-fund', label: 'Trust Fund' },
+      { value: 'other-fund', label: 'Other Fund' },
+    ],
+    cols: 4,
+    required: true,
+    displayIn: 'general',
+  },
+  {
+    name: 'accountTitle',
+    label: 'Account Title',
+    type: 'text',
+    placeholder: 'e.g. Cash - National Treasury',
+    cols: 4,
+    required: true,
+    displayIn: 'general',
+  },
+  {
+    name: 'jevDate',
+    label: 'JEV Date',
+    type: 'date',
+    autoFillCurrentDate: true,
+    cols: 4,
+    required: true,
+    displayIn: 'general',
+  },
+  {
+    name: 'creditAmount',
+    label: 'Credit Amount',
+    type: 'number',
+    placeholder: '0.00',
+    cols: 4,
+    required: true,
+    displayIn: 'general',
+  },
+  {
+    name: 'transactionType',
+    label: 'Transaction Type',
+    type: 'select',
+    options: [
+      { value: 'regular', label: 'Regular' },
+      { value: 'adjustment', label: 'Adjustment' },
+      { value: 'reversal', label: 'Reversal' },
+      { value: 'year-end', label: 'Year-End Adjustment' },
+    ],
+    cols: 4,
+    required: true,
+    displayIn: 'general',
+  },
+  {
+    name: 'jevNo',
+    label: 'JEV No.',
+    type: 'text',
+    placeholder: 'Auto-generated',
+    disabled: true,
+    cols: 4,
+    required: true,
+    displayIn: 'general',
+  },
+  {
+    name: 'accountCode',
+    label: 'Account Code',
+    type: 'text',
+    placeholder: 'e.g. 1-01-01-000',
+    cols: 6,
+    required: true,
+    displayIn: 'general',
+  },
+  {
+    name: 'dueDate',
+    label: 'Due Date',
+    type: 'date',
+    description: 'For payable/receivable items',
+    cols: 6,
+    displayIn: 'general',
+  },
+  {
+    name: 'responsibilityCenter',
+    label: 'Responsibility Center',
+    type: 'text',
+    placeholder: 'Department/Office',
+    cols: 6,
+    required: true,
+    displayIn: 'general',
+  },
+  {
+    name: 'debitAmount',
+    label: 'Debit Amount',
+    type: 'number',
+    placeholder: '0.00',
+    cols: 6,
+    required: true,
+    displayIn: 'general',
+  },
+
+  // ------------------- SUBSIDIARY JEV FIELDS -------------------
+  {
+    name: 'fund',
+    label: 'Fund',
+    type: 'select',
+    options: [
+      { value: 'general-fund', label: 'General Fund' },
+      { value: 'special-fund', label: 'Special Fund' },
+      { value: 'trust-fund', label: 'Trust Fund' },
+      { value: 'other-fund', label: 'Other Fund' },
+    ],
+    cols: 12,
+    required: true,
+    displayIn: 'subsidiary',
+  },
+  {
+    name: 'description',
+    label: 'Description/Name',
+    type: 'textarea',
+    placeholder: 'Detailed description of the transaction',
+    cols: 12,
+    required: true,
+    displayIn: 'subsidiary',
+  },
+  {
+    name: 'jevDate',
+    label: 'JEV Date',
+    type: 'date',
+    autoFillCurrentDate: true,
+    cols: 4,
+    required: true,
+    displayIn: 'subsidiary',
+  },
+    {
+    name: 'jevNo',
+    label: 'JEV No.',
+    type: 'text',
+    placeholder: 'Auto-generated',
+    disabled: true,
+    cols: 4,
+    required: true,
+    displayIn: 'subsidiary',
+  },
+    {
+    name: 'transactionType',
+    label: 'Transaction Type',
+    type: 'text',
+    disabled: true,
+    cols: 4,
+    displayIn: 'subsidiary',
+  },
+  {
+    name: 'creditAmount',
+    label: 'Credit Amount',
+    type: 'number',
+    placeholder: '0.00',
+    cols: 6,
+    required: true,
+    displayIn: 'subsidiary',
+  },
+
+
+  {
+    name: 'accountCode',
+    label: 'Account Code',
+    type: 'text',
+    placeholder: 'e.g. 1-01-01-000',
+    cols: 6,
+    required: true,
+    displayIn: 'subsidiary',
+  },
+  {
+    name: 'dueDate',
+    label: 'Due Date',
+    type: 'date',
+    description: 'For payable/receivable items',
+    cols: 6,
+    displayIn: 'subsidiary',
+  },
+  {
+    name: 'responsibilityCenter',
+    label: 'Responsibility Center',
+    type: 'text',
+    placeholder: 'Department/Office',
+    cols: 6,
+    required: true,
+    displayIn: 'subsidiary',
+  },
+  {
+    name: 'debitAmount',
+    label: 'Debit Amount',
+    type: 'number',
+    placeholder: '0.00',
+    cols: 6,
+    required: true,
+    displayIn: 'subsidiary',
+  },
+],
+
+
 };
 export type MainTableItem = {
-  description: string; 
+  description: string;
   quantity: number;
   unitPrice: number;
   amount: number;
@@ -445,7 +665,6 @@ export type LabelValueItem = {
 };
 
 export type TableDataItem = MainTableItem | LabelValueItem;
-
 
 // Add this new function to handle computed fields
 export const getComputedFields = (viewType: string, values: any) => {
@@ -490,9 +709,7 @@ export const invoiceTrackingTables = [
       { header: 'Unit Price', accessor: 'unitPrice' },
       { header: 'Amount', accessor: 'amount' },
     ],
-    data: [
-      { description: '', quantity: 0, unitPrice: 0, amount: 0 },
-    ],
+    data: [{ description: '', quantity: 0, unitPrice: 0, amount: 0 }],
   },
   {
     name: 'salesInfo',
@@ -524,7 +741,6 @@ export const invoiceTrackingTables = [
   },
 ];
 
-
 export const getSubmitButtonLabel = (viewType: string): string => {
   const labels: Record<string, string> = {
     'statement-of-account': 'Generate SOA',
@@ -538,8 +754,8 @@ export const getTitle = (viewType: string): string => {
 
   return viewType
     .split('-')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
-}
+};
 
 export default formConfigs;

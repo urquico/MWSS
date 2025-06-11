@@ -17,6 +17,7 @@ import { formatDate, formatTime, getDayOfWeek } from './date-time-format';
  */
 
 function CurrentDate() {
+   const [currentDate, setCurrentDate] = useState(new Date());
   const [formattedDate, setFormattedDate] = useState('');
   const [formattedTime, setFormattedTime] = useState('');
   const [dayOfWeek, setDayOfWeek] = useState('');
@@ -24,6 +25,7 @@ function CurrentDate() {
   useEffect(() => {
     const updateDateTime = () => {
       const now = new Date();
+      setCurrentDate(now);
       setFormattedDate(formatDate(now));
       setFormattedTime(formatTime(now));
       setDayOfWeek(getDayOfWeek(now));
@@ -51,7 +53,7 @@ function CurrentDate() {
     };
   }, []);
 
-  return { formattedDate, formattedTime, dayOfWeek };
+  return { currentDate, formattedDate, formattedTime, dayOfWeek };
 }
 
 export default CurrentDate;
