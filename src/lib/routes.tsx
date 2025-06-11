@@ -4,6 +4,7 @@ import Shell from '@/components/ui/shell/AppShell';
 import AuthGuard from '@/provider/auth-guard';
 import { Login, IncomeManagement, LandingPage, Dashboard } from '@/lib/lazy';
 import { createBrowserRouter } from 'react-router-dom';
+import { ActiveRoute } from '@/types/routes-enums';
 
 export const router = createBrowserRouter([
   {

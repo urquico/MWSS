@@ -17,7 +17,6 @@ interface BSToolbarProps {
 }
 
 export const BSToolbar: React.FC<BSToolbarProps> = ({
-export const BSToolbar: React.FC<BSToolbarProps> = ({
   onCreate,
 }) => {
 

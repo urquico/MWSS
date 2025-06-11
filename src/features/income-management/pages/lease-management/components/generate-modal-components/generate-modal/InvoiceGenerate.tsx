@@ -60,7 +60,7 @@ const InvoiceGenerate: React.FC<InvoiceGenerateProps> = ({ data, onClose, viewTy
 
         {/* Main Horizontal Table */}
         {mainTableConfig && mainTableConfig.columns && (
-        <Paper radius="md" withBorder mb={30} className='overflow-hidden'>
+        <Paper radius="md" withBorder mb={30} className='overflow-hidden' mt={20}>
             <Table withColumnBorders mb="md">
               <Table.Thead>
               <Table.Tr className='bg-skyBlue'>

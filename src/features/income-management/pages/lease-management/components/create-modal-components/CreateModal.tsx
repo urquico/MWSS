@@ -1,12 +1,8 @@
 import { Grid, Select, Textarea, NumberInput, Checkbox, Switch, Input, Text } from '@mantine/core';
-import { Grid, Select, Textarea, NumberInput, Checkbox, Switch, Input, Text } from '@mantine/core';
 import { DateInput, DatePickerInput } from '@mantine/dates';
 import TextInput from "@/components/ui/TextInput";
 import formConfigs, { getComputedFields } from "../../config/create-modal-config";
 import { useForm } from '@mantine/form';
-import { useEffect, useRef, useState } from 'react';
-import { IconCalendarWeek, IconCheck, IconX } from '@tabler/icons-react';
-import { getTitle } from '../../config/create-modal-config';
 import { useEffect, useRef, useState } from 'react';
 import { IconCalendarWeek, IconCheck, IconX } from '@tabler/icons-react';
 import { getTitle } from '../../config/create-modal-config';
@@ -217,7 +213,6 @@ function CreateModal({ viewType, onSubmit, onClose,data  }: CreateModalProps) {
       opened={true}
       onClose={onClose}
       title={`Create ${getTitle(viewType)}`}
-      title={`Create ${getTitle(viewType)}`}
       size="55rem"
       showSaveButton={true}
       showExportButton={false}
@@ -238,10 +233,6 @@ function CreateModal({ viewType, onSubmit, onClose,data  }: CreateModalProps) {
           <button type="submit" style={{ display: 'none' }} />
         </Grid>
       </form>
-      <FormExtras
-        viewType={viewType}
-        fields={fields.filter(f => f.displayIn === 'formExtra')}
-        form={form}
       <FormExtras
         viewType={viewType}
         fields={fields.filter(f => f.displayIn === 'formExtra')}

@@ -4,9 +4,6 @@ import { useModalStore } from '../../stores/useModalStore';
 import { Box, Paper, Text } from '@mantine/core';
 import { ViewConfig } from '../../types/view-types.ts';
 import { getColumnConfig } from '@/features/income-management/types/column-types';
-import { Box, Paper, Text } from '@mantine/core';
-import { ViewConfig } from '../../types/view-types.ts';
-import { getColumnConfig } from '@/features/income-management/types/column-types';
 import { getRowActionsConfig } from './config/row-action-config';
 import { viewTypeModalMap } from '../../types/redirect-types';
 import Table from '@/components/ui/table/components/Table';
@@ -27,9 +24,6 @@ import GenerateTemplate from './components/template-modal-components/GenerateTem
 import ViewHistory from './components/view-history/ViewHistory';
 
 
-import GenerateTemplate from './components/template-modal-components/GenerateTemplate';
-import ViewHistory from './components/view-history/ViewHistory';
-
 
 interface DataViewProps {
   config: ViewConfig;
@@ -47,12 +41,7 @@ interface DataViewProps {
 function LeaseManagement({ config }: DataViewProps) {
   const { data, isLoading, error } = useDataView(config.viewType);
   const { isOpen, type, data: modalData, closeModal } = useModalStore();
-  const [filteredData, setFilteredData] = useState(data || []);
-  useEffect(() => {
-    if (config.viewType === 'payment-history' && data) {
-      setFilteredData(data);
-    }
-  }, [config.viewType, data]);
+  
   const [filteredData, setFilteredData] = useState(data || []);
   useEffect(() => {
     if (config.viewType === 'payment-history' && data) {
@@ -66,7 +55,6 @@ function LeaseManagement({ config }: DataViewProps) {
     useModalStore.getState().openModal('create', null, config.viewType);
   };
 
-  const handleCreateSubmit = async (values: any) => {
   const handleCreateSubmit = async (values: any) => {
     try {
       console.log('Saving to backend:', values);
@@ -110,7 +98,6 @@ function LeaseManagement({ config }: DataViewProps) {
       <BSToolbar onCreate={handleCreate} onGenerateRow={handleGenerateRow} />
     ),
     'demand-to-pay': (<DPToolbar onCreate={handleCreate} />
-    'demand-to-pay': (<DPToolbar onCreate={handleCreate} />
     ),
     'payment-history': (
       <PHToolbar
@@ -137,7 +124,6 @@ function LeaseManagement({ config }: DataViewProps) {
 
       {/* Conditionally render modals */}
       {isOpen && type === 'generate' && (
-        <GenerateModal data={modalData} onClose={closeModal} viewType={config.viewType} />
         <GenerateModal data={modalData} onClose={closeModal} viewType={config.viewType} />
       )}
       {isOpen && type === 'template' && (
