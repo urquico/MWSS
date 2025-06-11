@@ -16,14 +16,17 @@ import dummyDataMap from '../utils/dummy';
 
 
 const fetchViewData = async (viewType: ViewType) => {
-  if (import.meta.env.DEV) {
-    // Use dummy data in development
-    return dummyDataMap[viewType] || [];
-  }
+  // if (import.meta.env.DEV) {
+  //   // Use dummy data in development
+  //   return dummyDataMap[viewType] || [];
+  // }
 
-  // Real API call
-  const { data } = await apiClient.get(`/api/${viewType}`);
-  return data;
+  // // Real API call
+  // const { data } = await apiClient.get(`/api/${viewType}`);
+  // return data;
+
+    return dummyDataMap[viewType] || [];
+
 };
 export const useDataView = (viewType: ViewType) => {
   return useQuery({
