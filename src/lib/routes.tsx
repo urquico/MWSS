@@ -4,7 +4,6 @@ import Shell from '@/components/ui/shell/AppShell';
 import AuthGuard from '@/provider/auth-guard';
 import { Login, IncomeManagement, LandingPage, Dashboard } from '@/lib/lazy';
 import { createBrowserRouter } from 'react-router-dom';
-import { ActiveRoute } from '@/types/routes-enums';
 
 export const router = createBrowserRouter([
   {
@@ -20,37 +19,77 @@ export const router = createBrowserRouter([
   {
     id: 'landing',
     path: '/landing',
-    element: (
-        <LandingPage />
-    )
+    element: <LandingPage />
   },
   {
     id: 'root',
     path: '/finance',
     errorElement: <ErrorPage />,
-    element: (
-        <Shell />
-    ),
+    element: <Shell />,
     children: [
+  
       {
-        index: true,
-        path: ActiveRoute.INCOME_MANAGEMENT_DASHBOARD,
-        element: <Dashboard />,
-        
+        path: 'income-management',
+        children: [
+          {
+            index: true,
+            path: 'dashboard',
+            element: <Dashboard />,
+          },
+          {
+            path: 'billing',
+            children: [
+              {
+                path: 'statement',
+                element: <IncomeManagement />,
+              },
+              {
+                path: 'billing-statement',
+                element: <IncomeManagement />,
+              },
+              {
+                path: 'demand',
+                element: <IncomeManagement />,
+              },
+              {
+                path: 'journal',
+                element: <IncomeManagement />,
+              },
+            ],
+          },
+          {
+            path: 'payments',
+            children: [
+              {
+                path: 'reconciliation',
+                element: <IncomeManagement />,
+              },
+              {
+                path: 'history',
+                element: <IncomeManagement />,
+              },
+              {
+                path: 'reminder',
+                element: <IncomeManagement />,
+              },
+            ],
+          },
+          {
+            path: 'invoice-tracking',
+            element: <IncomeManagement />,
+          },
+          {
+            path: 'lessee-information',
+            element: <IncomeManagement />,
+          },
+        ],
       },
-       {
-        path: ActiveRoute.INCOME_MGMT + '/*',
-        element: <IncomeManagement />
-      },
-    ]
-  }
-],
-  {
-
-    hydrationData: {
-      loaderData: {
-        root: <Loader />,
-      },
+    ],
+  },
+], {
+  hydrationData: {
+    loaderData: {
+      root: <Loader />,
     },
   },
-);
+});
