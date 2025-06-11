@@ -4,6 +4,9 @@ import { useModalStore } from '../../stores/useModalStore';
 import { Box, Paper, Text } from '@mantine/core';
 import { ViewConfig } from '../../types/view-types.ts';
 import { getColumnConfig } from '@/features/income-management/types/column-types';
+import { Box, Paper, Text } from '@mantine/core';
+import { ViewConfig } from '../../types/view-types.ts';
+import { getColumnConfig } from '@/features/income-management/types/column-types';
 import { getRowActionsConfig } from './config/row-action-config';
 import { viewTypeModalMap } from '../../types/redirect-types';
 import Table from '@/components/ui/table/components/Table';
@@ -20,6 +23,10 @@ import CreateModal from './components/create-modal-components/CreateModal';
 import Edit from './components/edit-modal-components/Edit';
 import AddRemarks from './components/add-remarks-modal-components/AddRemarks';
 import GenerateModal from './components/generate-modal-components/GenerateModal';
+import GenerateTemplate from './components/template-modal-components/GenerateTemplate';
+import ViewHistory from './components/view-history/ViewHistory';
+
+
 import GenerateTemplate from './components/template-modal-components/GenerateTemplate';
 import ViewHistory from './components/view-history/ViewHistory';
 
@@ -46,6 +53,12 @@ function LeaseManagement({ config }: DataViewProps) {
       setFilteredData(data);
     }
   }, [config.viewType, data]);
+  const [filteredData, setFilteredData] = useState(data || []);
+  useEffect(() => {
+    if (config.viewType === 'payment-history' && data) {
+      setFilteredData(data);
+    }
+  }, [config.viewType, data]);
 
   const columns = getColumnConfig(config.viewType, config.customColumns);
 
@@ -54,9 +67,11 @@ function LeaseManagement({ config }: DataViewProps) {
   };
 
   const handleCreateSubmit = async (values: any) => {
+  const handleCreateSubmit = async (values: any) => {
     try {
       console.log('Saving to backend:', values);
       const newData = { ...values, id: Date.now() };
+
 
       const modalType = viewTypeModalMap[config.viewType];
       useModalStore.getState().openModal(modalType, newData, config.viewType);
@@ -95,6 +110,7 @@ function LeaseManagement({ config }: DataViewProps) {
       <BSToolbar onCreate={handleCreate} onGenerateRow={handleGenerateRow} />
     ),
     'demand-to-pay': (<DPToolbar onCreate={handleCreate} />
+    'demand-to-pay': (<DPToolbar onCreate={handleCreate} />
     ),
     'payment-history': (
       <PHToolbar
@@ -118,8 +134,10 @@ function LeaseManagement({ config }: DataViewProps) {
   return (
     <Paper radius={20} p="xl">
 
+
       {/* Conditionally render modals */}
       {isOpen && type === 'generate' && (
+        <GenerateModal data={modalData} onClose={closeModal} viewType={config.viewType} />
         <GenerateModal data={modalData} onClose={closeModal} viewType={config.viewType} />
       )}
       {isOpen && type === 'template' && (
@@ -155,6 +173,7 @@ function LeaseManagement({ config }: DataViewProps) {
       <Box className={`flex mb-4 ${config.viewType !== 'lessee-information' ? 'justify-end' : ''}`}>
         {topToolbarSlot}
       </Box>
+
 
 
       <Table

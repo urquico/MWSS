@@ -2,7 +2,6 @@ import DashboardSummary from '@/features/dashboard/components/DashboardSummary';
 import { QuadrantClassificationCard } from '@/features/dashboard/chart/QuadrantClassification';
 import { Box, Flex } from '@mantine/core';
 import { dashboardSummaryItems, quadrantData } from '../../config/view-history-config';
-
 /**
  * InvoiceToolbar
  *

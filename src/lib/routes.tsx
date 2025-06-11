@@ -4,7 +4,6 @@ import Shell from '@/components/ui/shell/AppShell';
 import AuthGuard from '@/provider/auth-guard';
 import { Login, IncomeManagement, LandingPage, Dashboard } from '@/lib/lazy';
 import { createBrowserRouter } from 'react-router-dom';
-import { ActiveRoute } from '@/types/routes-enums';
 
 export const router = createBrowserRouter([
   {
@@ -20,9 +19,7 @@ export const router = createBrowserRouter([
   {
     id: 'landing',
     path: '/landing',
-    element: (
-        <LandingPage />
-    )
+    element: <LandingPage />
   },
   {
     id: 'root',

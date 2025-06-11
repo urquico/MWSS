@@ -1,8 +1,12 @@
 import { Grid, Select, Textarea, NumberInput, Checkbox, Switch, Input, Text } from '@mantine/core';
+import { Grid, Select, Textarea, NumberInput, Checkbox, Switch, Input, Text } from '@mantine/core';
 import { DateInput, DatePickerInput } from '@mantine/dates';
 import TextInput from "@/components/ui/TextInput";
 import formConfigs, { getComputedFields } from "../../config/create-modal-config";
 import { useForm } from '@mantine/form';
+import { useEffect, useRef, useState } from 'react';
+import { IconCalendarWeek, IconCheck, IconX } from '@tabler/icons-react';
+import { getTitle } from '../../config/create-modal-config';
 import { useEffect, useRef, useState } from 'react';
 import { IconCalendarWeek, IconCheck, IconX } from '@tabler/icons-react';
 import { getTitle } from '../../config/create-modal-config';
@@ -76,6 +80,9 @@ function CreateModal({ viewType, onSubmit, onClose,data  }: CreateModalProps) {
         if (field.name === 'retailAdjustment' && enableRentalAdjustment && !values[field.name]) {
           errors[field.name] = 'Please enter rental adjustment details';
         }
+        if (field.name === 'retailAdjustment' && enableRentalAdjustment && !values[field.name]) {
+          errors[field.name] = 'Please enter rental adjustment details';
+        }
       });
       return errors;
     }
@@ -105,6 +112,7 @@ function CreateModal({ viewType, onSubmit, onClose,data  }: CreateModalProps) {
       placeholder: field.placeholder,
     disabled: field.disabled || (field.type === 'date' && field.autoFillCurrentDate),
       description: field.description,
+      ...form.getInputProps(field.name, { type: field.type === 'checkbox' ? 'checkbox' : 'input' }),
       ...form.getInputProps(field.name, { type: field.type === 'checkbox' ? 'checkbox' : 'input' }),
     };
     // Special case for retailAdjustment with switch
@@ -189,6 +197,15 @@ function CreateModal({ viewType, onSubmit, onClose,data  }: CreateModalProps) {
             checked={form.values[field.name]}
             onChange={(event) => form.setFieldValue(field.name, event.currentTarget.checked)}
           />
+        ); case 'checkbox':
+        return (
+          <Checkbox
+            label={field.label}
+            disabled={field.disabled}
+            description={field.description}
+            checked={form.values[field.name]}
+            onChange={(event) => form.setFieldValue(field.name, event.currentTarget.checked)}
+          />
         );
       default:
         return null;
@@ -199,6 +216,7 @@ function CreateModal({ viewType, onSubmit, onClose,data  }: CreateModalProps) {
     <BaseModal
       opened={true}
       onClose={onClose}
+      title={`Create ${getTitle(viewType)}`}
       title={`Create ${getTitle(viewType)}`}
       size="55rem"
       showSaveButton={true}
@@ -220,6 +238,10 @@ function CreateModal({ viewType, onSubmit, onClose,data  }: CreateModalProps) {
           <button type="submit" style={{ display: 'none' }} />
         </Grid>
       </form>
+      <FormExtras
+        viewType={viewType}
+        fields={fields.filter(f => f.displayIn === 'formExtra')}
+        form={form}
       <FormExtras
         viewType={viewType}
         fields={fields.filter(f => f.displayIn === 'formExtra')}

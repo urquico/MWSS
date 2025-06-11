@@ -17,6 +17,7 @@ interface BSToolbarProps {
 }
 
 export const BSToolbar: React.FC<BSToolbarProps> = ({
+export const BSToolbar: React.FC<BSToolbarProps> = ({
   onCreate,
 }) => {
 
@@ -71,5 +72,6 @@ export function getBSRowActions(viewType: string) {
     </>
   );
 }
+
 
 

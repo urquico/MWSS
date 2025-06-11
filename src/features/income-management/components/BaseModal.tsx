@@ -34,6 +34,7 @@ const GenerateModal: React.FC<GenerateModalProps> = ({
   title,
   exportText = "Export",
   printText = "Print",
+  
   children,
   tableData,
   showExportButton = true,
