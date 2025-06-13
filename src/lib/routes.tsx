@@ -36,10 +36,11 @@ export const router = createBrowserRouter([
         element: <Dashboard />,
         
       },
-       {
+      {
         path: ActiveRoute.INCOME_MGMT + '/*',
         element: <IncomeManagement />
       },
+      
     ]
   }
 ],

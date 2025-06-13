@@ -53,7 +53,7 @@ export function getDPRowActions(viewType: string) {
         console.log('ViewType passed to menu item:', viewType);
         openModal('edit', row, viewType);
       }}>
-        Edit SOA
+        Edit Demand to Pay
       </Menu.Item>
     </>
   );

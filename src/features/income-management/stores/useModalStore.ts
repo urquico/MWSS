@@ -1,11 +1,20 @@
 import { create, StateCreator } from 'zustand';
 import zukeeper from 'zukeeper';
 import { ModalType } from '../types/modal-types';
+
+interface PendingModal {
+  type: ModalType;
+  data: any;
+  viewType?: string;
+}
+
 interface ModalState {
   isOpen: boolean;
   type: ModalType;
   data: any;
   viewType?: string;
+  pendingModal: PendingModal | null;
+  setPendingModal: (pending: PendingModal | null) => void;
   openModal: (type: ModalType, data?: any, viewType?: string) => void;
   closeModal: () => void;
 }
@@ -15,6 +24,8 @@ const modalStoreCreator: StateCreator<ModalState> = (set) => ({
   type: null,
   data: null,
   viewType: undefined,
+  pendingModal: null,
+  setPendingModal: (pending) => set({ pendingModal: pending }),
   openModal: (type, data = null, viewType = undefined) =>
     set({ isOpen: true, type, data, viewType }),
   closeModal: () =>

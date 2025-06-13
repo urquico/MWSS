@@ -5,9 +5,8 @@ import BaseModal from "@/features/income-management/components/BaseModal";
 import { generateModalConfigs } from "../../../config/generate-modal-config";
 import { getTitle } from "../../../config/generate-modal-config";
 import { invoiceTrackingTables } from '../../../config/create-modal-config';
-import type { MainTableItem, LabelValueItem, TableDataItem } from '../../../config/create-modal-config';
 import TextInput from '@/components/ui/TextInput';
-
+import { MainTableItem,LabelValueItem,TableDataItem, FieldConfig } from '@/features/income-management/types/modal-fields';
 interface InvoiceGenerateProps {
   data?: any;
   onClose: () => void;
@@ -16,11 +15,7 @@ interface InvoiceGenerateProps {
 
 const InvoiceGenerate: React.FC<InvoiceGenerateProps> = ({ data, onClose, viewType }) => {
   const configuration = generateModalConfigs[viewType];
-  if (!configuration) {
-    return <div>No configuration found.</div>;
-  }
-
-  const fields = configuration.fields ?? [];
+  const fields: FieldConfig[] = configuration.fields ?? [];
 
   // Get table configurations from invoiceTrackingTables with proper types
   const mainTableConfig = invoiceTrackingTables.find(table => table.name === 'main');

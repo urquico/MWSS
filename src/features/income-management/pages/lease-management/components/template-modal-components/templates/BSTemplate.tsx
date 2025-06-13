@@ -1,8 +1,9 @@
 import BaseModal from "@/features/income-management/components/BaseModal";
-import { Grid, Text, Divider, Table, Flex, Box } from "@mantine/core";
-import { generateModalConfigs } from "../../../config/generate-modal-config";
+import { Text, Divider, Table, Flex, Box } from "@mantine/core";
 import { getTitle } from "../../../config/generate-modal-config";
 import CurrentDate from "@/utils/CurrentDate";
+import { generateModalConfigs } from "../../../config/generate-modal-config";
+
 interface BSTemplateProps {
   data?: any;
   onClose: () => void;
@@ -11,10 +12,9 @@ interface BSTemplateProps {
 
 const BSTemplate: React.FC<BSTemplateProps> = ({ onClose, viewType }) => {
   const { formattedDate } = CurrentDate()
-
-  const config = generateModalConfigs[viewType];
-  if (!config) throw new Error("Config is required")
-  const { tableData } = config;
+  const configuration = generateModalConfigs[viewType];
+ 
+  const { tableData } = configuration;
   const rows = [
     { description: '4,153 sqm @ php1,087.09 sqm.', amount: 'Php 4,515,108.74' },
     { description: 'Add: 12% VAT', amount: '541,813.05' },
@@ -95,7 +95,7 @@ const BSTemplate: React.FC<BSTemplateProps> = ({ onClose, viewType }) => {
           In accordance with the contract of lease between MWSS and MWCI relative to the rental of building space at MWSS Complex and pending execution of the Supplemental Agreement pertaining to the lease of additional office space pursuant to MWSS Board Resolution No. 2024-162-CO dated 13 November 2024, please remit the amount of Four Million Eight Hundred Thirty-One Thousand One Hundred Sixty-Six and 35/100 Pesos (Php4,831,166.35) representing rent for the month of February 2025, detailed as follows:
         </Text>
 
-        <Text className="mb-2 flex justify-center">Rental for the month of February 2025</Text>
+        <Text className="flex justify-center mb-2">Rental for the month of February 2025</Text>
 
         <div className="px-44">
           <Table
@@ -122,7 +122,7 @@ const BSTemplate: React.FC<BSTemplateProps> = ({ onClose, viewType }) => {
         <Text className="my-4">
           Please make payment thru Land Bank's LBP Link Biz Portal by filling up the details as follows:
         </Text>
-        <Box className="rounded-xl overflow-hidden border border-gray"
+        <Box className="overflow-hidden border rounded-xl border-gray"
         ><Table
           withRowBorders={true}
           verticalSpacing="xs"
