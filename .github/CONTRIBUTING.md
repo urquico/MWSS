@@ -1,4 +1,4 @@
-Hello @jbleesimplevia88 @Dc-Radin
+Hello everyone!
 
 Just a reminder to always refer to our existing `code-standards.md` when writing code. It outlines our coding conventions and best practices to keep the codebase clean and consistent.
 
