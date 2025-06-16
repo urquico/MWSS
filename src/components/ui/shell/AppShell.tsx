@@ -9,6 +9,7 @@ import NavFooter from './NavFooter';
 import { sidebarModules } from '@/lib/data/sidebar-links';
 import Header from './Header';
 import { useLinksGroupStore } from '@/store/useLinksGroupStore';
+import BreadCrumbs from './BreadCrumbs';
 interface ShellProps {
   children?: ReactNode;
 }
@@ -128,12 +129,7 @@ function Shell({ children }: ShellProps) {
         <section className="p-4 overflow-hidden md:p-6">
           <div className="h-full overflow-auto">
 
-            {selectedSidebar?.label && (
-              <Breadcrumbs className="mb-4 text-sm text-gray-600" px={40}>
-                <span>Finance</span>
-                <span className="font-semibold text-blue-700">{selectedSidebar.label}</span>
-              </Breadcrumbs>
-            )}
+            <BreadCrumbs />
             {children || <Outlet />}</div>
         </section>
       </AppShell.Main>

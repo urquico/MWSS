@@ -2,7 +2,7 @@ import ErrorPage from '@/components/ui/error/ErrorPage';
 import Loader from '@/components/ui/Loader';
 import Shell from '@/components/ui/shell/AppShell';
 import AuthGuard from '@/provider/auth-guard';
-import { Login, IncomeManagement, LandingPage, Dashboard } from '@/lib/lazy';
+import { Login, IncomeManagement, RawWaterManagement, ConcessionManagement, LandingPage, Dashboard } from '@/lib/lazy';
 import { createBrowserRouter } from 'react-router-dom';
 import { ActiveRoute } from '@/types/routes-enums';
 
@@ -27,25 +27,30 @@ export const router = createBrowserRouter([
     path: '/finance',
     errorElement: <ErrorPage />,
     element: (
-        <Shell />
+      <Shell />
     ),
     children: [
       {
         index: true,
-        path: ActiveRoute.INCOME_MANAGEMENT_DASHBOARD,
+        path: ActiveRoute.LEASE_MANAGEMENT_DASHBOARD,
         element: <Dashboard />,
-        
       },
       {
-        path: ActiveRoute.INCOME_MGMT + '/*',
+        path: ActiveRoute.LEASE_MANAGEMENT + '/*',
         element: <IncomeManagement />
       },
-      
+      {
+        path: ActiveRoute.RAW_WATER_MGMT + '/*',
+        element: <RawWaterManagement />
+      },
+      {
+        path: ActiveRoute.CONCESSION_MGMT + '/*',
+        element: <ConcessionManagement />
+      },
     ]
   }
 ],
   {
-
     hydrationData: {
       loaderData: {
         root: <Loader />,
