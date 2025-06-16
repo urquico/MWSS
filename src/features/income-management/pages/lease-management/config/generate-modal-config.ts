@@ -206,10 +206,10 @@ export const generateModalConfigs: Record<string, ModalConfig> = {
       {
         title: 'Header',
         fields: [
-          { name: 'fund', label: 'Fund', type: 'text', span: 3 },
-          { name: 'no', label: 'No.', type: 'text', span: 3 },
-          { name: 'transactionType', label: 'Transaction Type', type: 'text', span: 3 },
-          { name: 'date', label: 'Date', type: 'date', span: 3 },
+          { name: 'fund', label: 'Fund', type: 'text', span: 3, disabled: true },
+          { name: 'no', label: 'No.', type: 'text', span: 3, disabled: true },
+          { name: 'transactionType', label: 'Transaction Type', type: 'text', span: 3, disabled: true },
+          { name: 'date', label: 'Date', type: 'date', span: 3, disabled: true },
         ],
       },
       {
@@ -239,19 +239,9 @@ export const generateModalConfigs: Record<string, ModalConfig> = {
       },
       {
         title: 'Particulars',
-        fields: [{ name: 'particulars', label: 'Particulars', type: 'textarea', span: 12 }],
+        fields: [{ name: 'particulars', label: 'Particulars', type: 'textarea', span: 12, disabled: true }],
       },
-      {
-        title: 'Attachment',
-        fields: [{ name: 'attachment', label: 'Attachment', type: 'textarea', span: 12 }],
-      },
-      {
-        title: 'Signatories',
-        fields: [
-          { name: 'preparedBy', label: 'Prepared by', type: 'text', span: 6 },
-          { name: 'approvedBy', label: 'Approved by', type: 'text', span: 6 },
-        ],
-      },
+     
     ],
   },
 
@@ -260,14 +250,14 @@ export const generateModalConfigs: Record<string, ModalConfig> = {
       {
         title: 'Header',
         fields: [
-          { name: 'fund', label: 'Fund', type: 'text', span: 3 },
-          { name: 'no', label: 'No.', type: 'text', span: 3 },
-          { name: 'transactionType', label: 'Transaction Type', type: 'text', span: 3 },
-          { name: 'date', label: 'Date', type: 'date', span: 3 },
+          { name: 'fund', label: 'Fund', type: 'text', span: 3, disabled: true },
+          { name: 'no', label: 'No.', type: 'text', span: 3, disabled: true },
+          { name: 'transactionType', label: 'Transaction Type', type: 'text', span: 3, disabled: true },
+          { name: 'date', label: 'Date', type: 'date', span: 3, disabled: true },
         ],
       },
       {
-        title: 'Subsidiary Debit Details',
+        title: 'Subsidiary Transaction Details of',
         table: {
           columns: [
             { accessorKey: 'description', header: 'Description/ Name' },
@@ -279,7 +269,7 @@ export const generateModalConfigs: Record<string, ModalConfig> = {
         },
       },
       {
-        title: 'Subsidiary Credit Details',
+        title: 'Subsidiary Transaction Details of',
         table: {
           columns: [
             { accessorKey: 'description', header: 'Description/ Name' },
@@ -290,13 +280,7 @@ export const generateModalConfigs: Record<string, ModalConfig> = {
           data: [],
         },
       },
-      {
-        title: 'Signatories',
-        fields: [
-          { name: 'preparedBy', label: 'Prepared by', type: 'text', span: 6 },
-          { name: 'approvedBy', label: 'Approved by', type: 'text', span: 6 },
-        ],
-      },
+     
     ],
   },
 };
