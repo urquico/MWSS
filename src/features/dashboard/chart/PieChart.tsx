@@ -29,7 +29,7 @@ const LesseeTypePieChart = ({ data }: Props) => {
   ));
 
   return (
-    <Card withBorder radius="md">
+    <Card withBorder radius="md" p='lg'>
       <Text fz={20} fw={600} mb="md" c='#0E3687'>
         Percentage Per Lessee Type
       </Text>

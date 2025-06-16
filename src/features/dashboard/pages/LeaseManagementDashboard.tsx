@@ -1,17 +1,16 @@
-
 import { Grid } from '@mantine/core';
-import { useDashboardDummyData } from '../types/dummy';
 import { AdminDashboardProvider } from '@/features/dashboard/provider/admin-dashboard-provider';
-import DashboardSummary from './DashboardSummary';
+import { useDashboardData } from '../types/dummy';
+import DashboardSummary from '../chart/DashboardSummary';
 import TrendLineChart from '../chart/TrendLineChart';
 import LesseeTypePieChart from '../chart/PieChart';
 import Text from '@/components/ui/Text';
 import LesseeTypeBarChart from '../chart/BarChart';
 import BillingDonutChart from '../chart/DonutChart';
 
-
-function DashboardPage() {
-  const dummyData = useDashboardDummyData();
+function LeaseManagementDashboard() {
+  // Use the centralized dummy data, specify 'lease'
+  const dummyData = useDashboardData('lease');
 
   const {
     summaryData,
@@ -19,8 +18,13 @@ function DashboardPage() {
     donutChartData,
     lesseeTypeData,
     trendData,
-
   } = dummyData;
+  
+    // Guard: Only render charts if all required data is present
+    if (!summaryData || !lesseeTypeBarData || !lesseeTypeData || !trendData || !donutChartData) {
+        return <div>Loading...</div>;
+    }
+
   const chartLayout = [
     { span: 7, component: <DashboardSummary items={summaryData.items} /> },
     { span: 5, component: <LesseeTypePieChart data={lesseeTypeData} /> },
@@ -48,11 +52,9 @@ function DashboardPage() {
             </Grid.Col>
           ))}
         </Grid>
-
-
       </main>
     </AdminDashboardProvider>
   );
 }
 
-export default DashboardPage;
+export default LeaseManagementDashboard;

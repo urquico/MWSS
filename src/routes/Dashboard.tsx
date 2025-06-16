@@ -1,4 +1,4 @@
-import DashboardPage from "@/features/dashboard/components/DashboardPage"
+import DashboardPage from "@/features/dashboard/pages/DashboardPage"
 
 const Dashboard = () => {
   return (
