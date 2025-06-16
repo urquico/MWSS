@@ -67,14 +67,7 @@ function DataTable<TData extends Record<string, any>>({
     handleExportData(data, filename || 'exported-data');
   };
 
-  if (loading?.isLoading) {
-    return (
-      <Center style={{ height: 300 }}>
-        <Loader size="xl" />
-        <Box ml="md">{loading.text || 'Loading data...'}</Box>
-      </Center>
-    );
-  }
+
 
   return (
     <Box className={className} style={style}>
@@ -142,8 +135,22 @@ function DataTable<TData extends Record<string, any>>({
             ))}
           </Table.Thead>
 
-          <Table.Tbody>
-            {table.getRowModel().rows.length === 0 ? (
+      <Table.Tbody>
+            {loading?.isLoading ? (
+              <Table.Tr>
+                <Table.Td
+                  colSpan={
+                    (features.rowActions ? columns.length + 1 : columns.length) || 1
+                  }
+                  className="text-center"
+                >
+                  <Center>
+                    <Loader size="lg" />
+                    <Box ml="md">{loading.text || 'Loading data...'}</Box>
+                  </Center>
+                </Table.Td>
+              </Table.Tr>
+            ) : table.getRowModel().rows.length === 0 ? (
               <Table.Tr>
                 <Table.Td
                   colSpan={

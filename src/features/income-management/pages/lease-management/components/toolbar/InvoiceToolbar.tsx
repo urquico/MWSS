@@ -1,7 +1,9 @@
 
 import React from 'react';
-import { Group, Button } from '@mantine/core';
+import { Group, Button, Menu} from '@mantine/core';
 import { IconPlus } from '@tabler/icons-react';
+import { useModalStore } from '@/features/income-management/stores/useModalStore';
+
 /**
  * `DBTOOLBAR` component is responsible for:
  * 
@@ -28,3 +30,25 @@ export const InvoiceToolbar: React.FC<InvoiceToolbarProps> = ({
     </>
   );
 };
+export function getInvoiceRowActions(viewType: string) {
+  const openModal = useModalStore.getState().openModal;
+
+  return (row: any) => (
+    <>
+      <Menu.Item
+        onClick={() => {
+          console.log('ViewType passed to menu item:', viewType);
+          openModal('generate', row, viewType);
+        }}
+      >
+        View Invoice
+      </Menu.Item>
+      <Menu.Item onClick={() => {
+        console.log('ViewType passed to menu item:', viewType);
+        openModal('addRemarks', row, viewType);
+      }}>
+        Add Remarks
+      </Menu.Item>
+    </>
+  );
+}

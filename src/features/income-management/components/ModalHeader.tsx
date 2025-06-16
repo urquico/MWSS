@@ -8,7 +8,7 @@ const ModalHeader = () => {
         <Image src="/mwss-logo.svg" alt="MWSS Logo" height={56} width={56} fit="contain"  />
       </Box>
       {/* Center: Text */}
-      <Stack gap={0} align="center" justify="center" style={{ flex: 1 }}  className='flex ml-2 text-center text-blue-800' >
+      <Stack gap={0} align="center" justify="center" style={{ flex: 1 }}  className='flex ml-2 text-center text-blue-900' >
         <Text fz={24} fw={500} style={{ letterSpacing: 1 }}>
           Republic of the Philippines
         </Text>

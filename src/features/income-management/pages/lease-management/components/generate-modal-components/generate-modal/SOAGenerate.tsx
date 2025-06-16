@@ -1,10 +1,9 @@
+import { Grid, Title } from "@mantine/core";
 import BaseModal from "@/features/income-management/components/BaseModal";
 import TextInput from "@/components/ui/TextInput";
-import { Grid, Title } from "@mantine/core";
 import Table from "@/components/ui/table/components/Table";
-import { getTitle } from "../../../config/generate-modal-config";
-import { generateModalConfigs } from "../../../config/generate-modal-config";
-
+import { getTitle, generateModalConfigs,  } from "../../../config/generate-modal-config";
+import { FieldConfig } from "@/features/income-management/types/modal-fields";
 interface SOAGenerateProps {
   data?: any;
   onClose: () => void;
@@ -17,7 +16,7 @@ const SOAGenerate: React.FC<SOAGenerateProps> = ({ data, onClose, viewType }) =>
     return <div>No configuration found.</div>;
   }
 
-  const fields = configuration.fields ?? [];
+  const fields: FieldConfig[] = configuration.fields ?? [];
   const columns = configuration.columns ?? [];
 
   const tableData = data
@@ -35,10 +34,11 @@ const SOAGenerate: React.FC<SOAGenerateProps> = ({ data, onClose, viewType }) =>
       orNo: data.orNo ?? "",
     }]
     : configuration.tableData ?? [];
+
   return (
     <BaseModal
-      title={`Create ${getTitle(viewType)}`}
-      exportText="Export to Excel"
+      title={`Generate ${getTitle(viewType)}`}
+      exportText="Export"
       printText="Print PDF"
       tableData={tableData}
       opened={true}
@@ -57,12 +57,17 @@ const SOAGenerate: React.FC<SOAGenerateProps> = ({ data, onClose, viewType }) =>
           </Grid.Col>
         ))}
       </Grid>
-
-      <Title fz={13} fw={700} fs="italic">
+      <Title fz={13} fw={700} fs="italic" pl='10'>
         *subject to annual selection rate of ten percent (10%)
       </Title>
-
-      <Table data={tableData} columns={columns} className="mt-10" />
+      <Table data={tableData} columns={columns} />
+      <TextInput
+        label='Prepared By'
+        value=''
+        disabled
+        mt="md"
+        pl='10'
+      />
     </BaseModal>
   );
 };

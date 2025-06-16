@@ -2,12 +2,11 @@ import BaseModal from "@/features/income-management/components/BaseModal";
 import TextInput from "@/components/ui/TextInput";
 import Table from "@/components/ui/table/components/Table";
 import { Grid, Tabs, Title, Group, Button, Switch, Text, Box, Anchor, Paper } from "@mantine/core";
-import { IconInfoCircle, IconCreditCard, IconCheck, IconX } from '@tabler/icons-react';
-import { getTitle } from "../../../config/generate-modal-config";
-import { generateModalConfigs } from "../../../config/generate-modal-config";
+import { IconCheck, IconX } from '@tabler/icons-react';
 import { useState } from 'react';
 import { getFileIcon } from "@/features/income-management/utils/file-icon";
-
+import { useModalStore } from "@/features/income-management/stores/useModalStore";
+import { formConfigs, getTitle } from "../../../config/create-modal-config";
 interface LesseeInformationGenerateProps {
     data?: any;
     onClose: () => void;
@@ -15,10 +14,12 @@ interface LesseeInformationGenerateProps {
 }
 
 const LesseeInformationGenerate: React.FC<LesseeInformationGenerateProps> = ({ data, onClose, viewType }) => {
+    const openModal = useModalStore.getState().openModal;
     const [checked, setChecked] = useState(false);
     const [activeTab, setActiveTab] = useState('details');
-
-    const configuration = generateModalConfigs[viewType];
+    console.log('LesseeInformationGenerate data:', data);
+    console.log('LesseeInformationGenerate viewType:', viewType);
+    const configuration = formConfigs[viewType];
     if (!configuration) return null;
     const { sections = [], columns = [], tableData = [] } = configuration;
 
@@ -81,7 +82,9 @@ const LesseeInformationGenerate: React.FC<LesseeInformationGenerateProps> = ({ d
                             }
                             labelPosition="left"
                         />
-                        <Button variant="outline" color="black" mb={5} radius={5}>
+                        <Button variant="outline" color="black" mb={5} radius={5}
+                            onClick={() => openModal('edit', data, viewType)}
+                        >
                             <Text fz={12} fw={600}>Add Remarks</Text>
                         </Button>
                     </Group>
@@ -97,13 +100,14 @@ const LesseeInformationGenerate: React.FC<LesseeInformationGenerateProps> = ({ d
                                     {section.title}
                                 </Title>
                                 <Grid>
-                                    {section.fields
-                                        .filter((field) => !field.name.toLowerCase().includes('file')) // skip file fields
-                                        .map((field) => (
-                                            <Grid.Col key={field.name} span={field.span}>
-                                                <TextInput label={field.label} value={field.value ?? ''} disabled />
-                                            </Grid.Col>
-                                        ))}
+                                    {section.fields &&
+                                        section.fields
+                                            .filter((field) => !field.name.toLowerCase().includes('file'))
+                                            .map((field) => (
+                                                <Grid.Col key={field.name} span={field.span}>
+                                                    <TextInput label={field.label} value={field.value ?? ''} disabled />
+                                                </Grid.Col>
+                                            ))}
                                 </Grid>
 
                                 {/* Inject attachments after Lessee Information section */}
@@ -112,7 +116,7 @@ const LesseeInformationGenerate: React.FC<LesseeInformationGenerateProps> = ({ d
                                         <Title order={6} mb="xs">Attachments</Title>
                                         <Grid>
                                             {sections
-                                                .flatMap((s) => s.fields)
+                                                .flatMap((s) => s.fields ?? [])
                                                 .filter((field) => field.name.toLowerCase().includes('file'))
                                                 .map((field) => (
                                                     <Grid.Col key={field.name} span={field.span}>

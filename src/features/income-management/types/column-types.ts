@@ -38,26 +38,30 @@ const paymentColumns: ColumnDef<any>[] = [
 ];
 
 const demandColumns: ColumnDef<any>[] = [
-  {
-    accessorKey: 'status',
-    header: 'Status',
-    cell: ({ row }) => renderStatusCell(row.original.status),
-  },
   { accessorKey: 'date', header: 'Date' },
   { accessorKey: 'controlNumber', header: 'Control Number' },
   { accessorKey: 'lessee', header: 'Lessee' },
   { accessorKey: 'companyName', header: 'Company Name' },
   { accessorKey: 'subject', header: 'Subject' },
   { accessorKey: 'dateReceived', header: 'Date Received' },
+    {
+    accessorKey: 'status',
+    header: 'Status',
+    cell: ({ row }) => renderStatusCell(row.original.status),
+  },
+  { accessorKey: 'remarks', header: 'Remarks' },
 ];
 
 const journalColumns: ColumnDef<any>[] = [
   { accessorKey: 'jevDate', header: 'JEV Date' },
   { accessorKey: 'jevNo', header: 'JEV No.' },
+  { accessorKey: 'responsibilityCenter', header: 'Responsibility Center' },
   { accessorKey: 'accountTitle', header: 'Account Title' },
-  { accessorKey: 'particulars', header: 'Particulars' },
+  { accessorKey: 'accountCode', header: 'Account Code' },
   { accessorKey: 'debit', header: 'Debit' },
   { accessorKey: 'credit', header: 'Credit' },
+  { accessorKey: 'dueDate', header: 'Due Date' },
+
 ];
 
 const paymentReconciliationColumns: ColumnDef<any>[] = [
@@ -112,8 +116,6 @@ const tenantColumns: ColumnDef<any>[] = [
   { accessorKey: 'lesseeTerm', header: 'Lessee Term' },
   { accessorKey: 'classification', header: 'Classification' },
     { accessorKey: 'remarks', header: 'Remarks' },
-
-
 
 ];
 

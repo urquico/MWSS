@@ -45,11 +45,11 @@ export const sidebarModules: LinkItem[] = [
       {
         label: 'Payment Monitoring',
         links: [
-          {
-            label: 'Payment Reconciliation',
-            path: ActiveRoute.PAYMENT_RECONCILIATION,
-            link: ActiveRoute.PAYMENT_RECONCILIATION,
-          },
+          // {
+          //   label: 'Payment Reconciliation',
+          //   path: ActiveRoute.PAYMENT_RECONCILIATION,
+          //   link: ActiveRoute.PAYMENT_RECONCILIATION,
+          // },
           {
             label: 'Payment History',
             path: ActiveRoute.PAYMENT_HISTORY,

@@ -1,8 +1,8 @@
 import { Card, Grid, Select, Text, Divider } from '@mantine/core';
 import { UseFormReturnType } from '@mantine/form';
-
+import { FieldConfig } from '@/features/income-management/types/modal-fields';
 interface Props {
-  fields: any[];
+  fields: FieldConfig[];
   form: UseFormReturnType<any>;
 }
 

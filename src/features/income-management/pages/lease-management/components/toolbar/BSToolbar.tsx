@@ -56,8 +56,21 @@ export function getBSRowActions(viewType: string) {
       }}>
         View Billing History
       </Menu.Item>
+      <Menu.Item onClick={() => {
+        console.log('ViewType passed to menu item:', viewType);
+        openModal('addRemarks', row, viewType);
+      }}>
+        Add Remarks
+      </Menu.Item>
+      <Menu.Item onClick={() => {
+        console.log('ViewType passed to menu item:', viewType);
+        openModal('edit', row, viewType);
+      }}>
+        Edit SOA
+      </Menu.Item>
     </>
   );
 }
+
 
 

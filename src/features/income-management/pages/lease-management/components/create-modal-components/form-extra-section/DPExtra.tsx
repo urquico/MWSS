@@ -7,15 +7,15 @@ import {
   Grid,
   Group,
   NumberInput,
- 
   Table,
 } from '@mantine/core';
 import { UseFormReturnType } from '@mantine/form';
 import TextInput from '@/components/ui/TextInput';
+import { FieldConfig } from '@/features/income-management/types/modal-fields';
+
 
 interface DemandToPayExtrasProps {
-  fields: any[];
-
+  fields: FieldConfig[];
   form: UseFormReturnType<any>;
 }
 
@@ -32,7 +32,6 @@ function InlineTextInput({
   width: number;
   form: UseFormReturnType<any>;
 }) {
-
   return (
     <TextInput
       size="xs"
@@ -84,40 +83,37 @@ function DisabledLabeledInput({
   );
 }
 
-function DemandToPayExtras({ form ,fields}: DemandToPayExtrasProps) {
-  // For Select options
-    console.log('DemandToPayExtras props:', {  form ,fields});
-
+function DemandToPayExtras({ form }: DemandToPayExtrasProps) {
   const months = [
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December',
   ];
 
   const years = Array.from({ length: 5 }, (_, i) => `${2025 + i}`);
-const paymentInstructions = [
-  { label: 'Merchant Name:', value: 'MWSS - CO Lease Rental' },
-  { label: 'Account Number:', value: '1462 - 1037 - 40' },
-  { label: 'Transaction Type:', value: 'Rental Payment' },
-  {
-    label: 'Payment Details:',
-    value: [
-      'Amount',
-      'Name of Payor',
-      'Purpose of Payment',
-      'Reference Number',
-      'Contact No.',
-      'Email Address',
-    ],
-  },
-  {
-    label: 'Payment Mode:',
-    value: ['Bank Name', 'Bank Account'],
-  },
-  {
-    label: 'One Time Password:',
-    value: 'To authorize this transaction, please enter your One Time Password.',
-  },
-];
+  const paymentInstructions = [
+    { label: 'Merchant Name:', value: 'MWSS - CO Lease Rental' },
+    { label: 'Account Number:', value: '1462 - 1037 - 40' },
+    { label: 'Transaction Type:', value: 'Rental Payment' },
+    {
+      label: 'Payment Details:',
+      value: [
+        'Amount',
+        'Name of Payor',
+        'Purpose of Payment',
+        'Reference Number',
+        'Contact No.',
+        'Email Address',
+      ],
+    },
+    {
+      label: 'Payment Mode:',
+      value: ['Bank Name', 'Bank Account'],
+    },
+    {
+      label: 'One Time Password:',
+      value: 'To authorize this transaction, please enter your One Time Password.',
+    },
+  ];
 
   return (
     <Card withBorder radius="md" mt="md">
@@ -212,48 +208,42 @@ const paymentInstructions = [
         <Divider my="md" label="Please make payment" labelPosition="left" />
 
         {/* Payment Instructions */}
-<Box mt="sm">
-      <Table withColumnBorders     className="overflow-hidden shadow-sm rounded-xl"
-
-  >
-        <Table.Tbody >
-          {paymentInstructions.map((item) => (
-            <Table.Tr key={item.label}>
-              {/* Label Cell */}
-<Table.Td className="bg-skyBlue font-medium align-top w-[40%]">
-                <Text size="sm" c='white' fw={600}>{item.label}:</Text>
-              </Table.Td>
-
-              {/* Value Cell */}
-              <Table.Td style={{ verticalAlign: 'top' }}>
-                {Array.isArray(item.value) ? (
-                  item.value.map((line, i) => (
-                    <Text size="sm" key={i}>
-                      {line}
-                    </Text>
-                  ))
-                ) : (
-                  <Text size="sm">{item.value}</Text>
-                )}
-              </Table.Td>
-            </Table.Tr>
-          ))}
-        </Table.Tbody>
-      </Table>
-    </Box>
+        <Box mt="sm">
+          <Table withColumnBorders className="overflow-hidden shadow-sm rounded-xl">
+            <Table.Tbody>
+              {paymentInstructions.map((item) => (
+                <Table.Tr key={item.label}>
+                  <Table.Td className="bg-skyBlue font-medium align-top w-[40%]">
+                    <Text size="sm" c='white' fw={600}>{item.label}:</Text>
+                  </Table.Td>
+                  <Table.Td style={{ verticalAlign: 'top' }}>
+                    {Array.isArray(item.value) ? (
+                      item.value.map((line, i) => (
+                        <Text size="sm" key={i}>
+                          {line}
+                        </Text>
+                      ))
+                    ) : (
+                      <Text size="sm">{item.value}</Text>
+                    )}
+                  </Table.Td>
+                </Table.Tr>
+              ))}
+            </Table.Tbody>
+          </Table>
+        </Box>
 
         <Text mt="md" size="sm">
           There will be a corresponding bank charge which will be shouldered by the Lessee.
         </Text>
 
         <Text size="sm" mt="xs">
-          When payment is done, kindly email us a copy of payment transaction
-          slip together with the BIR Form 2307 so we can make corresponding Sales Invoice.
+          When payment is done, kindly email us a copy of payment transaction slip together with the BIR Form 2307 so we can make corresponding Sales Invoice.
         </Text>
 
         <Text mt="sm" size="sm">Thank you.</Text>
 
-        <Text mt="md" size="sm"  fw={600}>Very truly yours,</Text>
+        <Text mt="md" size="sm" fw={600}>Very truly yours,</Text>
         <Select w='50%'
           placeholder="Administrator"
           data={['Administrator', 'Billing Officer', 'Finance Officer']}
