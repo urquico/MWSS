@@ -1,4 +1,4 @@
-import Modal from '@/components/ui/Modal';
+import Modal from '@/components/ui/modal/Modal';
 import PasswordInput from '@/components/ui/PasswordInput';
 import Text from '@/components/ui/Text';
 import Button from '@/components/ui/Button';
