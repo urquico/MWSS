@@ -1,0 +1,15 @@
+
+.custom-modal-content {
+  overflow-y: auto;
+  flex: 1 1 auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-modal-header {
+  position: sticky;
+  top: 0;
+  background: white; 
+  z-index: 2;
+}
