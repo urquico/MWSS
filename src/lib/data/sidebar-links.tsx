@@ -14,8 +14,8 @@ export const sidebarModules: LinkItem[] = [
     links: [
       {
         label: 'Dashboard',
-        path: ActiveRoute.INCOME_MANAGEMENT_DASHBOARD,
-        link: ActiveRoute.INCOME_MANAGEMENT_DASHBOARD,
+        path: ActiveRoute.LEASE_MANAGEMENT_DASHBOARD,
+        link: ActiveRoute.LEASE_MANAGEMENT_DASHBOARD,
       },
       {
         label: 'Billing Management',
@@ -89,8 +89,8 @@ export const sidebarModules: LinkItem[] = [
         links: [
           {
             label: 'Statement of Account',
-            path: ActiveRoute.RAW_WATER_STATEMENT_OF_ACCOUNT,
-            link: ActiveRoute.RAW_WATER_STATEMENT_OF_ACCOUNT,
+            path: ActiveRoute.RAW_WATER_BILLING_STATEMENT,
+            link: ActiveRoute.RAW_WATER_BILLING_STATEMENT,
           },
           {
             label: 'Demand to Pay',
@@ -106,8 +106,6 @@ export const sidebarModules: LinkItem[] = [
       },
       {
         label: 'Invoice Generation & Tracking',
-        path: ActiveRoute.RAW_WATER_INVOICE_TRACKING,
-        link: ActiveRoute.RAW_WATER_INVOICE_TRACKING,
         links: [
           {
             label: 'Invoice List',
@@ -123,30 +121,54 @@ export const sidebarModules: LinkItem[] = [
       },
       {
         label: 'Customer Information Management',
-        path: ActiveRoute.RAW_WATER_CUSTOMER_INFORMATION_MANAGEMENT,
-        link: ActiveRoute.RAW_WATER_CUSTOMER_INFORMATION_MANAGEMENT,
         links: [
           {
             label: 'Customer Information',
             path: ActiveRoute.RAW_WATER_CUSTOMER_INFORMATION,
             link: ActiveRoute.RAW_WATER_CUSTOMER_INFORMATION,
           },
-          {
-            label: 'Payment History',
-            path: ActiveRoute.RAW_WATER_PAYMENT_HISTORY,
-            link: ActiveRoute.RAW_WATER_PAYMENT_HISTORY,
+           {
+            label: 'Customer Payment History',
+            path: ActiveRoute.RAW_WATER_CUSTOMER_PAYMENT_HISTORY,
+            link: ActiveRoute.RAW_WATER_CUSTOMER_PAYMENT_HISTORY,
           },
         ],
       },
       {
         label: 'Payment Monitoring',
-        path: ActiveRoute.RAW_WATER_PAYMENT_MONITORING,
-        link: ActiveRoute.RAW_WATER_PAYMENT_MONITORING,
+        links: [
+          {
+            label: 'Payment Reconciliation',
+            path: ActiveRoute.RAW_WATER_PAYMENT_RECONCILIATION,
+            link: ActiveRoute.RAW_WATER_PAYMENT_RECONCILIATION,
+          },
+          {
+            label: 'Payment History',
+            path: ActiveRoute.RAW_WATER_PAYMENT_HISTORY,
+            link: ActiveRoute.RAW_WATER_PAYMENT_HISTORY,
+          },
+          {
+            label: 'Payment Reminder',
+            path: ActiveRoute.RAW_WATER_PAYMENT_REMINDER,
+            link: ActiveRoute.RAW_WATER_PAYMENT_REMINDER,
+          },
+        ],
       },
       {
         label: 'Payment Computation',
-        path: ActiveRoute.RAW_WATER_PAYMENT_COMPUTATION,
-        link: ActiveRoute.RAW_WATER_PAYMENT_COMPUTATION,
+        links: [
+          {
+            label: 'CPI',
+            path: ActiveRoute.RAW_WATER_PAYMENT_COMPUTATION_CPI,
+            link: ActiveRoute.RAW_WATER_PAYMENT_COMPUTATION_CPI,
+          },
+          {
+            label: 'Arrears',
+            path: ActiveRoute.RAW_WATER_PAYMENT_COMPUTATION_ARREARS,
+            link: ActiveRoute.RAW_WATER_PAYMENT_COMPUTATION_ARREARS,
+          },
+
+        ],
       },
     ],
   },
