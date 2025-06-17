@@ -46,6 +46,7 @@ export const router = createBrowserRouter([
         path: ActiveRoute.CONCESSION_MGMT + '/*',
         element: <ConcessionManagement />
       },
+
     ]
   }
 ],
