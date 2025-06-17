@@ -1,7 +1,25 @@
-// src/utils/status-utils.ts
 import { IconCheck, IconX, IconAlertCircle, IconCircleCheck, IconCircleFilled } from '@tabler/icons-react';
 import { ReactNode } from 'react';
 import { Badge } from '@mantine/core';
+
+/**
+ * @file status-utils.tsx
+ * @description
+ * Central utility for status badge rendering and status config mapping in the MWSS Income/Raw Water Management app.
+ *
+ * @usage
+ * - Import and use `renderStatusCell(status)` in your table column configs to render a status badge.
+ * - Use `getStatusConfig(status)` if you need the icon/color/label for custom UI.
+ *
+ * @example
+ * import { renderStatusCell } from '@/features/income-management/utils/status-utils';
+ * ...
+ * { accessorKey: 'status', header: 'Status', cell: ({ row }) => renderStatusCell(row.original.status) }
+ *
+ * @see
+ * - Add or update status types in `statusConfigMap` for new or custom statuses.
+ * - Handles fuzzy status matching for "for review", "returned", and "settled" prefixes.
+ */
 
 export type StatusType = 
   | 'active' | 'inactive' | 'for review'| 'returned' | 'pending' 
