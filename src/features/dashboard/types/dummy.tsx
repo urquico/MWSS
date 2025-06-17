@@ -13,7 +13,7 @@ export const DASHBOARD_DUMMY_DATA: { [key: string]: AdminDashboard } = {
       ]
     },
     trendData: {
-      title: 'Total Actual vs Projected trend',
+      title: 'Total Actual vs Projected Trend',
       period: 'Last 7 Months',
       height: 350,
       data: [

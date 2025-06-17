@@ -35,7 +35,7 @@ export const viewTypeModalMap: Record<ViewType, Exclude<ModalType, null>> = {
  // RAW WATER MANAGEMENT VIEWS
   'raw-water-dashboard': 'generate',
   'raw-water-billing-statement': 'generate',
-  'raw-water-demand-to-pay': 'generate',
+  'raw-water-demand-to-pay': 'template',
   'raw-water-journal-entry': 'generate',
   'raw-water-invoice-tracking': 'generate',
   'raw-water-invoice-list': 'generate',

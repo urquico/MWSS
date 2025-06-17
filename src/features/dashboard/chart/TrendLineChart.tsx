@@ -13,7 +13,7 @@ interface TrendLineChartProps {
 }
 
 function TrendLineChart({
-  title = 'Total Actual vs Projected trend',
+  title = 'Total Actual vs Projected Trend',
   periodOptions = ['Last 3 Months', 'Last 6 Months', 'Last 12 Months'],
   data,
   height = 300,

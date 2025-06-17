@@ -1,7 +1,8 @@
 
-import { Group, Button, Menu } from '@mantine/core';
+import { Group, Button, Menu, Select } from '@mantine/core';
 import { IconPlus } from '@tabler/icons-react';
 import { useModalStore } from '@/features/income-management/stores/useModalStore';
+import { useState } from 'react';
 /**
  * `DBTOOLBAR` component is responsible for:
  * 
@@ -19,17 +20,35 @@ export const RawWaterDPToolbar: React.FC<RawWaterDPToolbarProps> = ({
   onCreate,
 }) => {
 
-  return (
-    <>
-      <Group justify="sm" mb="md">
-        <Button onClick={onCreate} color='#1E40AF' variant="filled" leftSection={<IconPlus size={14} />} >
-          Create
-        </Button>
-          
-      </Group>
-    </>
-  );
-};
+   const [demandType, setDemandType] = useState<string | null>('1st demand to pay');
+ 
+   return (
+     <>
+       {/* Top toolbar with a Create button */}
+       <Group justify="sm" mb="md">
+         {/* <Select
+           data={[
+             { value: '1st demand to pay', label: '1st demand to pay' },
+             { value: '2nd demand to pay', label: '2nd demand to pay' },
+             { value: '3rd demand to pay', label: '3rd demand to pay' },
+           ]}
+           value={demandType}
+           onChange={setDemandType}
+           placeholder="Demand to Pay"
+           w={200}
+         /> */}
+         <Button onClick={onCreate} color='#1E40AF' variant="filled" leftSection={<IconPlus size={14} />} >
+           Create
+         </Button>
+ 
+       </Group>
+ 
+       {/* We export these handlers for DataView to use */}
+       {/* But note this component returns only the toolbar UI, the rest will be props */}
+     </>
+   );
+ };
+ 
 
 export function getDPRowActions(viewType: string) {
   const openModal = useModalStore.getState().openModal;
