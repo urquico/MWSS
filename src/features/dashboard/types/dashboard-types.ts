@@ -40,16 +40,24 @@ export type BarChartData = {
   description?: string;
 };
 
+
 export type DonutChartData = {
   label: string;
   value: number;
   color: string;
 };
 
+export type RawWaterMonthlyBar = {
+  month: string;
+  issued: number;
+  unissued: number;
+};
+
 export type AdminDashboard = {
-  summaryData: DashboardSummaryData;
-  trendData: TrendChartData;
-  lesseeTypeData: PieChartData[];
-  lesseeTypeBarData: BarChartData[];
-  donutChartData: DonutChartData[];
+  summaryData?: DashboardSummaryData;
+  trendData?: TrendChartData;
+  lesseeTypeData?: PieChartData[];
+  lesseeTypeBarData?: BarChartData[];
+  donutChartData?: DonutChartData[];
+  monthlyBarData?: RawWaterMonthlyBar[];
 };

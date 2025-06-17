@@ -9,7 +9,7 @@ import { dashboardSummaryItems, quadrantData } from '../../config/view-history-c
  * This includes statistics like Total Lessees, Active Contracts, Expiring Soon, etc.
  */
 
-export const LesseeInformationToolbar = () => {
+export const RawWaterCustomerToolbar = () => {
 
   return (
     <Box p="md" >

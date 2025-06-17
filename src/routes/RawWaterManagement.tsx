@@ -1,9 +1,10 @@
-import React from 'react'
+import TableViewWrapper from '@/features/income-management/pages/IncomeManagement';
 
-const RawWaterManagement = () => {
-  return (
-    <div>RawWaterManagement</div>
-  )
+function RawWaterManagement() {
+    return (
+    <TableViewWrapper />
+    );
 }
 
-export default RawWaterManagement
+export default RawWaterManagement;
+
