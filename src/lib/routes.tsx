@@ -82,6 +82,14 @@ export const router = createBrowserRouter([
             path: 'lessee-information',
             element: <IncomeManagement />,
           },
+          {
+            path: 'concession',
+            element: <IncomeManagement />,
+          },
+           {
+            path: 'journal',
+            element: <IncomeManagement />,
+          },
         ],
       },
     ],

@@ -50,7 +50,7 @@ export enum ActiveRoute {
   // ===============================
   // CONCESSION
   // ===============================
-  CONCESSIONAIRE_FEE = '/finance/concession/fee',
+  CONCESSIONAIRE_FEE = '/finance/concession/concession-fee',
   CONCESSION_JOURNAL_ENTRY_VOUCHER = '/finance/concession/journal',
   
   // ===============================

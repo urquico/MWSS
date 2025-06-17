@@ -42,9 +42,10 @@ export const routeViewConfig: RouteConfig = {
 
 export const getViewConfig = (pathname: string): ViewConfig => {
   return routeViewConfig[pathname] || {
-    viewType: 'billing-statement',
+    viewType: 'concession-fee',
     title: 'Default View',
     enableExport: false,
     enableFilters: false,
   };
+  
 };
