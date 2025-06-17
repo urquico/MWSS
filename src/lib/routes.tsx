@@ -3,7 +3,6 @@ import Loader from '@/components/ui/Loader';
 import Shell from '@/components/ui/shell/AppShell';
 import AuthGuard from '@/provider/auth-guard';
 import { Login, IncomeManagement, RawWaterManagement, ConcessionManagement, LandingPage, Dashboard } from '@/lib/lazy';
-import { Login, IncomeManagement, RawWaterManagement, ConcessionManagement, LandingPage, Dashboard } from '@/lib/lazy';
 import { createBrowserRouter } from 'react-router-dom';
 import { ActiveRoute } from '@/types/routes-enums';
 
@@ -29,7 +28,6 @@ export const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     element: (
       <Shell />
-      <Shell />
     ),
     children: [
       {
@@ -37,7 +35,6 @@ export const router = createBrowserRouter([
         element: <Dashboard />,
       },
       {
-        path: ActiveRoute.LEASE_MANAGEMENT + '/*',
         path: ActiveRoute.LEASE_MANAGEMENT + '/*',
         element: <IncomeManagement />
       },
@@ -49,14 +46,7 @@ export const router = createBrowserRouter([
         path: ActiveRoute.CONCESSION_MGMT + '/*',
         element: <ConcessionManagement />
       },
-      {
-        path: ActiveRoute.RAW_WATER_MGMT + '/*',
-        element: <RawWaterManagement />
-      },
-      {
-        path: ActiveRoute.CONCESSION_MGMT + '/*',
-        element: <ConcessionManagement />
-      },
+
     ]
   }
 ],
