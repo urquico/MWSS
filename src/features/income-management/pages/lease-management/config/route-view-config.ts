@@ -86,6 +86,8 @@ export const routeViewConfig: RouteConfig = {
     enableExport: true,
     enableFilters: true,
   },
+
+  
 };
 
 export const getViewConfig = (pathname: string): ViewConfig => {
