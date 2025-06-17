@@ -31,8 +31,7 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
-        index: true,
-        path: ActiveRoute.LEASE_MANAGEMENT_DASHBOARD,
+        path: '/finance/:module/dashboard',
         element: <Dashboard />,
       },
       {

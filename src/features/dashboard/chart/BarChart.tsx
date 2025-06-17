@@ -1,6 +1,5 @@
-// components/chart/LesseeTypeBarChart.tsx
 import { Card, Group, Text, Stack, Box, Table, SimpleGrid } from '@mantine/core';
-import { BarChart } from '@mantine/charts';
+import { BarChart, BarChartProps } from '@mantine/charts';
 import { formatPrice } from '@/utils/price-formatter';
 
 type LesseeItem = {
@@ -14,14 +13,27 @@ type Props = {
     data: LesseeItem[];
     title?: string;
     description?: string;
+    showTable?: boolean;
+    h?: number;
+    w?: number;
+    barProps?: BarChartProps['barProps'];
+    barChartProps?: BarChartProps['barChartProps'];
 };
 
-const LesseeTypeBarChart = ({ data, title = "Percentage Per Lessee Type", description }: Props) => {
+const LesseeTypeBarChart = ({
+    data,
+    title = "Percentage Per Lessee Type",
+    description,
+    showTable = true,
+    h = 300,
+    w = 300,
+    barProps,
+    barChartProps,
+}: Props) => {
     const chartData = data.map((item) => ({
-        type: item.type,  // Keep original property name
+        type: item.type,
         value: item.value,
         color: item.color,
-
     }));
 
     const rows = data.map((item) => (
@@ -44,26 +56,31 @@ const LesseeTypeBarChart = ({ data, title = "Percentage Per Lessee Type", descri
                 )}
             </Stack>
 
-            <SimpleGrid cols={{ base: 1, md: 2 }} mt="md" spacing="" className='text-neutral'>
-                {/* Table - takes 50% width */}
-                <Box>
-                    <Table withColumnBorders={false} withRowBorders={false}>
-                        <Table.Thead>
-                            <Table.Tr style={{ borderBottom: '2px solid #e9ecef' }}>
-                                <Table.Th>Lessee Type</Table.Th>
-                                <Table.Th>Value</Table.Th>
-                            </Table.Tr>
-                        </Table.Thead>
-                        <Table.Tbody>{rows}</Table.Tbody>
-                    </Table>
-                </Box>
+            <SimpleGrid
+                cols={showTable ? { base: 1, md: 2 } : 1}
+                mt="md"
+                spacing=""
+                className='text-neutral'
+            >
+                {showTable && (
+                    <Box>
+                        <Table withColumnBorders={false} withRowBorders={false}>
+                            <Table.Thead>
+                                <Table.Tr style={{ borderBottom: '2px solid #e9ecef' }}>
+                                    <Table.Th>Lessee Type</Table.Th>
+                                    <Table.Th>Value</Table.Th>
+                                </Table.Tr>
+                            </Table.Thead>
+                            <Table.Tbody>{rows}</Table.Tbody>
+                        </Table>
+                    </Box>
+                )}
 
-                {/* Chart - takes 50% width */}
                 <Box>
                     <Stack gap="xs" align="center">
                         <BarChart
-                            h={300}
-                            w={300}
+                            h={h}
+                            w={w}
                             data={chartData}
                             dataKey="type"
                             series={[{ name: 'value', color: 'color' }]}
@@ -73,9 +90,8 @@ const LesseeTypeBarChart = ({ data, title = "Percentage Per Lessee Type", descri
                             yAxisProps={{ domain: [0, 40] }}
                             xAxisProps={{ interval: 0 }}
                             withTooltip
-                            barChartProps={{
-                                barSize: 30,
-                            }}
+                            {...(barProps ? { barProps } : {})}
+                            {...(barChartProps ? { barChartProps } : {})}
                         />
 
                         {/* Legend */}

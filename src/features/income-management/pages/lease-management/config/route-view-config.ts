@@ -26,7 +26,7 @@ import { ViewConfig, RouteConfig } from '@/features/income-management/types/view
  * ```
  */
 export const routeViewConfig: RouteConfig = {
-  // ===== INCOME MANAGEMENT =====
+  // ===== LEASE MANAGEMENT =====
 
 //  BILLING MANAGEMENT
   [ActiveRoute.STATEMENT_OF_ACCOUNT]: {
