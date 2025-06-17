@@ -13,5 +13,4 @@ export const ConcessionManagement = lazy(() => import('@/routes/ConcessionManage
 
 export const DataView = lazy(() => import('@/features/income-management/pages/lease-management/LeaseManagement'));
 export const DataViewConcession = lazy(() => import('@/features/income-management/pages/concession/Concession'));
-export const TableViewWrapper = lazy(() => import('@/features/income-management/IncomeManagement'));
-
+export const TableViewWrapper = lazy(() => import('@/features/income-management/pages/IncomeManagement'));
