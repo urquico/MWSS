@@ -5,18 +5,30 @@ import { getDPRowActions } from '../components/toolbar';
 import { getJEVRowActions } from '../components/toolbar/RawWaterJEVToolbar';
 import { getInvoiceRowActions } from '../components/toolbar';
 /**
- * This is for adding the ACTION column per vieType, the the Action items in the toolbar
- * then call here
- * @param viewType 
- * @param handleGenerateRow 
- * @returns 
+ * @file row-action-config.ts
+ * @description
+ * This file connects the "Actions" column to the table for each view type in the MWSS Income/Raw Water Management app.
+ * It maps each viewType to its corresponding row action menu renderer.
+ *
+ * @usage
+ * - Use `getRowActionsConfig(viewType, handleGenerateRow)` to provide the correct actions for the table's "Actions" column.
+ * - Call this in your table config to inject the proper row actions per view.
+ *
+ * @example
+ * import { getRowActionsConfig } from './config/row-action-config';
+ * const rowActionsConfig = getRowActionsConfig(viewType, handleGenerateRow);
+ *
+ * @see
+ * - Update this file when adding new view types or row action menus.
+ * - Each toolbar component exports its own row actions renderer.
  */
+
 export const getRowActionsConfig = (
   viewType: string,
   handleGenerateRow: (row: any) => void
 ): TableRowActions | undefined => {
   switch (viewType) {
-    case 'billing-statement':
+    case 'raw-water-billing-statement':
       return {
         renderMenu: getBSRowActions(viewType),
       };

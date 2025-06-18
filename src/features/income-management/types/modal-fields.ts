@@ -1,4 +1,24 @@
 import { ColumnDef } from "@tanstack/react-table";
+/**
+ * @file modal-fields.ts
+ * @description
+ * Central type definitions for modal field configs, sections, and table data
+ * in the MWSS Income/Raw Water Management app.
+ *
+ * @usage
+ * - Use `FieldConfig` to define fields for create/edit modals and forms.
+ * - Use `SectionConfig` and `TableSectionConfig` for grouping fields and table sections in modals.
+ * - Use `ModalConfig` as the unified config shape for modal dialogs.
+ *
+ * @example
+ * import { FieldConfig, ModalConfig } from '@/features/income-management/types/modal-fields';
+ * const fields: FieldConfig[] = [{ name: 'date', label: 'Date', type: 'date' }, ...];
+ * const modalConfig: ModalConfig = { fields, sections: [...] };
+ *
+ * @see
+ * - Extend `FieldType` for new input types.
+ * - Use `TableDataItem` for table-driven modal sections.
+ */
 
 export type FieldType =
   | 'text'
@@ -59,11 +79,17 @@ export type MainTableItem = {
   unitPrice: number;
   amount: number;
 };
-
+export type RawWaterMainTableItem = {
+  unpaidBalance: string;
+  penalty: string;
+  totalCurrentDue: string;
+  dueDate: string;
+  totalAmountDue: string;
+};
 export type LabelValueItem = {
   label: string;
   value: string;
   isBold?: boolean;
 };
 
-export type TableDataItem = MainTableItem | LabelValueItem;
+export type TableDataItem = MainTableItem | LabelValueItem | RawWaterMainTableItem;

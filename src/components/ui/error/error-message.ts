@@ -1,4 +1,4 @@
-import { HTTP_STATUS } from '@/constants/constants';
+import { HTTP_STATUS } from '@/types/constants';
 
 /**
  * Get error message based on status code.

@@ -4,13 +4,13 @@ import TextInput from "@/components/ui/TextInput";
 import Table from "@/components/ui/table/components/Table";
 import { getTitle, generateModalConfigs,  } from "../../../config/generate-modal-config";
 import { FieldConfig } from "@/features/income-management/types/modal-fields";
-interface SOAGenerateProps {
+interface RWBSGenerateProps {
   data?: any;
   onClose: () => void;
   viewType: string;
 }
 
-const SOAGenerate: React.FC<SOAGenerateProps> = ({ data, onClose, viewType }) => {
+const RWBSGenerate: React.FC<RWBSGenerateProps> = ({ data, onClose, viewType }) => {
   const configuration = generateModalConfigs[viewType];
   if (!configuration) {
     return <div>No configuration found.</div>;
@@ -44,7 +44,7 @@ const SOAGenerate: React.FC<SOAGenerateProps> = ({ data, onClose, viewType }) =>
       opened={true}
       onClose={onClose}
     >
-      <Grid p={10}>
+      {/* <Grid p={10}>
         {fields.map((field) => (
           <Grid.Col key={field.name} span={field.span}>
             <TextInput
@@ -60,7 +60,8 @@ const SOAGenerate: React.FC<SOAGenerateProps> = ({ data, onClose, viewType }) =>
       <Title fz={13} fw={700} fs="italic" pl='10'>
         *subject to annual selection rate of ten percent (10%)
       </Title>
-      <Table data={tableData} columns={columns} />
+      <Table data={tableData} columns={columns} /> */}
+      Sample
       <TextInput
         label='Prepared By'
         value=''
@@ -72,4 +73,4 @@ const SOAGenerate: React.FC<SOAGenerateProps> = ({ data, onClose, viewType }) =>
   );
 };
 
-export default SOAGenerate;
+export default RWBSGenerate;

@@ -30,13 +30,23 @@ interface DataViewProps {
 }
 
 /**
- * Renders a data view component with configurable columns, toolbars, and row actions
- * for RAW WATER MANAGEMENT modules. Supports loading, error handling, and advanced
- * table features such as export, column filters, and fuzzy search.
+ * @file RawWaterManagement.tsx
+ * @description
+ * Main data view component for Raw Water Management modules in the MWSS Income/Raw Water Management app.
  *
- * @param config - Configuration object specifying the view type, custom columns,
- *   and feature toggles for export and filters.
+ * @usage
+ * - Receives a `config` prop (ViewConfig) specifying the view type, columns, and feature toggles.
+ * - Handles data fetching, error/loading states, and modal logic for create, edit, generate, etc.
+ * - Renders the correct toolbar, table, and modals based on the current view type.
+ *
+ * @example
+ * <RawWaterManagement config={routeViewConfig[ActiveRoute.RAW_WATER_BILLING_STATEMENT]} />
+ *
+ * @see
+ * - Update toolbarMap and modal rendering logic when adding new raw water modules.
+ * - Uses `useDataView`, `getColumnConfig`, and `getRowActionsConfig` for dynamic table rendering.
  */
+
 function RawWaterManagement({ config }: DataViewProps) {
   const { data, isLoading, error } = useDataView(config.viewType);
   const { isOpen, type, data: modalData, closeModal, pendingModal, setPendingModal, openModal } = useModalStore();

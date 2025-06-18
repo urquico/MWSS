@@ -1,5 +1,5 @@
 import { api } from '@/api/axios-instance';
-import { API_URL } from '@/constants/constants';
+import { API_URL } from '@/types/constants';
 import { retryRequest } from '@/hooks/retry-hook';
 import { CheckMaintenanceType } from '@/types/maintenance-types';
 import { SuccessResponse } from '@/types/response-instance';

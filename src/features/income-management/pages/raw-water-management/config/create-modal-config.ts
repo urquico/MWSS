@@ -4,126 +4,37 @@ import {
 import { renderStatusCell } from "@/features/income-management/utils/status-utils";
 
 export const formConfigs: Record<string, ModalConfig> = {
-  "statement-of-account": {
-    fields: [
-      {
-        name: "lessee",
-        label: "Lessee Name",
-        type: "select",
-        options: [
-          { value: "1", label: "Company A" },
-          { value: "2", label: "Company B" },
-        ],
-        cols: 6,
-        required: true,
-        displayIn: "createModal",
-      },
-      {
-        name: "date",
-        label: "Date",
-        type: "date",
-        cols: 6,
-        required: true,
-        displayIn: "createModal",
-        autoFillCurrentDate: true,
-      },
-      {
-        name: "location",
-        label: "Location",
-        type: "text",
-        disabled: true,
-        value: "Quezon City",
-        cols: 12,
-        displayIn: "createModal",
-      },
-      {
-        name: "principal",
-        label: "Principal",
-        description: "(a):",
-        type: "number",
-        cols: 4,
-        required: true,
-        displayIn: "createModal",
-      },
-      {
-        name: "interestRate",
-        label: "Interest",
-        description: "(b)x1% '(c):",
-        type: "number",
-        disabled: true,
-        computed: true,
-        defaultValue: 1,
-        cols: 4,
-        required: true,
-        displayIn: "createModal",
-      },
-      {
-        name: "retailAdjustment",
-        label: "Rental Adjustment",
-        description: "(if applicable)",
-        type: "number",
-        cols: 4,
-        displayIn: "createModal",
-        disabled: true,
-        withSwitch: true,
-      },
-      {
-        name: "arrearages",
-        label: "Arrearages",
-        description: "(b):",
-        computed: true,
-        type: "number",
-        cols: 6,
-        required: true,
-        displayIn: "createModal",
-      },
-      {
-        name: "dueForMonth",
-        label: "Due for the Month",
-        description: "(a + c + d):",
-        type: "number",
-        cols: 6,
-        disabled: true,
-        computed: true,
-        displayIn: "createModal",
-      },
-      {
-        name: "natureOfAdjustment",
-        label: "Nature of Adjustment",
-        type: "text",
-        cols: 12,
-        disabled: true,
-        computed: true,
-        displayIn: "createModal",
-      },
-      {
-        name: "vat",
-        label: "VAT",
-        description: "(d)",
-        type: "number",
-        cols: 6,
-        disabled: true,
-        computed: true,
-        displayIn: "createModal",
-      },
-      {
-        name: "periodFrom",
-        label: "Period: From",
-        description: "(from)",
-        type: "date",
-        cols: 3,
-        displayIn: "createModal",
-      },
-      {
-        name: "periodTo",
-        label: "Period: To",
-        description: "(to)",
-        type: "date",
-        cols: 3,
-        displayIn: "createModal",
-      },
-    ],
-  },
+ 'raw-water-billing-statement': {
+fields: [
+{
+name: 'firstName',
+label: 'First Name',
+placeholder: 'Enter First Name',
+value: '',
+span: 4,
+type: 'text',
+},
+{
+name: 'middleName',
+label: 'Middle Name',
+placeholder: 'Enter Middle Name',
+value: '',
+span: 4,
+type: 'text',
+},
+{
+name: 'lastName',
+label: 'Last Name',
+placeholder: 'Enter Last Name',
+value: '',
+span: 4,
+type: 'text',
+},
+{ name: 'location',
+  label: 'Location',
+  placeholder: 'Enter Business Address',
+  value: '', type: 'text', span: 12 },
+]},
   "billing-statement": {
     fields: [
       {
@@ -864,7 +775,72 @@ export const formConfigs: Record<string, ModalConfig> = {
    },
 }
 
+export const rawWaterBillingStatementTables = [
+  // 1. Main complex table (with columns)
+  {
+    name: 'main',
+    columns: [
+      { header: 'Unpaid Balance', accessor: 'unpaidBalance' },
+      { header: 'Penalty', accessor: 'penalty' },
+      { header: 'Total Current Due', accessor: 'totalCurrentDue' },
+      { header: 'Due Date', accessor: 'dueDate' },
+      { header: 'Total Amount Due', accessor: 'totalAmountDue' },
+    ],
+    data: [
+      {
+        unpaidBalance: '10,000.00',
+        penalty: '500.00',
+        totalCurrentDue: '5,000.00',
+        dueDate: '2024-07-31',
+        totalAmountDue: '15,500.00',
+      },
+    ],
+  },
 
+  // 2. Account Information (vertical, just label/value)
+  {
+    name: 'accountInfo',
+    data: [
+      { label: 'Account No.', value: '' },
+      { label: 'Meter No. / WSN', value: '' }, // combine as needed in your UI
+      { label: 'MRR', value: '' },
+    ],
+  },
+
+  // 3. Billing Information
+  {
+    name: 'billingInfo',
+    data: [
+      { label: 'Meter Reading Date / Billing Period', value: '' },
+      { label: 'Present Reading', value: '' },
+      { label: 'Previous Reading / Total Consumption', value: '' },
+      { label: 'Total Current Due', value: '' },
+      { label: 'Due Date', value: '' },
+      { label: 'Next Meter Reading Date', value: '' },
+    ],
+  },
+
+  // 4. Charges
+  {
+    name: 'charges',
+    data: [
+      { label: 'Basic Charge', value: '' },
+      { label: 'CERA / Miscellaneous', value: '' },
+      { label: 'Total Current Due', value: '' },
+    ],
+  },
+
+  // 5. Payment
+  {
+    name: 'payment',
+    data: [
+      { label: 'Amount Paid', value: '' },
+      { label: 'O.R. Date', value: '' },
+      { label: 'O.R. No.', value: '' },
+      { label: 'Period Covered', value: '' },
+    ],
+  },
+];
 
 // Add this new function to handle computed fields
 export const getComputedFields = (viewType: string, values: any) => {
