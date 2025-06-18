@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "format": "prettier --write '**/*.ts{,x}'",
-    "version:update": "node ./update-version.mjs",
+    "version: update": "node ./update-version.mjs",
     "test": "vitest"
   },
   "dependencies": {
