@@ -3,8 +3,9 @@ import { IconPhoneFilled, IconWorld, IconInfoCircleFilled } from '@tabler/icons-
 
 const ModalFooter = () => {
   return (
-    <Flex align="center" justify="space-between" w="100%" p="md" bg="white">
+    <>
     <Divider my='sm' color='gray.3' />
+    <Flex align="center" justify="space-between" w="100%" p="md" bg="white">
       {/* Left: Address and Contact Info */}
       <Stack gap={0} align="flex-start" justify="center" style={{ flex: 1 }} className="">
         <Text fz={14} fw={500} style={{ letterSpacing: 1 }}>
@@ -31,6 +32,8 @@ const ModalFooter = () => {
         <Image src="/tuv-logo.svg" alt="TUV Logo" height={56} width={56} fit="contain" />
       </Box>
     </Flex>
+    </>
+
   );
 };
 

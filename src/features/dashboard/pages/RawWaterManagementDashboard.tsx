@@ -4,7 +4,7 @@ import { AdminDashboardProvider } from '@/features/dashboard/provider/admin-dash
 import DashboardSummary from '../chart/DashboardSummary';
 import LesseeTypePieChart from '../chart/PieChart';
 import Text from '@/components/ui/Text';
-import IssuedVsUnissuedBarChart from '../chart/IssuedVsUnissuedBarChart';
+import MonthlyBarChart from '../chart/MonthlyBarChart';
 
 function RawWaterManagementDashboard() {
     // Use the centralized dummy data, specify 'rawWater'
@@ -15,16 +15,27 @@ function RawWaterManagementDashboard() {
         monthlyBarData,
         lesseeTypeData,
     } = dummyData;
-    
+
     // Guard: Only render charts if all required data is present
     if (!summaryData || !monthlyBarData || !lesseeTypeData) {
         return <div>Loading...</div>;
     }
 
     const chartLayout = [
-        { span: 7, component: <DashboardSummary items={summaryData.items} title='MWSS Assets'/> },
-        { span: 5, component: <IssuedVsUnissuedBarChart data={monthlyBarData} /> },
-         { span: 12, component: <LesseeTypePieChart data={lesseeTypeData} /> },
+        { span: 7, component: <DashboardSummary items={summaryData.items} title='MWSS Assets' /> },
+        {
+            span: 5,
+            component: (
+                <MonthlyBarChart
+                    data={monthlyBarData.data}
+                    series={monthlyBarData.series}
+                    dataKey="month"
+                    title={monthlyBarData.title}
+                    description={monthlyBarData.period}
+                    h={monthlyBarData.height}
+                />
+            ),
+        }, { span: 12, component: <LesseeTypePieChart data={lesseeTypeData} /> },
     ];
 
     return (
