@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Group, Menu, Button, Select } from '@mantine/core';
+import React, { useState } from 'react';
+import { Group, Menu, Button, Select } from '@mantine/core';
 import { IconPlus } from '@tabler/icons-react';
 import { useModalStore } from '@/features/income-management/stores/useModalStore';
 
@@ -21,6 +23,7 @@ export const RawWaterBillingToolbar: React.FC<RawWaterBillingToolbarProps> = ({
 }) => {
 
   const [demandType, setDemandType] = useState<string | null>('1st demand to pay');
+  const [demandType, setDemandType] = useState<string | null>('1st demand to pay');
 
   return (
     <>
@@ -40,6 +43,7 @@ export const RawWaterBillingToolbar: React.FC<RawWaterBillingToolbarProps> = ({
         <Button onClick={onCreate} color='#1E40AF' variant="filled" leftSection={<IconPlus size={14} />} >
           Create
         </Button>
+
 
       </Group>
 
