@@ -21,6 +21,27 @@ import { ViewType } from "./view-types.ts";
 
 
 
+
+/**
+ * @file redirect-types.ts
+ * @description
+ * Maps each ViewType to its default ModalType for redirection or modal opening logic
+ * in the MWSS Income/Raw Water Management app.
+ *
+ * @usage
+ * - Use `viewTypeModalMap[viewType]` to get the modal type to open for a given view.
+ * - When a view is accessed, this map helps determine which modal to display by default.
+ *
+ * @example
+ * import { viewTypeModalMap } from '@/features/income-management/types/redirect-types';
+ * const modalType = viewTypeModalMap[viewType];
+ *
+ * @see
+ * - Update this map when adding new views or modal types.
+ */
+
+
+
 export const viewTypeModalMap: Record<ViewType, Exclude<ModalType, null>> = {
   'statement-of-account': 'generate',
   'billing-statement': 'template',
