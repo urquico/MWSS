@@ -1,9 +1,9 @@
 import IconChevronRight from '@/components/icons/IconChevronRight';
 import { useLinksGroupStore } from '@/store/useLinksGroupStore';
 import { useSidebarStore } from '@/store/useSidebarStore';
-import { Box, Collapse, ThemeIcon, Tooltip} from '@mantine/core';
+import {  ThemeIcon, Tooltip, Box} from '@mantine/core';
 import { useLocation, useNavigate } from 'react-router-dom';
-
+import Collapse from '@/components/ui/Collapse';
 /**
  * LinksGroup Component
  * Renders a sidebar navigation group with support for nested links (sublinks).
@@ -53,6 +53,7 @@ function LinksGroup({
   initiallyOpened,
   links,
 }: LinksGroupProps) {
+
   const navigate = useNavigate();
   const location = useLocation();
   const { isOpenSidebar, openSidebar} = useSidebarStore();
@@ -107,18 +108,17 @@ const handleSelect = (e: React.MouseEvent) => {
   // This allows for nested groups to be rendered correctly
   // Each item in links should be of type LinkItem
   // and can have its own links, label, link, and path properties
-  const items = (hasLinks ? links : []).map((item) => (
-    <LinksGroup
-      key={item.label}
-      icon={Icon}
-      label={item.label}
-      link={item.link}
-      path={item.path}
-      links={item.links}
-      variant='secondary'
-    />
-  ));
-
+const items = (hasLinks ? links : []).map((item) => (
+  <LinksGroup
+    key={`${item.label}-${item.path ?? ''}`}
+    icon={item.icon}
+    label={item.label}
+    link={item.link}
+    path={item.path}
+    links={item.links}
+    variant='secondary'
+  />
+));
   // Define styles for the main and secondary variants
   const classes = {
     main: {

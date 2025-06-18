@@ -12,7 +12,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <MantineProvider>
         <Suspense fallback={<LoaderPage />}>
-          <RouterProvider router={router} />
+          <RouterProvider router={router} future={{ v7_startTransition: true }} />
         </Suspense>
       </MantineProvider>
     </QueryClientProvider>
