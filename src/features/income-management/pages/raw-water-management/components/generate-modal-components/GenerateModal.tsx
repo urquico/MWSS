@@ -8,17 +8,11 @@ interface GenerateModalProps {
 }
 
 // Lazy load the SOAGenerate component
-// const RWBSGenerate = lazy(() => import("./generate-modal/RWBSGenerate"));
-const InvoiceGenerate = lazy(() => import("./generate-modal/InvoiceGenerate"));
-const LesseeInformationGenerate = lazy(() => import("./generate-modal/LesseeInformationGenerate"));
-const JournalEntryGenerate = lazy(() => import("./generate-modal/JournalEntryGenerate"));
+const RWBSGenerate = lazy(() => import("./generate-modal/RWBSGenerate"));
 
 const GenerateModal: React.FC<GenerateModalProps> = ({ onClose, viewType, data }) => {
   const modalContentMap: Record<string, JSX.Element> = {
-    // "raw-water-billing-statement": <RWBSGenerate data={data} onClose={onClose} viewType={viewType} />,
-    "invoice-tracking": <InvoiceGenerate data={data} onClose={onClose} viewType={viewType} />,
-    "lessee-information": <LesseeInformationGenerate data={data} onClose={onClose} viewType={viewType} />,
-    "journal-entry": <JournalEntryGenerate data={data} onClose={onClose} viewType={viewType} />
+    "raw-water-billing-statement": <RWBSGenerate data={data} onClose={onClose} viewType={viewType} />,
 
   };
 

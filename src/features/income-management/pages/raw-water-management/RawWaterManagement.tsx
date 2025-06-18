@@ -24,6 +24,7 @@ import GenerateTemplate from './components/template-modal-components/GenerateTem
 import ViewHistory from './components/view-history/ViewHistory';
 import FormAction from '@/components/ui/FormAction.tsx';
 import { ModalType } from '../../types/modal-types.ts';
+import { RawWaterDPToolbar } from './components/toolbar/RawWaterDPToolbar.tsx';
 
 interface DataViewProps {
   config: ViewConfig;
@@ -171,9 +172,9 @@ function RawWaterManagement({ config }: DataViewProps) {
     'raw-water-invoice-tracking': (
       <RawWaterInvoiceToolbar onCreate={handleCreate} />
     ),
-    // 'raw-water-customer-information-management': (
-    //   <RawWaterCustomerToolbar onCreate={handleCreate} />
-    // ),
+    'raw-water-demand-to-pay': (
+      <RawWaterDPToolbar onCreate={handleCreate} />
+    ),
     // 'raw-water-payment-monitoring': (
     //   <RawWaterPaymentToolbar onCreate={handleCreate} />
     // ),

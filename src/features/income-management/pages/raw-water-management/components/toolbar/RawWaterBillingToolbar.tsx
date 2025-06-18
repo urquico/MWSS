@@ -26,7 +26,7 @@ export const RawWaterBillingToolbar: React.FC<RawWaterBillingToolbarProps> = ({
     <>
       {/* Top toolbar with a Create button */}
       <Group justify="sm" mb="md">
-        <Select
+        {/* <Select
           data={[
             { value: '1st demand to pay', label: '1st demand to pay' },
             { value: '2nd demand to pay', label: '2nd demand to pay' },
@@ -36,10 +36,11 @@ export const RawWaterBillingToolbar: React.FC<RawWaterBillingToolbarProps> = ({
           onChange={setDemandType}
           placeholder="Demand to Pay"
           w={200}
-        />
+        /> */}
         <Button onClick={onCreate} color='#1E40AF' variant="filled" leftSection={<IconPlus size={14} />} >
           Create
         </Button>
+
 
       </Group>
 

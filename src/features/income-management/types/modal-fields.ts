@@ -60,7 +60,7 @@ export interface TableSectionConfig {
 }
 
 export interface SectionConfig<TField extends FieldConfig = FieldConfig> {
-  title: string;
+  title?: string;
   fields?: TField[]; // Make fields optional for table-only sections
   table?: TableSectionConfig;
 }

@@ -1,7 +1,7 @@
 import { TableRowActions } from '@/components/ui/table/types/table-types';
 import { getBSRowActions } from '../components/toolbar/RawWaterBillingToolbar';
 import { getSOARowActions } from '../components/toolbar/RawWaterComputationToolbar';
-import { getDPRowActions } from '../components/toolbar';
+import { getDPRowActions } from '../components/toolbar/RawWaterDPToolbar';
 import { getJEVRowActions } from '../components/toolbar/RawWaterJEVToolbar';
 import { getInvoiceRowActions } from '../components/toolbar';
 /**
@@ -36,7 +36,7 @@ export const getRowActionsConfig = (
       return{
         renderMenu: getSOARowActions(viewType), 
       };
-    case 'demand-to-pay':
+    case 'raw-water-demand-to-pay':
       return {
         renderMenu: getDPRowActions(viewType),
       };

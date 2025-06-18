@@ -1,5 +1,5 @@
 export * from './RawWaterComputationToolbar';
-export * from './DPToolbar';
+export * from './RawWaterPaymentToolbar';
 export * from './RawWaterPaymentToolbar';
 export * from './RawWaterBillingToolbar';
 export * from './RawWaterInvoiceToolbar';
