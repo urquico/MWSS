@@ -47,11 +47,20 @@ export type DonutChartData = {
   color: string;
 };
 
-export type RawWaterMonthlyBar = {
+export type RawWaterMonthlyBarItem = {
   month: string;
   issued: number;
   unissued: number;
 };
+
+export type RawWaterMonthlyBar = {
+  title?: string;
+  period?: string;
+  height?: number;
+  data: RawWaterMonthlyBarItem[];
+  series: SeriesItem[];
+};
+
 
 export type AdminDashboard = {
   summaryData?: DashboardSummaryData;
@@ -59,5 +68,5 @@ export type AdminDashboard = {
   lesseeTypeData?: PieChartData[];
   lesseeTypeBarData?: BarChartData[];
   donutChartData?: DonutChartData[];
-  monthlyBarData?: RawWaterMonthlyBar[];
+  monthlyBarData?: RawWaterMonthlyBar;
 };

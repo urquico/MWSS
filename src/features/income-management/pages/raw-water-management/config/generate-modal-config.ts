@@ -1,68 +1,40 @@
 import { ModalConfig } from '@/features/income-management/types/modal-fields';
 
 export const generateModalConfigs: Record<string, ModalConfig> = {
-  'statement-of-account': {
+'raw-water-billing-statement': {
     fields: [
       {
-        name: 'lessee',
-        label: 'Lessee',
-        description: '(Last Name, First Name, & Middle Name)',
+        name: 'firstName',
+        label: 'First Name',
+        placeholder: 'Enter First Name',
         value: '',
+        span: 4,
+        type: 'text',
+      },
+      {
+        name: 'middleName',
+        label: 'Middle Name',
+        placeholder: 'Enter Middle Name',
+        value: '',
+        span: 4,
+        type: 'text',
+      },
+      {
+        name: 'lastName',
+        label: 'Last Name',
+        placeholder: 'Enter Last Name',
+        value: '',
+        span: 4,
+        type: 'text',
+      },
+      {
+        name: 'location',
+        label: 'Location',
+        placeholder: 'Enter Business Address',
+        value: '',
+        type: 'text',
         span: 12,
-        type: 'text',
       },
-      { name: 'location', label: 'Location', value: '', type: 'text', span: 4 },
-      {
-        name: 'totalArea',
-        label: 'Total Area',
-        value: '',
-        type: 'text',
-        span: 4,
-      },
-      {
-        name: 'retailAdjustment',
-        label: 'Retail Adjustment',
-        value: '',
-        type: 'text',
-        span: 4,
-      },
-      {
-        name: 'periodFrom',
-        label: 'Period From',
-        value: '',
-        type: 'date',
-        span: 6,
-      },
-      {
-        name: 'periodTo',
-        label: 'Period To',
-        value: '',
-        type: 'date',
-        span: 6,
-      },
-    ],
-    tableData: [
-      {
-        date: '2023-01-01',
-        principal: 25000,
-        arrearages: 0,
-        interest: 0,
-        vat: 3000,
-        gross: 28000,
-        payment: 28000,
-        orNo: '12345',
-      },
-    ],
-    columns: [
-      { accessorKey: 'date', header: 'Date' },
-      { accessorKey: 'principal', header: 'Principal (a)' },
-      { accessorKey: 'arrearages', header: 'Arrearages (b)' },
-      { accessorKey: 'interest', header: 'Interest (c) = (b) x 2%' },
-      { accessorKey: 'vat', header: '12% VAT (d)' },
-      { accessorKey: 'gross', header: 'Gross (a) + (c) + (d)' },
-      { accessorKey: 'payment', header: 'Payment' },
-      { accessorKey: 'orNo', header: 'O.R. No.' },
-      { accessorKey: 'balance', header: 'Balance' },
     ],
   },
   'billing-statement': {
@@ -82,7 +54,13 @@ export const generateModalConfigs: Record<string, ModalConfig> = {
         type: 'text',
         span: 3,
       },
-      { name: 'totalArea', label: 'Total Area', value: '200 sqm', type: 'number',span: 3 },
+      {
+        name: 'totalArea',
+        label: 'Total Area',
+        value: '200 sqm',
+        type: 'number',
+        span: 3,
+      },
       {
         name: 'monthlyRental',
         label: 'Monthly Rental',
@@ -201,22 +179,43 @@ export const generateModalConfigs: Record<string, ModalConfig> = {
       { accessorKey: 'orNo', header: 'O.R. No.' },
     ],
   },
-'jev-general': {
+  'jev-general': {
     sections: [
       {
         title: 'Header',
         fields: [
-          { name: 'fund', label: 'Fund', type: 'text', span: 3, disabled: true },
+          {
+            name: 'fund',
+            label: 'Fund',
+            type: 'text',
+            span: 3,
+            disabled: true,
+          },
           { name: 'no', label: 'No.', type: 'text', span: 3, disabled: true },
-          { name: 'transactionType', label: 'Transaction Type', type: 'text', span: 3, disabled: true },
-          { name: 'date', label: 'Date', type: 'date', span: 3, disabled: true },
+          {
+            name: 'transactionType',
+            label: 'Transaction Type',
+            type: 'text',
+            span: 3,
+            disabled: true,
+          },
+          {
+            name: 'date',
+            label: 'Date',
+            type: 'date',
+            span: 3,
+            disabled: true,
+          },
         ],
       },
       {
         title: 'Entries',
         table: {
           columns: [
-            { accessorKey: 'responsibilityCenter', header: 'Responsibility Center' },
+            {
+              accessorKey: 'responsibilityCenter',
+              header: 'Responsibility Center',
+            },
             { accessorKey: 'accountTitle', header: 'Account Title' },
             { accessorKey: 'accountCode', header: 'Account Code' },
             { accessorKey: 'debitAmount', header: 'DEBIT' },
@@ -239,9 +238,16 @@ export const generateModalConfigs: Record<string, ModalConfig> = {
       },
       {
         title: 'Particulars',
-        fields: [{ name: 'particulars', label: 'Particulars', type: 'textarea', span: 12, disabled: true }],
+        fields: [
+          {
+            name: 'particulars',
+            label: 'Particulars',
+            type: 'textarea',
+            span: 12,
+            disabled: true,
+          },
+        ],
       },
-     
     ],
   },
 
@@ -250,10 +256,28 @@ export const generateModalConfigs: Record<string, ModalConfig> = {
       {
         title: 'Header',
         fields: [
-          { name: 'fund', label: 'Fund', type: 'text', span: 3, disabled: true },
+          {
+            name: 'fund',
+            label: 'Fund',
+            type: 'text',
+            span: 3,
+            disabled: true,
+          },
           { name: 'no', label: 'No.', type: 'text', span: 3, disabled: true },
-          { name: 'transactionType', label: 'Transaction Type', type: 'text', span: 3, disabled: true },
-          { name: 'date', label: 'Date', type: 'date', span: 3, disabled: true },
+          {
+            name: 'transactionType',
+            label: 'Transaction Type',
+            type: 'text',
+            span: 3,
+            disabled: true,
+          },
+          {
+            name: 'date',
+            label: 'Date',
+            type: 'date',
+            span: 3,
+            disabled: true,
+          },
         ],
       },
       {
@@ -280,11 +304,93 @@ export const generateModalConfigs: Record<string, ModalConfig> = {
           data: [],
         },
       },
-     
     ],
   },
 };
+export const rawWaterBillingStatementTables = [
+  // 1. Main complex table (with columns)
+  {
+    name: 'main',
+    columns: [
+      { header: 'Unpaid Balance', accessor: 'unpaidBalance' },
+      { header: 'Penalty', accessor: 'penalty' },
+      { header: 'Total Current Due', accessor: 'totalCurrentDue' },
+      { header: 'Due Date', accessor: 'dueDate' },
+      { header: 'Total Amount Due', accessor: 'totalAmountDue' },
+    ],
+    data: [
+      {
+        unpaidBalance: '10,000.00',
+        penalty: '500.00',
+        totalCurrentDue: '5,000.00',
+        dueDate: '2024-07-31',
+        totalAmountDue: '15,500.00',
+      },
+    ],
+  },
 
+  // 2. Account Information (vertical, just label/value)
+  {
+    name: 'accountInfo',
+    data: [
+      { label: 'Account No.', value: '' },
+      { label: 'Meter No. / WSN', value: '' }, // combine as needed in your UI
+      { label: 'MRR', value: '' },
+    ],
+  },
+
+  // 3. Billing Information
+  {
+    name: 'billingInfo',
+    data: [
+      { label: 'Meter Reading Date / Billing Period', value: '' },
+      { label: 'Present Reading', value: '' },
+      { label: 'Previous Reading / Total Consumption', value: '' },
+      { label: 'Total Current Due', value: '' },
+      { label: 'Due Date', value: '' },
+      { label: 'Next Meter Reading Date', value: '' },
+    ],
+  },
+
+  // 4. Charges
+  {
+    name: 'charges',
+    data: [
+      { label: 'Basic Charge', value: '' },
+      { label: 'CERA', value: '' },
+      { label: 'Miscellaneous', value: '' },
+      { label: 'Total Current Due', value: '' },
+    ],
+  },
+
+  // 5. Payment
+  {
+    name: 'payment',
+    data: [
+      { label: 'Amount Paid', value: '' },
+      { label: 'O.R. Date', value: '' },
+      { label: 'O.R. No.', value: '' },
+      { label: 'Period Covered', value: '' },
+    ],
+  },
+];
+export const consumptionHistoryChart = {
+  title: 'Consumption History',
+  height: 100,
+  width: 300,
+  data: [
+    { month: 'January', consumption: 120 },
+    { month: 'February', consumption: 135 },
+    { month: 'March', consumption: 110 },
+    { month: 'April', consumption: 145 },
+    { month: 'May', consumption: 130 },
+    { month: 'June', consumption: 125 },
+    { month: 'July', consumption: 140 },
+  ],
+  series: [
+    { name: 'consumption', color: '#76A9F9', label: 'Consumption (m³)' },
+  ],
+};
 export const getTitle = (viewType: string): string => {
   if (viewType === 'invoice-tracking') return 'Sales Invoice';
 

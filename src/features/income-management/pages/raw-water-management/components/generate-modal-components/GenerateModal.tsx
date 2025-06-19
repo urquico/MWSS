@@ -8,11 +8,11 @@ interface GenerateModalProps {
 }
 
 // Lazy load the SOAGenerate component
-const RWBSGenerate = lazy(() => import("./generate-modal/RWBSGenerate"));
+// const RWBSGenerate = lazy(() => import("./generate-modal/RWBSGenerate"));
 
 const GenerateModal: React.FC<GenerateModalProps> = ({ onClose, viewType, data }) => {
   const modalContentMap: Record<string, JSX.Element> = {
-    "raw-water-billing-statement": <RWBSGenerate data={data} onClose={onClose} viewType={viewType} />,
+    // "raw-water-billing-statement": <RWBSGenerate data={data} onClose={onClose} viewType={viewType} />,
 
   };
 
