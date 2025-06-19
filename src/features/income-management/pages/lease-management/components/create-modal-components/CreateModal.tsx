@@ -73,6 +73,13 @@ function CreateModal({ viewType, onSubmit, onClose, data }: CreateModalProps) {
       return errors;
     }
   });
+const allRequiredFilled = fields
+  .filter(f => f.required && (!f.displayIn || f.displayIn === filterContext || (Array.isArray(f.displayIn) && f.displayIn.includes(filterContext))))
+  .every(f => {
+    const value = form.values[f.name];
+    // For select, text, number, date, etc.
+    return value !== undefined && value !== null && value !== '';
+  });
 
   useEffect(() => {
     const computedValues = getComputedFields(viewType, form.values);
@@ -112,6 +119,7 @@ function CreateModal({ viewType, onSubmit, onClose, data }: CreateModalProps) {
           formRef.current.requestSubmit();
         }
       }}
+       saveDisabled={!allRequiredFilled}
     >
       <form ref={formRef} onSubmit={e => {
         console.log('FORM SUBMIT RAW EVENT', e);

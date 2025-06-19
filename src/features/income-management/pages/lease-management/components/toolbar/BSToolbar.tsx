@@ -66,7 +66,7 @@ export function getBSRowActions(viewType: string) {
         console.log('ViewType passed to menu item:', viewType);
         openModal('edit', row, viewType);
       }}>
-        Edit SOA
+        Edit Billing
       </Menu.Item>
     </>
   );

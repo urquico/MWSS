@@ -22,8 +22,15 @@ export function FieldGrid({
   setEnableRentalAdjustment,
 }: FieldGridProps) {
   const renderField = (field: FieldConfig) => {
+
+    const getLabel = (field: FieldConfig) => (
+      <span>
+        {field.label}
+        {field.required && <span style={{ color: 'red', marginLeft: 2 }}>*</span>}
+      </span>
+    );
     const commonProps = {
-      label: field.label,
+      label: getLabel(field),
       placeholder: field.placeholder,
       disabled: field.disabled || (field.type === 'date' && field.autoFillCurrentDate),
       description: field.description,

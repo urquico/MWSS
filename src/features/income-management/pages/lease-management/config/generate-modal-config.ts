@@ -42,16 +42,26 @@ export const generateModalConfigs: Record<string, ModalConfig> = {
       },
     ],
     tableData: [
-      {
-        date: '2023-01-01',
-        principal: 25000,
-        arrearages: 0,
-        interest: 0,
-        vat: 3000,
-        gross: 28000,
-        payment: 28000,
-        orNo: '12345',
-      },
+       {
+      date: '2023-01-01',
+      principal: 25000,
+      arrearages: 0,
+      interest: 0,
+      vat: 3000,
+      gross: 28000,
+      payment: 28000,
+      orNo: '12345',
+    },
+    {
+      date: '2023-02-01',
+      principal: 15000,
+      arrearages: 1000,
+      interest: 200,
+      vat: 1800,
+      gross: 17000,
+      payment: 17000,
+      orNo: '12346',
+    },
     ],
     columns: [
       { accessorKey: 'date', header: 'Date' },
@@ -293,3 +303,21 @@ export const getTitle = (viewType: string): string => {
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
 };
+export function appendTotalRow(data: any[], columns: { accessorKey: string }[]) {
+  // Always add a total row, even if data is empty
+  const totalRow: any = {};
+  columns.forEach(col => {
+    if (col.accessorKey === 'date') {
+      totalRow[col.accessorKey] = 'TOTAL';
+    } else if (data.length > 0 && typeof data[0][col.accessorKey] === 'number') {
+      totalRow[col.accessorKey] = data.reduce(
+        (sum, row) => sum + (Number(row[col.accessorKey]) || 0),
+        0
+      );
+    } else {
+      totalRow[col.accessorKey] = '';
+    }
+  });
+
+  return [...data, totalRow];
+}

@@ -1,9 +1,7 @@
-import { Grid, Title } from "@mantine/core";
+import { Grid, Title, Table, Paper } from "@mantine/core";
 import BaseModal from "@/features/income-management/components/BaseModal";
 import TextInput from "@/components/ui/TextInput";
-import Table from "@/components/ui/table/components/Table";
-import { getTitle, generateModalConfigs,  } from "../../../config/generate-modal-config";
-import { FieldConfig } from "@/features/income-management/types/modal-fields";
+import { getTitle, generateModalConfigs, appendTotalRow } from "../../../config/generate-modal-config";
 interface SOAGenerateProps {
   data?: any;
   onClose: () => void;
@@ -16,24 +14,12 @@ const SOAGenerate: React.FC<SOAGenerateProps> = ({ data, onClose, viewType }) =>
     return <div>No configuration found.</div>;
   }
 
-  const fields: FieldConfig[] = configuration.fields ?? [];
+  const fields = configuration.fields ?? [];
   const columns = configuration.columns ?? [];
-
-  const tableData = data
-    ? [{
-      date: data.date,
-      principal: data.principal,
-      arrearages: data.arrearages,
-      interest: data.interest,
-      vat: data.vat,
-      gross:
-        (Number(data.principal) || 0) +
-        (Number(data.interest) || 0) +
-        (Number(data.vat) || 0),
-      payment: data.payment ?? "",
-      orNo: data.orNo ?? "",
-    }]
-    : configuration.tableData ?? [];
+  const tableData = appendTotalRow(
+    configuration.tableData ?? [],
+    columns.map(col => ({ accessorKey: col.accessorKey }))
+  );
 
   return (
     <BaseModal
@@ -58,9 +44,42 @@ const SOAGenerate: React.FC<SOAGenerateProps> = ({ data, onClose, viewType }) =>
         ))}
       </Grid>
       <Title fz={13} fw={700} fs="italic" pl='10'>
-        *subject to annual selection rate of ten percent (10%)
+        *subject to annual escalation rate of ten percent (10%)
       </Title>
-      <Table data={tableData} columns={columns} />
+      <Paper radius="md" withBorder mb={30} className="overflow-hidden" mt={10} p={0} mx={10}>
+
+        <Table withColumnBorders >
+          <Table.Thead>
+            <Table.Tr className="bg-skyBlue " >
+              {columns.map((col) => (
+                <Table.Th key={col.accessorKey} className="text-white">{col.header}</Table.Th>
+              ))}
+            </Table.Tr>
+          </Table.Thead>
+          <Table.Tbody>
+            {tableData.map((row, idx) => {
+              const isTotal = row.date === "TOTAL";
+              return (
+                <Table.Tr key={idx}>
+                  {columns.map((col) => (
+                    <Table.Td
+                      key={col.accessorKey}
+                      style={
+                        isTotal && col.accessorKey === "date"
+                          ? { fontWeight: "bold", textTransform: "uppercase" }
+                          : isTotal
+                            ? { fontWeight: "bold" }
+                            : {}
+                      }
+                    >
+                      {row[col.accessorKey] ?? ""}
+                    </Table.Td>
+                  ))}
+                </Table.Tr>
+              );
+            })}
+          </Table.Tbody>
+        </Table></Paper>
       <TextInput
         label='Prepared By'
         value=''

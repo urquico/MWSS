@@ -26,6 +26,7 @@ interface GenerateModalProps {
   withHeader?: boolean;
   withFooter?: boolean;
   opened: boolean;
+  saveDisabled?: boolean; 
   onEdit?: () => void;
   onClose: () => void;
   onSave?: () => void;
@@ -47,6 +48,7 @@ const GenerateModal: React.FC<GenerateModalProps> = ({
   withHeader = true,
   showSaveButton = false,
   saveText = "Save",
+  saveDisabled = false,
   onSave = () => { },
   onEdit = () => { },
 }) => {
@@ -158,7 +160,7 @@ const GenerateModal: React.FC<GenerateModalProps> = ({
         <Button leftSection={<IconPrinter size={16} />} variant="filled" color="#1e40af" onClick={handlePrint}>{printText}</Button>
       )}
       {showSaveButton && (
-        <Button leftSection={<IconFileCheck size={16} />} variant="filled" color="#1e40af" onClick={onSave}>{saveText}</Button>
+        <Button leftSection={<IconFileCheck size={16} />} variant="filled" color="#1e40af" onClick={onSave} disabled={saveDisabled}>{saveText}</Button>
       )}
     </Group>
   );
