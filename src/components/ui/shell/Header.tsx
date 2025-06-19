@@ -46,15 +46,24 @@ function Header({
     }
   };
 
-  const renderText = () => {
-    if (Array.isArray(headerText)) {
-      return headerText.map((line, index) => <div key={index}>{line}</div>);
-    }
-    return headerText
-      .split('\n')
-      .map((line, index) => <div key={index}>{line}</div>);
-  };
-
+const renderText = () => {
+  if (Array.isArray(headerText)) {
+    return headerText.map((line, index) => (
+      <span key={index}>
+        {line}
+        <br />
+      </span>
+    ));
+  }
+  return headerText
+    .split('\n')
+    .map((line, index) => (
+      <span key={index}>
+        {line}
+        <br />
+      </span>
+    ));
+};
   if (useAbsolutePosition) {
     // Absolute positioned version (for desktop)
     return (

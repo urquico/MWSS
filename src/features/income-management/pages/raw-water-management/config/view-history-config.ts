@@ -8,9 +8,9 @@ interface ViewHistoryConfig {
 }
 
 export const viewHistoryConfigs: Record<string, ViewHistoryConfig> = {
-  'statement-of-account': {
-    title: "Billing Activity",
-    label: "Statement of Account History",
+  'raw-water-billing-statement': {
+    title: "Raw Water Billing Activity",
+    label: "Billing Statement Account History",
     tableData: [
       { date: '2023-01-01', principal: 25000, arrearages: 0, interest: 0, vat: 3000, gross: 28000, payment: 28000, orNo: '12345' },
     ],

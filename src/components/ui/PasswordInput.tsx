@@ -76,15 +76,17 @@ const requirements = [
 
 function PasswordRequirement({ meets, label }: { meets: boolean; label: string }) {
   return (
-    <Text
-      c={meets ? 'teal' : 'red'}
-      style={{ display: 'flex', alignItems: 'center' }}
-      mt={7}
-      size="sm"
-    >
-      {meets ? <IconCheck size={14} /> : <IconX size={14} />}
-      <Box ml={10}>{label}</Box>
-    </Text>
+  <Text
+    component="span"
+    c={meets ? 'teal' : 'red'}
+    style={{ display: 'inline-flex', alignItems: 'center' }}
+    mt={7}
+    size="sm"
+  >
+    {meets ? <IconCheck size={14} /> : <IconX size={14} />}
+    <span style={{ marginLeft: 10 }}>{label}</span>
+  </Text>
+
   );
 }
 

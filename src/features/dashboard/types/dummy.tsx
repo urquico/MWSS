@@ -13,7 +13,7 @@ export const DASHBOARD_DUMMY_DATA: { [key: string]: AdminDashboard } = {
       ]
     },
     trendData: {
-      title: 'Total Actual vs Projected trend',
+      title: 'Total Actual vs Projected Trend',
       period: 'Last 7 Months',
       height: 350,
       data: [
@@ -58,7 +58,11 @@ export const DASHBOARD_DUMMY_DATA: { [key: string]: AdminDashboard } = {
         { label: 'Pending Tests', value: '6', color: '#FFD6E0' },
       ]
     },
-    monthlyBarData: [
+    monthlyBarData: {
+    title: 'Issued vs Unissued Billings',
+    period: 'Last 7 Months',
+    height: 350,
+    data: [
       { month: 'January', issued: 42000, unissued: 20000 },
       { month: 'February', issued: 44000, unissued: 26000 },
       { month: 'March', issued: 34000, unissued: 29000 },
@@ -67,6 +71,11 @@ export const DASHBOARD_DUMMY_DATA: { [key: string]: AdminDashboard } = {
       { month: 'June', issued: 35000, unissued: 29000 },
       { month: 'July', issued: 41000, unissued: 27000 },
     ],
+    series: [
+      { name: 'issued', color: '#76A9F9', label: 'Issued' },
+      { name: 'unissued', color: '#FE7D78', label: 'Unissued' },
+    ]
+  },
     donutChartData: [
       { label: 'Industrial', value: 40, color: '#76A9F9' },    
       { label: 'Commercial', value: 30, color: '#DDA1F7' }, 

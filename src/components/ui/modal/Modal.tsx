@@ -25,8 +25,8 @@ function Modal({
 }: ModalProps) {
   return (
     <>
-      <MantineModal {...props} withCloseButton={false} centered>
-        <div className="p-5 custom-modal-header" >
+      <MantineModal {...props} withCloseButton={false} centered className='sidebar-scroll'>
+        <div className="p-2 overflow-y-auto custom-modal-header " >
           <Group justify='space-between' w='100%' style={{ borderBottom: '1px solid #eee' }}>
             <Text fz={24} fw={600} className='text-neutral'>
               {title}

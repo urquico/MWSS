@@ -1,12 +1,30 @@
 import { useLocation } from 'react-router-dom';
 import { Box, Text } from '@mantine/core';
-
-// Import both configs and components
 import { ActiveRoute } from '@/types/routes-enums';
 import { getViewConfig as getLeaseViewConfig } from './lease-management/config/route-view-config';
 import { getViewConfig as getRawWaterViewConfig } from './raw-water-management/config/route-view-config';
 import LeaseManagement from './lease-management/LeaseManagement';
 import RawWaterManagement from './raw-water-management/RawWaterManagement';
+
+
+/**
+ * @file IncomeManagement.tsx
+ * @description
+ * TableViewWrapper is the main entry point for rendering the correct module (Lease or Raw Water)
+ * based on the current route in the MWSS Income/Raw Water Management app.
+ *
+ * @usage
+ * - Handle dynamic routing for different modules (Lease Management, Raw Water Management, etc.)
+ * 
+ *
+ * @example
+ * <Route path="/income-management/*" element={<TableViewWrapper />} />
+ *
+ * @see
+ * - Update route checks and imports if new modules are added.
+ * - Each module receives its config (columns, features, etc.) as a prop.
+ */
+
 
 function TableViewWrapper() {
   const location = useLocation();

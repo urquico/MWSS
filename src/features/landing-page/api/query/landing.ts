@@ -1,4 +1,4 @@
-import { API_URL } from '@/constants/constants';
+import { API_URL } from '@/types/constants';
 import { AdminDashboard } from '@/features/dashboard/types/dashboard-types';
 import useSSE from '@/hooks/sse-updates';
 import { SuccessResponse } from '@/types/response-instance';
