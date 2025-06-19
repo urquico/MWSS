@@ -14,6 +14,7 @@ import { useForm, zodResolver } from '@mantine/form';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { appVersion } from '@/utils/version';
+
 interface LoginProps {
   isFromTransition?: boolean;
 }
@@ -78,8 +79,8 @@ const Login = ({
         </Grid.Col>
 
         {/* Right: Login Form */}
-<Grid.Col span={{ base: 12, md: 6 }} className="flex items-center justify-center px-6 py-16">
-  <div className="w-full max-w-md mt-[35%] md:mt-0">
+        <Grid.Col span={{ base: 12, md: 6 }} className="flex items-center justify-center px-6 py-16">
+          <div className="w-full max-w-md mt-[35%] md:mt-0">
             <Title fz={48} fw={600} className="mb-2 text-center text-blue-900 font-roboto-slab">
               Welcome!
             </Title>
@@ -136,7 +137,7 @@ const Login = ({
               >
                 Log In
               </Button>
-               <div className="text-xs text-right gray-400">
+              <div className="text-xs text-right text-gray-400">
                 Version {appVersion}
               </div>
             </form>
@@ -145,7 +146,7 @@ const Login = ({
       </Grid>
 
       {/* Center-Bottom Vector */}
-<div className="absolute bottom-0 z-0 hidden transform -translate-x-1/2 left-1/2 md:block">
+      <div className="absolute bottom-0 z-0 hidden transform -translate-x-1/2 left-1/2 md:block">
         <img
           src="/vector.png"
           alt="Vector"
