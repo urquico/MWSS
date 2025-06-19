@@ -13,9 +13,8 @@ import { LoginRequest } from '@/features/login/types/login-request';
 import { Anchor, Grid } from '@mantine/core';
 import { useForm, zodResolver } from '@mantine/form';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-
+import { appVersion } from '@/utils/version';
 interface LoginProps {
   bgColor?: string;
   logo?: string;
@@ -165,7 +164,9 @@ const Login = ({
               >
                 Log In
               </Button>
-
+ <div className="text-xs text-right gray-400">
+                Version {appVersion}
+              </div>
             </form>
           </div>
         </Grid.Col>
