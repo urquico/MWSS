@@ -1,9 +1,7 @@
-import React from 'react'
-
+import TableViewWrapper from '@/features/income-management/pages/IncomeManagement';
 const ConcessionManagement = () => {
   return (
-    <div>ConcessionManagement</div>
+    <TableViewWrapper />
   )
 }
-
 export default ConcessionManagement

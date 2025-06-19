@@ -61,7 +61,9 @@ export type ViewType =
   | 'raw-water-payment-computation'
   | 'raw-water-payment-computation-cpi'
   | 'raw-water-payment-computation-arrears'
-  | 'concession-fee';
+  //CONCESSION
+  | 'concession-fee'
+  |  'journal-entry';
 
 export interface ViewConfig {
   viewType: ViewType;

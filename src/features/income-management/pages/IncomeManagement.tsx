@@ -3,8 +3,11 @@ import { Box, Text } from '@mantine/core';
 import { ActiveRoute } from '@/types/routes-enums';
 import { getViewConfig as getLeaseViewConfig } from './lease-management/config/route-view-config';
 import { getViewConfig as getRawWaterViewConfig } from './raw-water-management/config/route-view-config';
+import { getViewConfig as getConcessionViewConfig } from './concession/config/route-view-config';
 import LeaseManagement from './lease-management/LeaseManagement';
 import RawWaterManagement from './raw-water-management/RawWaterManagement';
+import ConcessionManagement from './concession/ConcessionManagement';
+
 
 
 /**
@@ -40,8 +43,8 @@ function TableViewWrapper() {
     title = config.title;
 
   } else if (location.pathname.startsWith(ActiveRoute.CONCESSION_MGMT)) {
-    config = getRawWaterViewConfig(location.pathname);
-    ModuleComponent = RawWaterManagement;
+    config = getConcessionViewConfig(location.pathname);
+    ModuleComponent = ConcessionManagement;
     title = config.title;
   } else {
     // fallback

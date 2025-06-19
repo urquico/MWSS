@@ -1196,6 +1196,90 @@ const dummyDataMap: Record<ViewType, any[]> = {
   'raw-water-payment-computation-arrears': [],
   'raw-water-dashboard': [],
   'concession-fee': [],
+
+
+  'concession-fee': [
+  {
+    loan: 'LN-2024-001',
+    title: 'Metro Rail Transit Expansion Project',
+    concessionaire: 'TransRail Solutions Inc.',
+    amount: 2500000,
+    amountpaid: 2500000,
+    date: '2024-03-15'
+  },
+  {
+    loan: 'LN-2024-002',
+    title: 'Highway Maintenance Contract',
+    concessionaire: 'RoadCorp Infrastructure',
+    amount: 1850000,
+    amountpaid: 1200000,
+    date: '2024-04-22'
+  },
+  {
+    loan: 'LN-2024-003',
+    title: 'Water Treatment Facility Operation',
+    concessionaire: 'AquaTech Services Ltd.',
+    amount: 950000,
+    amountpaid: 950000,
+    date: '2024-05-10'
+  },
+  {
+    loan: 'LN-2024-004',
+    title: 'Airport Terminal Concession',
+    concessionaire: 'SkyPort Management Co.',
+    amount: 3200000,
+    amountpaid: 1600000,
+    date: '2024-06-01'
+  },
+  {
+    loan: 'LN-2024-005',
+    title: 'Toll Road Operations',
+    concessionaire: 'Highway Express Partners',
+    amount: 1750000,
+    amountpaid: 0,
+    date: null
+  },
+    {
+      loan: 'LN-2024-001',
+      title: 'Metro Rail Transit Expansion Project',
+      concessionaire: 'TransRail Solutions Inc.',
+      amount: 2500000,
+      amountpaid: 2500000,
+      date: '2024-03-15'
+    },
+    {
+      loan: 'LN-2024-002',
+      title: 'Highway Maintenance Contract',
+      concessionaire: 'RoadCorp Infrastructure',
+      amount: 1850000,
+      amountpaid: 1200000,
+      date: '2024-04-22'
+    },
+    {
+      loan: 'LN-2024-003',
+      title: 'Water Treatment Facility Operation',
+      concessionaire: 'AquaTech Services Ltd.',
+      amount: 950000,
+      amountpaid: 950000,
+      date: '2024-05-10'
+    },
+    {
+      loan: 'LN-2024-004',
+      title: 'Airport Terminal Concession',
+      concessionaire: 'SkyPort Management Co.',
+      amount: 3200000,
+      amountpaid: 1600000,
+      date: '2024-06-01'
+    },
+    {
+      loan: 'LN-2024-005',
+      title: 'Toll Road Operations',
+      concessionaire: 'Highway Express Partners',
+      amount: 1750000,
+      amountpaid: 0,
+      date: null
+    }
+  ]
 };
 
 export default dummyDataMap;

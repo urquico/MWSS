@@ -259,6 +259,41 @@ export const rawWaterConcessionaireColumns: ColumnDef<any>[] = [
   { accessorKey: 'remarks', header: 'Remarks' },
 ];
 
+
+export const concessionFeeColumns: ColumnDef<any>[] = [
+  { accessorKey: 'loan', header: 'Loan No.' },
+  { accessorKey: 'title', header: 'Project Title' },
+  { accessorKey: 'concessionaire', header: 'Concessionaire' },
+  { accessorKey: 'concessionaire', header: 'Concessionaire' },
+  { accessorKey: 'amount', header: 'Billed Amount' },
+  { accessorKey: 'amountpaid', header: 'Amount Paid' },
+  { accessorKey: 'date', header: 'Date of Payment' },
+];
+
+// COMPLETE columnConfigs
+/**
+ * A mapping of view types to their respective column definitions.
+ *
+ * Each key in the object corresponds to a specific view type within the income management feature,
+ * and maps to an array of column definitions (`ColumnDef<any>[]`) used for rendering data tables
+ * in the UI. The column definitions determine how data is displayed and interacted with for each view.
+ *
+ * @remarks
+ * The available view types include:
+ * - 'billing-statement'
+ * - 'payment-monitoring'
+ * - 'demand-to-pay'
+ * - 'journal-entry'
+ * - 'invoice-tracking'
+ * - 'lessee-information'
+ * - 'raw-water-statement'
+ * - 'raw-water-payment'
+ * - 'concession-fee'
+ *
+ * @typeParam ViewType - A union type representing the possible view keys.
+ * @typeParam ColumnDef - The type describing the structure of a column definition.
+ */
+
 const columnConfigs: Record<ViewType, ColumnDef<any>[]> = {
   'statement-of-account': soaColumns,
   'billing-statement': billingColumns,
@@ -288,7 +323,8 @@ const columnConfigs: Record<ViewType, ColumnDef<any>[]> = {
   'raw-water-payment-computation': [], // Add columns if needed
   'raw-water-payment-computation-cpi': rawWaterCPIIndexAndRateColumns,
   'raw-water-payment-computation-arrears': [], // Add columns if needed
-  'concession-fee': rawWaterConcessionaireColumns,};
+  'concession-fee': concessionFeeColumns,
+};
 
 /**
  * Returns the column configuration for a given view type, optionally merging with custom columns.

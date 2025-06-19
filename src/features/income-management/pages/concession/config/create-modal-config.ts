@@ -862,8 +862,232 @@ export const formConfigs: Record<string, ModalConfig> = {
        },
      ],
    },
-  }
+   'concession-fee':{
+    fields: [
+    {
+      name: "bankName",
+      label: "Bank Name",
+      type: "text",
+      placeholder: "Enter bank name",
+      cols: 4,
+      required: true,
+    },
+    {
+      name: "subSector",
+      label: "Sub-Sector",
+      type: "select",
+      options: [
+        { value: "urban-water-supply", label: "Urban Water Supply" },
+        { value: "rural-water-supply", label: "Rural Water Supply" },
+        { value: "sanitation", label: "Sanitation" },
+        { value: "irrigation", label: "Irrigation" },
+        { value: "flood-management", label: "Flood Management" },
+        { value: "other", label: "Other" },
+      ],
+      cols: 4,
+      required: true,
+    },
+    {
+      name: "loanType",
+      label: "Loan Type",
+      type: "select",
+      options: [
+        { value: "project", label: "Project" },
+        { value: "program", label: "Program" },
+        { value: "policy", label: "Policy" },
+        { value: "emergency", label: "Emergency" },
+      ],
+      cols: 4,
+      required: true,
+    },
+    {
+      name: "discountFactor",
+      label: "Discount Factor",
+      type: "number",
+      placeholder: "Enter discount factor",
+      cols: 4,
+      required: false,
+    },
+    {
+      name: "loanNumber",
+      label: "Loan Number",
+      type: "text",
+      placeholder: "e.g. LN3377",
+      cols: 4,
+      required: true,
+    },
+    {
+      name: "fund",
+      label: "Fund",
+      type: "select",
+      options: [
+        { value: "ordinary-capital-resources", label: "Ordinary Capital Resources" },
+        { value: "asian-development-fund", label: "Asian Development Fund" },
+        { value: "special-funds", label: "Special Funds" },
+        { value: "trust-funds", label: "Trust Funds" },
+        { value: "other", label: "Other" },
+      ],
+      cols: 4,
+      required: true,
+    },
+    {
+      name: "facilityType",
+      label: "Facility Type",
+      type: "select",
+      options: [
+        { value: "flexible-loan-product", label: "Flexible Loan Product" },
+        { value: "conventional-loan", label: "Conventional Loan" },
+        { value: "multitranche-financing", label: "Multitranche Financing" },
+        { value: "policy-based-loan", label: "Policy-Based Loan" },
+      ],
+      cols: 4,
+      required: true,
+    },
+    {
+      name: "approvedLoanAmount",
+      label: "Approved Loan Amount",
+      type: "number",
+      placeholder: "Enter amount in USD",
+      cols: 4,
+      required: true,
+    },
+    {
+      name: "nameOfProject",
+      label: "Name of Project",
+      type: "text",
+      placeholder: "e.g. Angat Water Trans",
+      cols: 4,
+      required: true,
+    },
+    {
+      name: "loanStatus",
+      label: "Loan Status",
+      type: "select",
+      options: [
+        { value: "effective", label: "Effective" },
+        { value: "approved", label: "Approved" },
+        { value: "signed", label: "Signed" },
+        { value: "closed", label: "Closed" },
+        { value: "cancelled", label: "Cancelled" },
+      ],
+      cols: 4,
+      required: true,
+    },
+    {
+      name: "portfolio",
+      label: "Portfolio",
+      type: "select",
+      options: [
+        { value: "ocr-sovereign", label: "OCR Sovereign" },
+        { value: "adf-sovereign", label: "ADF Sovereign" },
+        { value: "ocr-nonsovereign", label: "OCR Nonsovereign" },
+        { value: "special-funds", label: "Special Funds" },
+      ],
+      cols: 4,
+      required: true,
+    },
+    {
+      name: "netLoanAmount",
+      label: "Net Loan Amount",
+      type: "number",
+      placeholder: "Enter net amount in USD",
+      cols: 4,
+      required: true,
+    },
+    {
+      name: "projectNumber",
+      label: "Project Number",
+      type: "text",
+      placeholder: "e.g. 46362",
+      cols: 4,
+      required: true,
+    },
+    {
+      name: "mffApprovalDate",
+      label: "MFF Approval Date",
+      type: "date",
+      cols: 4,
+      required: false,
+    },
+    {
+      name: "terms",
+      label: "Terms",
+      type: "number",
+      placeholder: "Enter term in years",
+      cols: 4,
+      required: true,
+    },
+    {
+      name: "grace",
+      label: "Grace",
+      type: "number",
+      placeholder: "Enter grace period",
+      cols: 4,
+      required: false,
+    },
+    {
+      name: "sector",
+      label: "Sector",
+      type: "select",
+      options: [
+        { value: "water-urban-infrastructure-services", label: "Water Urban Infrastructure and Services" },
+        { value: "agriculture-natural-resources", label: "Agriculture and Natural Resources" },
+        { value: "energy", label: "Energy" },
+        { value: "transport", label: "Transport" },
+        { value: "education", label: "Education" },
+        { value: "health", label: "Health" },
+        { value: "finance", label: "Finance" },
+        { value: "industry-trade", label: "Industry and Trade" },
+        { value: "public-sector-management", label: "Public Sector Management" },
+        { value: "multisector", label: "Multisector" },
+      ],
+      cols: 4,
+      required: true,
+    },
+    {
+      name: "mffApprovalNo",
+      label: "MFF Approval No.",
+      type: "text",
+      placeholder: "Enter MFF approval number",
+      cols: 4,
+      required: false,
+    },
+    {
+  name: "currency",
+  label: "Currency",
+  type: "select",
+  placeholder: "Select currency",
+  cols: 6,
+  required: true,
+  options: [
+    { value: "USD", label: "USD" },
+    { value: "EUR", label: "EUR" },
+    { value: "GBP", label: "GBP" },
+    { value: "JPY", label: "JPY" },
+    { value: "CAD", label: "CAD" },
+    { value: "AUD", label: "AUD" },
+    { value: "PHP", label: "PHP" }
+  ]
+},
+{
+  name: "computationMethod",
+  label: "Computation Method",
+  type: "select",
+  placeholder: "Select computation method",
+  cols: 6,
+  required: true,
+  options: [
+    { value: "straightLine", label: "Straight Line" },
+    { value: "decliningBalance", label: "Declining Balance" },
+    { value: "unitsOfProduction", label: "Units of Production" },
+    { value: "sumOfYearsDigits", label: "Sum of Years' Digits" }
+  ]
+}
+  ],
+  
 
+    }
+   };
 
 
 
@@ -938,6 +1162,74 @@ export const invoiceTrackingTables = [
       { label: 'Add: VAT', value: '0.00' },
       { label: 'Less: Withholding Tax', value: '0.00' },
       { label: 'TOTAL AMOUNT DUE', value: '0.00', isBold: true },
+
+      
+    ],
+  },
+  
+];
+
+export const concessionFeeTable = [
+  {
+    name: 'main',
+    columns: [
+      { header: 'Sequence No.', accessor: 'seqNo' },
+      { header: 'Payment Date', accessor: 'date' },
+      { header: 'Percentage', accessor: 'percentage' },
+      { header: 'Disbursed Amount', accessor: 'disbursedAmount' },
+      { header: 'Undisbursed Amount', accessor: 'undisbursedAmount' },
+      { header: 'Aggregate', accessor: 'aggregate' },
+    ],
+    data: [
+      {
+        seqNo: 1,
+        date: 'March 17, 2025',
+        percentage: '100%',
+        disbursedAmount: '513,275.00',
+        undisbursedAmount: '0.00',
+        aggregate: 'Paid',
+      },
+      {
+        seqNo: 2,
+        date: 'April 17, 2025',
+        percentage: '100%',
+        disbursedAmount: '201,112.00',
+        undisbursedAmount: '0.00',
+        aggregate: 'Paid',
+      },
+      {
+        seqNo: 3,
+        date: 'May 17, 2025',
+        percentage: '100%',
+        disbursedAmount: '12,000.00',
+        undisbursedAmount: '0.00',
+        aggregate: 'Paid',
+      },
+      {
+        seqNo: 4,
+        date: 'June 17, 2025',
+        percentage: '0%',
+        disbursedAmount: '0.00',
+        undisbursedAmount: '12,543.00',
+        aggregate: 'Unpaid',
+      },
+      {
+        seqNo: 5,
+        date: 'July 17, 2025',
+        percentage: '100%',
+        disbursedAmount: '74,322.00',
+        undisbursedAmount: '0.00',
+        aggregate: 'Paid',
+      },
+    ],
+  },
+  {
+    name: 'summary',
+    data: [
+      { label: 'Total Disbursed Amount', value: '800,709.00' },
+      { label: 'Total Undisbursed Amount', value: '12,543.00' },
+      { label: 'Total Amount', value: '813,252.00' },
+      { label: 'Payment Completion Rate', value: '98.46%' },
     ],
   },
 ];
