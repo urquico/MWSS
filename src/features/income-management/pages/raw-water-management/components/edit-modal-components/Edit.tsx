@@ -22,10 +22,9 @@ function Edit({ viewType, onSubmit, onClose }: EditProps) {
   // Section-based rendering support
   const config = formConfigs[viewType];
   const sections: SectionConfig[] | undefined = config?.sections;
-  const fields: FieldConfig[] = sections
-    ? sections.flatMap(section => section.fields)
-    : config?.fields ?? [];
-
+const fields: FieldConfig[] = sections
+  ? sections.flatMap(section => section.fields ?? []).filter(Boolean)
+  : config?.fields ?? [];
   // Form initial values
   const form = useForm({
     initialValues: fields.reduce((acc, field) => {
@@ -94,8 +93,10 @@ function Edit({ viewType, onSubmit, onClose }: EditProps) {
     >
       <form ref={formRef} onSubmit={form.onSubmit(handleSubmit)}>
         <FieldGrid
-          sections={sections}
-          fields={fields}
+  sections={sections?.map(section => ({
+    ...section,
+    fields: section.fields ?? [],
+  }))}          fields={fields}
           form={form}
           enableRentalAdjustment={enableRentalAdjustment}
           setEnableRentalAdjustment={setEnableRentalAdjustment}

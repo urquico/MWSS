@@ -12,9 +12,7 @@ interface BSTemplateProps {
 
 const BSTemplate: React.FC<BSTemplateProps> = ({ onClose, viewType }) => {
   const { formattedDate } = CurrentDate()
-  const configuration = generateModalConfigs[viewType];
  
-  const { tableData } = configuration;
   const rows = [
     { description: '4,153 sqm @ php1,087.09 sqm.', amount: 'Php 4,515,108.74' },
     { description: 'Add: 12% VAT', amount: '541,813.05' },
@@ -63,7 +61,6 @@ const BSTemplate: React.FC<BSTemplateProps> = ({ onClose, viewType }) => {
     <BaseModal
       title={`Create ${getTitle(viewType)}`}
       printText="Print"
-      tableData={tableData}
       opened={true}
       onClose={onClose}
       showExportButton={false}

@@ -69,7 +69,8 @@ export interface ModalConfig {
   fields?: FieldConfig[];
   sections?: SectionConfig[];
   tableData?: any;
-  columns?: ColumnDef<any, any>[];
+  columns?: { accessorKey: string; header: string }[]; 
+  
 }
 
 // Table types for Invoice Tracking views (unchanged)

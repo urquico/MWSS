@@ -78,7 +78,7 @@ const renderText = () => {
               }
             : {
                 top: '10%',
-                left: '5%',
+                left: '3%',
                 transform: 'translate(0, 0)',
               }),
           transition: 'all 0.4s ease-in-out',
