@@ -22,7 +22,7 @@ const dummyDataMap: Record<ViewType, any[]> = {
       date: '2024-06-01',
       controlNumber: 'BS-001',
       lessee: 'John Doe',
-      companyName: 'Acme Corp',
+      companyName: 'adad',
       subject: 'Monthly Rent',
       dateReceived: '2024-06-02',
       status: 'For Review [1/4]',
@@ -174,7 +174,7 @@ const dummyDataMap: Record<ViewType, any[]> = {
       date: '2024-06-01',
       controlNumber: 'SOA-001',
       lessee: 'SOA-1',
-      companyName: 'Acme Corp',
+      companyName: 'Sample Corp',
       subject: 'Monthly Rent',
       periodCovered: '2024-06-01 to 2024-06-30',
       status: 'For Review',
@@ -372,7 +372,7 @@ const dummyDataMap: Record<ViewType, any[]> = {
       transactionId: 'PR-001',
       controlNumber: 'BS-001',
       lessee: 'John Doe',
-      companyName: 'Acme Corp',
+      companyName: 'Sample Corp',
       paymentDate: '2024-06-01',
       amountPaid: 12000,
       paymentMethod: 'Bank Transfer',
@@ -502,7 +502,7 @@ const dummyDataMap: Record<ViewType, any[]> = {
 
   'invoice-tracking': [
     {
-      lessee: 'Acme Corp.',
+      lessee: 'Sample Corp',
       invoiceDate: '2025-06-01',
       invoiceNo: 'INV-001',
       amount: 1000,

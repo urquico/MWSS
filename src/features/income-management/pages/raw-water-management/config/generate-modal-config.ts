@@ -148,7 +148,7 @@ export const generateModalConfigs: Record<string, ModalConfig> = {
       {
         invoiceNo: 'INV-001',
         dateIssued: '2025-06-01',
-        clientName: 'Acme Corp.',
+        clientName: 'Sample Corp',
         amount: 12000.0,
         paymentStatus: 'Paid',
         orNo: 'OR-1001',

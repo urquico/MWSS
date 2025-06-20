@@ -31,17 +31,27 @@ interface DataViewProps {
 }
 
 /**
- * Renders a data view component with configurable columns, toolbars, and row actions
- * based on the provided configuration. Supports loading, error handling, and advanced
- * table features such as export, column filters, and fuzzy search.
- *
- * @param config - Configuration object specifying the view type, custom columns,
- *   and feature toggles for export and filters.
+ * LeaseManagement Component
+ * 
+ * This component is the main entry point for the Lease Management feature.
+ * 
+ * - Fetches data from the API using the `useDataView` hook based on the current view type.
+ * - Uses a global modal store (`useModalStore`) to manage modal state and pass selected row data (`modalData`) to modals.
+ * - When a row action (e.g., Edit, Generate, View) is triggered, the selected row's API data is passed as `modalData` to the corresponding modal component.
+ * - All modals (Create, Edit, Generate, etc.) receive their data via the `data` prop, which is always sourced from the API or the selected table row.
+ * - No dummy or config values are used for modal data; all field values are populated directly from the API response.
+ * - Toolbars and table features (filtering, export, pagination, etc.) are dynamically configured based on the current view type.
+ * 
+ * Usage:
+ * - To open a modal with a specific row's data, call `openModal(type, row, viewType)` from the modal store.
+ * - The modal will receive the row's data as the `data` prop and auto-populate its fields accordingly.
+ * 
+ * This approach ensures a clean, API-driven, and maintainable UI for all modal-based actions in Lease Management.
  */
 
 function LeaseManagement({ config }: DataViewProps) {
   const { data, isLoading, error } = useDataView(config.viewType);
-  const { isOpen, type, data: modalData, closeModal, pendingModal, setPendingModal, openModal,viewType } = useModalStore();
+  const { isOpen, type, data: modalData, closeModal, pendingModal, setPendingModal, openModal, viewType } = useModalStore();
 
 
   const {
@@ -184,8 +194,8 @@ function LeaseManagement({ config }: DataViewProps) {
   }
 
   return (
-    <>    {faType && (
-      // In LeaseManagement component
+    <>
+    {faType && (
       <FormAction
         open={faOpen}
         type={faType}
@@ -216,9 +226,9 @@ function LeaseManagement({ config }: DataViewProps) {
         )}
         {isOpen && type === 'create' && (
           <CreateModal
+            data={modalData}
             viewType={viewType}
             onSubmit={handleCreateSubmit}
-            data={modalData}
             onClose={closeModal}
           />
         )}
@@ -231,6 +241,7 @@ function LeaseManagement({ config }: DataViewProps) {
         )}
         {isOpen && type === 'edit' && (
           <Edit
+            data={modalData}
             viewType={viewType}
             onSubmit={handleEdit}
             onClose={closeModal}

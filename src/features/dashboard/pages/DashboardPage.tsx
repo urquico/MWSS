@@ -23,7 +23,11 @@ function DashboardPage() {
   }
 
   return (
-    <Suspense fallback={<Loader size="sm" mt="md" />}>
+    <Suspense fallback={
+      <div className="fixed inset-0 z-[100] flex items-center justify-center bg-white/80">
+        <Loader type="dots" size="lg" />
+      </div>
+    }>
       <DashboardComponent />
     </Suspense>
   );

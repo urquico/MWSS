@@ -10,11 +10,16 @@ import { FieldGrid } from '@/features/income-management/components/FieldGrid';
 
 interface EditProps {
   viewType: string | undefined;
+  /**
+ * Dynamic data object used to pre-fill form values.
+ * Structure depends on the viewType and its field definitions.
+ */
+  data?: Record<string, any>;
   onSubmit: (values: { remarks: string }) => void;
   onClose: () => void;
 }
 
-function Edit({ viewType, onSubmit, onClose }: EditProps) {
+function Edit({ data, viewType, onSubmit, onClose }: EditProps) {
   const [enableRentalAdjustment, setEnableRentalAdjustment] = useState(false);
   const { currentDate } = CurrentDate();
   const formRef = useRef<HTMLFormElement>(null);
@@ -28,18 +33,27 @@ function Edit({ viewType, onSubmit, onClose }: EditProps) {
     ? sections.flatMap(section => section.fields ?? []).filter(Boolean)
     : config?.fields ?? [];
 
-  // Form initial values
   const form = useForm({
     initialValues: fields.reduce((acc, field) => {
-      if (field.type === 'date' && field.autoFillCurrentDate) {
-        acc[field.name] = currentDate;
-      } else {
-        acc[field.name] = field.type === 'dateRange'
-          ? [null, null]
-          : field.defaultValue ?? field.value ?? '';
+      // 1. Use API data if available
+      if (data && data[field.name] !== undefined && data[field.name] !== null) {
+        acc[field.name] = data[field.name];
       }
-      if (field.withSwitch) {
+      // 2. Else, auto-fill current date for date fields
+      else if (field.type === 'date' && field.autoFillCurrentDate) {
+        acc[field.name] = currentDate;
+      }
+      // 3. Else, withSwitch logic
+      else if (field.withSwitch) {
         acc[field.name] = null;
+      }
+      // 4. Else, dateRange logic
+      else if (field.type === 'dateRange') {
+        acc[field.name] = [null, null];
+      }
+      // 5. Else, default to empty string
+      else {
+        acc[field.name] = '';
       }
       return acc;
     }, {} as Record<string, any>),
@@ -50,7 +64,6 @@ function Edit({ viewType, onSubmit, onClose }: EditProps) {
         if (field.required && !values[field.name]) {
           errors[field.name] = 'This field is required';
         }
-        // Special case for retailAdjustment when enabled
         if (field.name === 'retailAdjustment' && enableRentalAdjustment && !values[field.name]) {
           errors[field.name] = 'Please enter rental adjustment details';
         }
