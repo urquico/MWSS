@@ -30,10 +30,10 @@ export default function AuthFlow() {
       {/* Continuous Header Animation */}
       <Header
         groupClassName='bg-none'
-        textSize={phase === 'login' ? 28 : 40}
+        textSize={phase === 'login' ? 38 : 40}
         textWeight={phase === 'login' ? 400 : 800}
         textColor={phase === 'login' ? '#D2E1FF' : '#0E2F65'}
-        logoSize={phase === 'login' ? 60 : 104}
+        logoSize={phase === 'login' ? 100 : 104}
         headerText={
           phase === 'login'
             ? ['Metropolitan Waterworks', 'Sewerage System']

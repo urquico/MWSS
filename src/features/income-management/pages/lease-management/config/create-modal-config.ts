@@ -283,7 +283,7 @@ export const formConfigs: Record<string, ModalConfig> = {
       },
       {
         name: "controlNo",
-        label: "Control No.",
+        label: "SOA Control No.",
         type: "text",
         placeholder: "Control No.",
         required: false,
@@ -840,25 +840,21 @@ export const formConfigs: Record<string, ModalConfig> = {
        {
          accessorKey: 'date',
          header: 'Date',
-         cell: (info) => info.getValue(),
-         footer: (props) => props.column.id,
+
        },
        {
          accessorKey: 'soaNumber',
          header: 'SOA No.',
-         cell: (info) => info.getValue(),
-         footer: (props) => props.column.id,
+    
        },
        {
          accessorKey: 'amount',
          header: 'Amount',
-         cell: (info) => info.getValue(),
-         footer: (props) => props.column.id,
+
        },
        {
          accessorKey: 'status',
          header: 'Status',
-         cell: ({ row }) => renderStatusCell(row.original.status),
        },
      ],
    },

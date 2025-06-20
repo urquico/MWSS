@@ -10,7 +10,7 @@ import { sidebarModules } from '@/lib/data/sidebar-links';
 import Header from './Header';
 import { useLinksGroupStore } from '@/store/useLinksGroupStore';
 import BreadCrumbs from './BreadCrumbs';
-
+import HeaderIcons from './HeaderIcons';
 
 interface ShellProps {
   children?: ReactNode;
@@ -69,21 +69,28 @@ function Shell({ children }: ShellProps) {
               className="truncate"
             />
           </div>
+          {/* Put HeaderIcons at the very right */}
+          <div className="items-center hidden ml-auto md:flex">
+            <HeaderIcons />
+          </div>
 
           {/* Mobile Header - visible below md */}
-          <div className="flex flex-1 min-w-0 md:hidden">
+          <div className="flex items-center justify-between flex-1 min-w-0 md:hidden">
             <Header
-              textSize={18}        
+              textSize={18}
               textWeight={700}
               gradientFrom="#002161"
               gradientTo="#0044C7"
               gradientDeg={87}
               groupClassName="p-2 bg-none"
-              logoSize={40}       
+              logoSize={40}
               headerText="MWSS - CORPORATE OFFICE"
               useAbsolutePosition={false}
             />
+            <HeaderIcons />
+
           </div>
+
         </div>
       </AppShell.Header>
 
