@@ -4,39 +4,34 @@ export const generateModalConfigs: Record<string, ModalConfig> = {
   'statement-of-account': {
     fields: [
       {
-        name: 'lessee',
+        name: 'lesseeName',
         label: 'Lessee',
         description: '(Last Name, First Name, & Middle Name)',
-        value: '',
         span: 12,
         type: 'text',
       },
-      { name: 'location', label: 'Location', value: '', type: 'text', span: 4 },
+      { name: 'location',  label: 'Location', type: 'text', span: 4 },
       {
         name: 'totalArea',
         label: 'Total Area',
-        value: '',
         type: 'text',
         span: 4,
       },
       {
         name: 'retailAdjustment',
         label: 'Retail Adjustment',
-        value: '',
         type: 'text',
         span: 4,
       },
       {
         name: 'periodFrom',
         label: 'Period From',
-        value: '',
         type: 'date',
         span: 6,
       },
       {
         name: 'periodTo',
         label: 'Period To',
-        value: '',
         type: 'date',
         span: 6,
       },
@@ -180,7 +175,7 @@ export const generateModalConfigs: Record<string, ModalConfig> = {
       {
         invoiceNo: 'INV-001',
         dateIssued: '2025-06-01',
-        clientName: 'Acme Corp.',
+        clientName: 'Sample Corp',
         amount: 12000.0,
         paymentStatus: 'Paid',
         orNo: 'OR-1001',

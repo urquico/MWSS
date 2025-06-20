@@ -2,9 +2,9 @@ import BaseModal from "@/features/income-management/components/BaseModal";
 import { Text, Divider, Paper, Table, Flex } from "@mantine/core";
 import { getTitle } from "../../../config/generate-modal-config";
 import CurrentDate from "@/utils/CurrentDate";
-
+import { DemandToPayData } from "../../../types/data-types";
 interface DPTemplateProps {
-    data?: any;
+    data?: DemandToPayData;
     onClose: () => void;
     viewType: string;
 }

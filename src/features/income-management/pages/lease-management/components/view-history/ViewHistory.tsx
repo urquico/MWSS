@@ -6,12 +6,14 @@ import { Text } from "@mantine/core";
 interface ViewHistoryProps {
   data?: any;
   onClose: () => void;
-  viewType: string;
+  viewType: string | undefined;
 }
 
 const ViewHistory: React.FC<ViewHistoryProps> = ({ onClose, viewType }) => {
-  const config = viewHistoryConfigs[viewType];
-if (!config) throw new Error("Config is required")
+  const config = viewType && viewHistoryConfigs[viewType]
+    ? viewHistoryConfigs[viewType]
+    : null;
+  if (!config) throw new Error("Config is required")
 
   const { title, tableData, columns, label } = config;
 
@@ -31,7 +33,7 @@ if (!config) throw new Error("Config is required")
       <Text fw={700} mb="md">{label}</Text>
 
       <Table
-        data={ tableData}
+        data={tableData}
         columns={columns}
         features={{
           filtering: { fuzzy: true, global: true },

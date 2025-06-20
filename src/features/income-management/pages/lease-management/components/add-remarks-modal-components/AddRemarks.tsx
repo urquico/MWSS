@@ -4,7 +4,7 @@ import { getTitle } from '../../config/create-modal-config';
 import BaseModal from '@/features/income-management/components/BaseModal';
 
 interface AddRemarksProps {
-  viewType: string;
+  viewType: string | undefined;
   onSubmit: (values: { remarks: string }) => void;
   onClose: () => void;
 }
@@ -20,7 +20,7 @@ function AddRemarks({ viewType, onSubmit, onClose }: AddRemarksProps) {
     <BaseModal
       opened={true}
       onClose={onClose}
-      title={`Add Remarks to ${getTitle(viewType)}`}
+      title={`Add Remarks to ${getTitle(viewType ?? '')}`}
       size="55rem"
       showSaveButton={true}
       showExportButton={false}

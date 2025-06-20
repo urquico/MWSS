@@ -1,8 +1,8 @@
 import { ViewType } from '@/features/income-management/types/view-types.ts';
 import { ColumnDef } from '@tanstack/react-table';
-import { renderStatusCell } from '../utils/status-utils';
-import { renderLesseeNameCell } from '../utils/cell-onclick';
 
+import { renderLesseeNameCell } from '../utils/cell-onclick';
+import { renderStatusCell } from '../utils/status-utils';
 
 /**
  * A mapping of view types to their respective column definitions.
@@ -27,29 +27,13 @@ import { renderLesseeNameCell } from '../utils/cell-onclick';
  * @typeParam ColumnDef - The type describing the structure of a column definition.
  */
 
-
-
-const billingColumns: ColumnDef<any>[] = [
-  { accessorKey: 'date', header: 'Date' },
-  { accessorKey: 'controlNumber', header: 'Control Number' },
-  { accessorKey: 'lessee', header: 'Lessee' },
-  { accessorKey: 'companyName', header: 'Company Name' },
-  { accessorKey: 'subject', header: 'Subject' },
-  { accessorKey: 'dateReceived ', header: 'Date Received' },
-  {
-    accessorKey: 'status',
-    header: 'Status',
-    cell: ({ row }) => renderStatusCell(row.original.status),
-  },
-  { accessorKey: 'remarks', header: 'Remarks' },
-];
 const soaColumns: ColumnDef<any>[] = [
   { accessorKey: 'date', header: 'Date' },
-  { accessorKey: 'controlNumber', header: 'Control Number' },
-  { accessorKey: 'lessee', header: 'Lessee' },
-  { accessorKey: 'companyName', header: 'Company Name' },
+  { accessorKey: 'control_number', header: 'Control Number' },
+  { accessorKey: 'lessee_name', header: 'Lessee Name' },
+  { accessorKey: 'company_name', header: 'Company Name' },
   { accessorKey: 'subject', header: 'Subject' },
-  { accessorKey: 'periodCovered', header: 'Period Covered' },
+  { accessorKey: 'period_covered', header: 'Period Covered' },
   {
     accessorKey: 'status',
     header: 'Status',
@@ -57,25 +41,37 @@ const soaColumns: ColumnDef<any>[] = [
   },
   { accessorKey: 'remarks', header: 'Remarks' },
 ];
-
+const billingColumns: ColumnDef<any>[] = [
+  { accessorKey: 'date', header: 'Date' },
+  { accessorKey: 'control_number', header: 'Control Number' },
+  { accessorKey: 'lessee_name', header: 'Lessee Name' },
+  { accessorKey: 'company_name', header: 'Company Name' },
+  { accessorKey: 'subject', header: 'Subject' },
+  { accessorKey: 'date_received', header: 'Date Received' },
+  {
+    accessorKey: 'status',
+    header: 'Status',
+    cell: ({ row }) => renderStatusCell(row.original.status),
+  },
+  { accessorKey: 'remarks', header: 'Remarks' },
+];
+const demandColumns: ColumnDef<any>[] = [
+  { accessorKey: 'date', header: 'Date' },
+  { accessorKey: 'control_number', header: 'Control Number' },
+  { accessorKey: 'lessee_name', header: 'Lessee Name' },
+  { accessorKey: 'company_name', header: 'Company Name' },
+  { accessorKey: 'subject', header: 'Subject' },
+  { accessorKey: 'date_received', header: 'Date Received' },
+  {
+    accessorKey: 'status',
+    header: 'Status',
+    cell: ({ row }) => renderStatusCell(row.original.status),
+  },
+  { accessorKey: 'remarks', header: 'Remarks' },
+];
 const paymentColumns: ColumnDef<any>[] = [
   { accessorKey: 'transactionId', header: 'Transaction ID' },
   { accessorKey: 'paymentDate', header: 'Payment Date' },
-];
-
-const demandColumns: ColumnDef<any>[] = [
-  { accessorKey: 'date', header: 'Date' },
-  { accessorKey: 'controlNumber', header: 'Control Number' },
-  { accessorKey: 'lessee', header: 'Lessee' },
-  { accessorKey: 'companyName', header: 'Company Name' },
-  { accessorKey: 'subject', header: 'Subject' },
-  { accessorKey: 'dateReceived', header: 'Date Received' },
-    {
-    accessorKey: 'status',
-    header: 'Status',
-    cell: ({ row }) => renderStatusCell(row.original.status),
-  },
-  { accessorKey: 'remarks', header: 'Remarks' },
 ];
 
 const journalColumns: ColumnDef<any>[] = [
@@ -87,7 +83,6 @@ const journalColumns: ColumnDef<any>[] = [
   { accessorKey: 'debit', header: 'Debit' },
   { accessorKey: 'credit', header: 'Credit' },
   { accessorKey: 'dueDate', header: 'Due Date' },
-
 ];
 
 const paymentReconciliationColumns: ColumnDef<any>[] = [
@@ -121,11 +116,11 @@ const invoiceColumns: ColumnDef<any>[] = [
   { accessorKey: 'invoiceDate', header: 'Invoice Date' },
   { accessorKey: 'invoiceNo', header: 'Invoice No.' },
   { accessorKey: 'amount', header: 'Amount' },
-{
+  {
     accessorKey: 'status',
     header: 'Status',
     cell: ({ row }) => renderStatusCell(row.original.status),
-  }
+  },
 ];
 
 const tenantColumns: ColumnDef<any>[] = [
@@ -135,17 +130,16 @@ const tenantColumns: ColumnDef<any>[] = [
     cell: ({ row }) => renderStatusCell(row.original.status),
   },
   { accessorKey: 'lesseeNo', header: 'Lessee No.' },
-  { accessorKey: 'nameOfLessee', header: 'Name of Lessee',
+  {
+    accessorKey: 'nameOfLessee',
+    header: 'Name of Lessee',
     cell: renderLesseeNameCell,
-   },
+  },
   { accessorKey: 'location', header: 'Lessee Location' },
   { accessorKey: 'lesseeTerm', header: 'Lessee Term' },
   { accessorKey: 'classification', header: 'Classification' },
-    { accessorKey: 'remarks', header: 'Remarks' },
-
+  { accessorKey: 'remarks', header: 'Remarks' },
 ];
-
-
 
 //RAW WATER BILLING STATEMENT COLUMNS
 
@@ -158,7 +152,7 @@ const rawWaterInvoiceListColumns: ColumnDef<any>[] = [
     accessorKey: 'status',
     header: 'Status',
     cell: ({ row }) => renderStatusCell(row.original.status),
-  }
+  },
 ];
 
 const rawWaterBillingStatementColumns: ColumnDef<any>[] = [
@@ -188,7 +182,6 @@ const rawWaterJournalEntryColumns: ColumnDef<any>[] = [
   { accessorKey: 'debit', header: 'Debit' },
   { accessorKey: 'credit', header: 'Credit' },
 ];
-
 
 const rawWaterCustomerInvoiceReportsColumns: ColumnDef<any>[] = [
   { accessorKey: 'lesseeName', header: 'Lessee Name' },
@@ -270,7 +263,7 @@ const columnConfigs: Record<ViewType, ColumnDef<any>[]> = {
   'journal-entry': journalColumns,
   'invoice-tracking': invoiceColumns,
   'lessee-information': tenantColumns,
-// RAW WATER MANAGEMENT VIEWS
+  // RAW WATER MANAGEMENT VIEWS
   'raw-water-dashboard': [], // Add columns if needed
   'raw-water-billing-statement': rawWaterBillingStatementColumns,
   'raw-water-demand-to-pay': rawWaterDemandToPayColumns,
@@ -278,17 +271,21 @@ const columnConfigs: Record<ViewType, ColumnDef<any>[]> = {
   'raw-water-invoice-tracking': rawWaterInvoiceListColumns,
   'raw-water-invoice-list': rawWaterInvoiceListColumns,
   'raw-water-customer-invoice-reports': rawWaterCustomerInvoiceReportsColumns,
-  'raw-water-customer-information-management': rawWaterCustomerInformationColumns,
+  'raw-water-customer-information-management':
+    rawWaterCustomerInformationColumns,
   'raw-water-customer-information': rawWaterCustomerInformationColumns,
-  'raw-water-customer-payment-history': rawWaterCustomerPaymentHistorySimpleColumns,
+  'raw-water-customer-payment-history':
+    rawWaterCustomerPaymentHistorySimpleColumns,
   'raw-water-payment-monitoring': rawWaterCustomerPaymentHistorySimpleColumns, // Or another columns array if needed
-  'raw-water-payment-reconciliation': rawWaterCustomerPaymentHistoryDetailedColumns, // Or another columns array if needed
+  'raw-water-payment-reconciliation':
+    rawWaterCustomerPaymentHistoryDetailedColumns, // Or another columns array if needed
   'raw-water-payment-history': rawWaterCustomerPaymentHistoryDetailedColumns,
   'raw-water-payment-reminder': rawWaterPaymentReminderColumns,
   'raw-water-payment-computation': [], // Add columns if needed
   'raw-water-payment-computation-cpi': rawWaterCPIIndexAndRateColumns,
   'raw-water-payment-computation-arrears': [], // Add columns if needed
-  'concession-fee': rawWaterConcessionaireColumns,};
+  'concession-fee': rawWaterConcessionaireColumns,
+};
 
 /**
  * Returns the column configuration for a given view type, optionally merging with custom columns.

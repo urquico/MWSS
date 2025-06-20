@@ -16,7 +16,7 @@ interface SOAToolbarProps {
   onGenerateRow: (row: any) => void;
 }
 
-{/* Top toolbar with a Create button */}
+{/* Top toolbar with a Create button */ }
 export const SOAToolbar: React.FC<SOAToolbarProps> = ({
   onCreate,
 }) => {
@@ -33,7 +33,7 @@ export const SOAToolbar: React.FC<SOAToolbarProps> = ({
 
 
 export function getSOARowActions(viewType: string) {
- 
+
   const openModal = useModalStore.getState().openModal;
 
   return (row: any) => (
@@ -52,11 +52,32 @@ export function getSOARowActions(viewType: string) {
       }}>
         Add Remarks
       </Menu.Item>
-       <Menu.Item onClick={() => {
+      <Menu.Item onClick={() => {
         console.log('ViewType passed to menu item:', viewType);
         openModal('edit', row, viewType);
       }}>
         Edit SOA
+      </Menu.Item>
+      <Menu.Item
+        onClick={() => {
+          const billingData = {
+            date: row.date,
+            name: row.companyName || row.name,
+            controlNo: row.controlNumber || row.controlNo,
+            address: row.address,
+            subject: row.subject,
+            attention: row.attention,
+            reviewer1: row.reviewer1,
+            reviewer2: row.reviewer2,
+            reviewer3: row.reviewer3,
+            reviewer4: row.reviewer4,
+            approver1: row.approver1,
+            approver2: row.approver2,
+          };
+          openModal('create', billingData, 'billing-statement');
+        }}
+      >
+        Generate Billing Statement
       </Menu.Item>
     </>
   );

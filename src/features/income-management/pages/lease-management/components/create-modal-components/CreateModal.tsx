@@ -9,7 +9,7 @@ import { FieldConfig } from '@/features/income-management/types/modal-fields';
 import { FieldGrid } from '@/features/income-management/components/FieldGrid';
 
 interface CreateModalProps {
-  viewType: string;
+  viewType: string | undefined;
   data?: Record<string, any>;
   onSubmit: (values: any) => void;
   onClose: () => void;
@@ -18,15 +18,14 @@ interface CreateModalProps {
 function CreateModal({ viewType, onSubmit, onClose, data }: CreateModalProps) {
   const { currentDate } = CurrentDate();
   const formRef = useRef<HTMLFormElement>(null);
-  const config = formConfigs[viewType];
+  const config = viewType && formConfigs[viewType] ? formConfigs[viewType] : null;
   const fields: FieldConfig[] = config?.fields ?? [];
   const sections = config?.sections?.map(section => ({
     ...section,
     fields: section.fields ?? []
   }));
+
   const [enableRentalAdjustment, setEnableRentalAdjustment] = useState(false);
-  console.log('CreateModal data:', data);
-  // Determine filtering context
   const filterContext = viewType === 'journal-entry' ? data?.jevType || 'general' : 'createModal';
 
   // Filter fields for non-sectioned configs
@@ -38,18 +37,29 @@ function CreateModal({ viewType, onSubmit, onClose, data }: CreateModalProps) {
     return field.displayIn === filterContext;
   });
 
-  // Form logic
+  // Only use API data for initial values, but keep autoFillCurrentDate and withSwitch logic
   const form = useForm({
     initialValues: fields.reduce((acc, field) => {
-      if (field.type === 'date' && field.autoFillCurrentDate) {
-        acc[field.name] = currentDate;
-      } else {
-        acc[field.name] = field.type === 'dateRange'
-          ? [null, null]
-          : field.defaultValue ?? field.value ?? '';
+      // 1. If API data exists for this field, use it
+      if (data && data[field.name] !== undefined && data[field.name] !== null) {
+        acc[field.name] = data[field.name];
       }
-      if (field.withSwitch) acc[field.name] = null;
-      if (data && data[field.name]) acc[field.name] = data[field.name];
+      // 2. Else, if autoFillCurrentDate for date fields
+      else if (field.type === 'date' && field.autoFillCurrentDate) {
+        acc[field.name] = currentDate;
+      }
+      // 3. Else, if withSwitch
+      else if (field.withSwitch) {
+        acc[field.name] = null;
+      }
+      // 4. Else, for dateRange, set as [null, null]
+      else if (field.type === 'dateRange') {
+        acc[field.name] = [null, null];
+      }
+      // 5. Else, default to empty string
+      else {
+        acc[field.name] = '';
+      }
       return acc;
     }, {} as Record<string, any>),
 
@@ -58,9 +68,6 @@ function CreateModal({ viewType, onSubmit, onClose, data }: CreateModalProps) {
       fields.forEach(field => {
         if (field.required && !values[field.name]) {
           errors[field.name] = 'This field is required';
-        }
-        if (Object.keys(errors).length > 0) {
-          console.log('FORM VALIDATION ERRORS:', errors, values);
         }
         if (
           field.name === 'retailAdjustment' &&
@@ -73,16 +80,15 @@ function CreateModal({ viewType, onSubmit, onClose, data }: CreateModalProps) {
       return errors;
     }
   });
-const allRequiredFilled = fields
-  .filter(f => f.required && (!f.displayIn || f.displayIn === filterContext || (Array.isArray(f.displayIn) && f.displayIn.includes(filterContext))))
-  .every(f => {
-    const value = form.values[f.name];
-    // For select, text, number, date, etc.
-    return value !== undefined && value !== null && value !== '';
-  });
+  const allRequiredFilled = fields
+    .filter(f => f.required && (!f.displayIn || f.displayIn === filterContext || (Array.isArray(f.displayIn) && f.displayIn.includes(filterContext))))
+    .every(f => {
+      const value = form.values[f.name];
+      return value !== undefined && value !== null && value !== '';
+    });
 
   useEffect(() => {
-    const computedValues = getComputedFields(viewType, form.values);
+    const computedValues = getComputedFields(viewType ?? '', form.values);
     form.setValues({
       ...form.values,
       ...computedValues
@@ -96,19 +102,17 @@ const allRequiredFilled = fields
       periodFrom,
       periodTo,
       ...(data?.jevType ? { jevType: data.jevType } : {})
-
     };
-    console.log('CreateModal handleSubmit finalValues:', finalValues);
-
     onSubmit(finalValues);
     form.reset();
   };
+
 
   return (
     <BaseModal
       opened={true}
       onClose={onClose}
-      title={`Create ${getTitle(viewType)}`}
+      title={`Create ${getTitle(viewType ?? '')}`}
       size="55rem"
       showSaveButton={true}
       showExportButton={false}
@@ -119,7 +123,7 @@ const allRequiredFilled = fields
           formRef.current.requestSubmit();
         }
       }}
-       saveDisabled={!allRequiredFilled}
+      saveDisabled={!allRequiredFilled}
     >
       <form ref={formRef} onSubmit={e => {
         console.log('FORM SUBMIT RAW EVENT', e);
@@ -135,7 +139,7 @@ const allRequiredFilled = fields
         <button type="submit" style={{ display: 'none' }} />
       </form>
       <FormExtras
-        viewType={viewType}
+        viewType={viewType ?? ''}
         fields={fields.filter(f => f.displayIn === 'formExtra')}
         form={form}
       />

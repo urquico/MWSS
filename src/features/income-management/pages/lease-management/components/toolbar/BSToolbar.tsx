@@ -24,11 +24,11 @@ export const BSToolbar: React.FC<BSToolbarProps> = ({
   return (
     <>
       {/* Top toolbar with a Create button */}
-      <Group justify="sm" mb="md">
+      {/* <Group justify="sm" mb="md">
         <Button onClick={onCreate} color='#1E40AF' variant="filled" leftSection={<IconPlus size={14} />} >
           Create
         </Button>
-      </Group>
+      </Group> */}
 
       {/* We export these handlers for DataView to use */}
       {/* But note this component returns only the toolbar UI, the rest will be props */}

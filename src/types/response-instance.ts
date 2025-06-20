@@ -1,8 +1,8 @@
-export interface SuccessResponse<T = undefined> {
-  data?: T;
-  totalCount?: number;
+export interface SuccessResponse<T> {
   statusCode: number;
   message: string;
-  currentPage?: number;
+  data: T;
+  totalCount?: number;
   totalPages?: number;
+  currentPage?: number;
 }

@@ -1,0 +1,74 @@
+{
+  "soa": [
+    {
+      "id": 1,
+      "date": "2025-06-19T08:31:11.185Z",
+      "controlNumber": "SOA-001",
+      "lesseeName": "Acme Corporation",
+      "companyName": "Acme Corporation",
+      "subject": "Monthly Rent",
+      "periodCovered": "June 2025",
+      "status": "Paid",
+      "remarks": "On time"
+    },
+    {
+      "id": 2,
+      "date": "2025-06-18T08:31:11.185Z",
+      "controlNumber": "SOA-002",
+      "lesseeName": "Beta LLC",
+      "companyName": "Beta LLC",
+      "subject": "Monthly Rent",
+      "periodCovered": "May 2025",
+      "status": "Unpaid",
+      "remarks": "Late payment"
+    }
+  ],
+  "bs": [
+    {
+      "id": 1,
+      "date": "2025-06-19T08:32:34.773Z",
+      "controlNumber": "BS-001",
+      "lesseeName": "Gamma Inc",
+      "companyName": "Gamma Inc",
+      "subject": "Service Charge",
+      "status": "Paid",
+      "dateReceived": "2025-06-19T08:32:34.773Z",
+      "remarks": "Received"
+    },
+    {
+      "id": 2,
+      "date": "2025-06-18T08:32:34.773Z",
+      "controlNumber": "BS-002",
+      "lesseeName": "Delta Ltd",
+      "companyName": "Delta Ltd",
+      "subject": "Service Charge",
+      "status": "Unpaid",
+      "dateReceived": "2025-06-18T08:32:34.773Z",
+      "remarks": "Pending"
+    }
+  ],
+  "dtp": [
+    {
+      "id": 1,
+      "date": "2025-06-19T08:33:22.218Z",
+      "controlNumber": "DTP-001",
+      "lesseeName": "Epsilon LLC",
+      "companyName": "Epsilon LLC",
+      "subject": "Demand to Pay",
+      "status": "Pending",
+      "dateReceived": "2025-06-19T08:33:22.218Z",
+      "remarks": "First Notice"
+    },
+    {
+      "id": 2,
+      "date": "2025-06-18T08:33:22.218Z",
+      "controlNumber": "DTP-002",
+      "lesseeName": "Zeta Corp",
+      "companyName": "Zeta Corp",
+      "subject": "Demand to Pay",
+      "status": "Paid",
+      "dateReceived": "2025-06-18T08:33:22.218Z",
+      "remarks": "Settled"
+    }
+  ]
+}
