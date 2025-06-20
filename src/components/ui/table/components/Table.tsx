@@ -145,7 +145,7 @@ function DataTable<TData extends Record<string, any>>({
                   className="text-center"
                 >
                   <Center>
-                    <Loader size="lg" />
+                    <Loader size="lg" type='dots' />
                     <Box ml="md">{loading.text || 'Loading data...'}</Box>
                   </Center>
                 </Table.Td>

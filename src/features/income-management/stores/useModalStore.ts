@@ -1,21 +1,21 @@
 import { create, StateCreator } from 'zustand';
 import zukeeper from 'zukeeper';
 import { ModalType } from '../types/modal-types';
-
+import { ModalData } from '../pages/lease-management/types/data-types';
 interface PendingModal {
   type: ModalType;
-  data: any;
+  data: ModalData | any;
   viewType?: string;
 }
 
 interface ModalState {
   isOpen: boolean;
   type: ModalType;
-  data: any;
+  data: ModalData | any;
   viewType?: string;
   pendingModal: PendingModal | null;
   setPendingModal: (pending: PendingModal | null) => void;
-  openModal: (type: ModalType, data?: any, viewType?: string) => void;
+  openModal: (type: ModalType, data?: ModalData | any, viewType?: string) => void;
   closeModal: () => void;
 }
 

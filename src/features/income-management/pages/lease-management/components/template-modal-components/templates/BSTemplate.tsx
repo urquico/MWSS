@@ -2,10 +2,9 @@ import BaseModal from "@/features/income-management/components/BaseModal";
 import { Text, Divider, Table, Flex, Box } from "@mantine/core";
 import { getTitle } from "../../../config/generate-modal-config";
 import CurrentDate from "@/utils/CurrentDate";
-import { generateModalConfigs } from "../../../config/generate-modal-config";
-
+import {BillingStatementData} from "../../../types/data-types";
 interface BSTemplateProps {
-  data?: any;
+  data?: BillingStatementData;
   onClose: () => void;
   viewType: string;
 }
