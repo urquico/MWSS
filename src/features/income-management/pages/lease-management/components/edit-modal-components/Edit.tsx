@@ -9,7 +9,7 @@ import { FieldConfig, SectionConfig } from '@/features/income-management/types/m
 import { FieldGrid } from '@/features/income-management/components/FieldGrid';
 
 interface EditProps {
-  viewType: string;
+  viewType: string | undefined;
   onSubmit: (values: { remarks: string }) => void;
   onClose: () => void;
 }
@@ -20,7 +20,9 @@ function Edit({ viewType, onSubmit, onClose }: EditProps) {
   const formRef = useRef<HTMLFormElement>(null);
 
   // Section-based rendering support
-  const config = formConfigs[viewType];
+  const config = viewType && formConfigs[viewType]
+    ? formConfigs[viewType]
+    : null;
   const sections: SectionConfig[] | undefined = config?.sections;
   const fields: FieldConfig[] = sections
     ? sections.flatMap(section => section.fields ?? []).filter(Boolean)
@@ -58,7 +60,7 @@ function Edit({ viewType, onSubmit, onClose }: EditProps) {
   });
 
   useEffect(() => {
-    const computedValues = getComputedFields(viewType, form.values);
+    const computedValues = getComputedFields(viewType ?? '', form.values);
     form.setValues({
       ...form.values,
       ...computedValues
@@ -80,7 +82,7 @@ function Edit({ viewType, onSubmit, onClose }: EditProps) {
     <BaseModal
       opened={true}
       onClose={onClose}
-      title={`Update ${getTitle(viewType)}`}
+      title={`Update ${getTitle(viewType ?? '')}`}
       size="55rem"
       showSaveButton={true}
       showExportButton={false}
@@ -105,7 +107,7 @@ function Edit({ viewType, onSubmit, onClose }: EditProps) {
         <button type="submit" style={{ display: 'none' }} />
       </form>
       <FormExtras
-        viewType={viewType}
+        viewType={viewType ?? ''}
         fields={fields.filter((f: FieldConfig) => f.displayIn === 'formExtra')}
         form={form}
       />

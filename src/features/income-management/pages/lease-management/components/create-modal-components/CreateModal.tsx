@@ -9,7 +9,7 @@ import { FieldConfig } from '@/features/income-management/types/modal-fields';
 import { FieldGrid } from '@/features/income-management/components/FieldGrid';
 
 interface CreateModalProps {
-  viewType: string;
+  viewType: string | undefined;
   data?: Record<string, any>;
   onSubmit: (values: any) => void;
   onClose: () => void;
@@ -18,14 +18,17 @@ interface CreateModalProps {
 function CreateModal({ viewType, onSubmit, onClose, data }: CreateModalProps) {
   const { currentDate } = CurrentDate();
   const formRef = useRef<HTMLFormElement>(null);
-  const config = formConfigs[viewType];
-  const fields: FieldConfig[] = config?.fields ?? [];
+const config = viewType && formConfigs[viewType]
+  ? formConfigs[viewType]
+  : null;
+    const fields: FieldConfig[] = config?.fields ?? [];
   const sections = config?.sections?.map(section => ({
     ...section,
     fields: section.fields ?? []
   }));
   const [enableRentalAdjustment, setEnableRentalAdjustment] = useState(false);
   console.log('CreateModal data:', data);
+  console.log('CreateModal viewType:', viewType);
   // Determine filtering context
   const filterContext = viewType === 'journal-entry' ? data?.jevType || 'general' : 'createModal';
 
@@ -82,7 +85,7 @@ const allRequiredFilled = fields
   });
 
   useEffect(() => {
-    const computedValues = getComputedFields(viewType, form.values);
+    const computedValues = getComputedFields(viewType ?? '', form.values);
     form.setValues({
       ...form.values,
       ...computedValues
@@ -108,7 +111,7 @@ const allRequiredFilled = fields
     <BaseModal
       opened={true}
       onClose={onClose}
-      title={`Create ${getTitle(viewType)}`}
+      title={`Create ${getTitle(viewType ?? '')}`}
       size="55rem"
       showSaveButton={true}
       showExportButton={false}
@@ -135,7 +138,7 @@ const allRequiredFilled = fields
         <button type="submit" style={{ display: 'none' }} />
       </form>
       <FormExtras
-        viewType={viewType}
+        viewType={viewType ?? ''}
         fields={fields.filter(f => f.displayIn === 'formExtra')}
         form={form}
       />

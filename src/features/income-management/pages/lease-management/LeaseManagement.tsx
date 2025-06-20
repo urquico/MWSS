@@ -41,7 +41,7 @@ interface DataViewProps {
 
 function LeaseManagement({ config }: DataViewProps) {
   const { data, isLoading, error } = useDataView(config.viewType);
-  const { isOpen, type, data: modalData, closeModal, pendingModal, setPendingModal, openModal } = useModalStore();
+  const { isOpen, type, data: modalData, closeModal, pendingModal, setPendingModal, openModal,viewType } = useModalStore();
 
 
   const {
@@ -206,17 +206,17 @@ function LeaseManagement({ config }: DataViewProps) {
       <Paper radius={20} p="xl">
         {/* Conditionally render modals */}
         {isOpen && type === 'generate' && (
-          <GenerateModal data={modalData} onClose={closeModal} viewType={config.viewType} />
+          <GenerateModal data={modalData} onClose={closeModal} viewType={viewType} />
         )}
         {isOpen && type === 'template' && (
-          <GenerateTemplate data={modalData} onClose={closeModal} viewType={config.viewType} />
+          <GenerateTemplate data={modalData} onClose={closeModal} viewType={viewType} />
         )}
         {isOpen && type === 'viewHistory' && (
-          <ViewHistory data={modalData} onClose={closeModal} viewType={config.viewType} />
+          <ViewHistory data={modalData} onClose={closeModal} viewType={viewType} />
         )}
         {isOpen && type === 'create' && (
           <CreateModal
-            viewType={config.viewType}
+            viewType={viewType}
             onSubmit={handleCreateSubmit}
             data={modalData}
             onClose={closeModal}
@@ -224,14 +224,14 @@ function LeaseManagement({ config }: DataViewProps) {
         )}
         {isOpen && type === 'addRemarks' && (
           <AddRemarks
-            viewType={config.viewType}
+            viewType={viewType}
             onSubmit={handleAddRemarks}
             onClose={closeModal}
           />
         )}
         {isOpen && type === 'edit' && (
           <Edit
-            viewType={config.viewType}
+            viewType={viewType}
             onSubmit={handleEdit}
             onClose={closeModal}
           />

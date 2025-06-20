@@ -1,10 +1,9 @@
-import { api } from '@/api/axios-instance';
 import { LoginDataType } from '@/features/login/types/login-data-types';
 import { LoginRequest } from '@/features/login/types/login-request';
 import { SuccessResponse } from '@/types/response-instance';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-
+import { api } from '@/api/axios';
 /**
  *
  * This function is used to login the user
@@ -25,8 +24,8 @@ export const login = async (
   login: LoginRequest,
 ): Promise<SuccessResponse<LoginDataType>> => {
   try {
-    const response = await api.post('/auth/kiosk/login', {
-      kiosk_code: login.kiosk_code,
+    const response = await api.post('/', {
+      email: login.email,
       password: login.password,
     });
 
@@ -65,7 +64,7 @@ export const useLoginMutation = () => {
       return login(loginRequest);
     },
     onSuccess: (data: SuccessResponse<LoginDataType>) => {
-      navigate('/kiosk');
+      navigate('/landing');
       if (data.data?.id !== undefined) {
         localStorage.setItem('id', data.data.id.toString());
       }

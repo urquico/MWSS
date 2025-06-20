@@ -10,7 +10,9 @@
     "preview": "vite preview",
     "format": "prettier --write '**/*.ts{,x}'",
     "version: update": "node ./update-version.mjs",
-    "test": "vitest"
+    "test": "vitest",
+    "json-server": "json-server --watch db.json --port 3002"
+
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",

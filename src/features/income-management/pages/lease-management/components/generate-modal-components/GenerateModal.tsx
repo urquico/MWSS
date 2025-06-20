@@ -3,7 +3,7 @@ import { Loader } from "@mantine/core";
 
 interface GenerateModalProps {
   onClose: () => void;
-  viewType: string;
+  viewType: string | undefined;
   data?: any;
 }
 
@@ -14,15 +14,16 @@ const LesseeInformationGenerate = lazy(() => import("./generate-modal/LesseeInfo
 const JournalEntryGenerate = lazy(() => import("./generate-modal/JournalEntryGenerate"));
 
 const GenerateModal: React.FC<GenerateModalProps> = ({ onClose, viewType, data }) => {
-  const modalContentMap: Record<string, JSX.Element> = {
-    "statement-of-account": <SOAGenerate data={data} onClose={onClose} viewType={viewType} />,
-    "invoice-tracking": <InvoiceGenerate data={data} onClose={onClose} viewType={viewType} />,
-    "lessee-information": <LesseeInformationGenerate data={data} onClose={onClose} viewType={viewType} />,
-    "journal-entry": <JournalEntryGenerate data={data} onClose={onClose} viewType={viewType} />
+  const safeViewType = viewType ?? "statement-of-account";
 
+  const modalContentMap: Record<string, JSX.Element> = {
+    "statement-of-account": <SOAGenerate data={data} onClose={onClose} viewType={safeViewType} />,
+    "invoice-tracking": <InvoiceGenerate data={data} onClose={onClose} viewType={safeViewType} />,
+    "lessee-information": <LesseeInformationGenerate data={data} onClose={onClose} viewType={safeViewType} />,
+    "journal-entry": <JournalEntryGenerate data={data} onClose={onClose} viewType={safeViewType} />
   };
 
-  const ModalContent = modalContentMap[viewType];
+  const ModalContent = modalContentMap[safeViewType];
 
   return (
     <Suspense fallback={<Loader size="sm" mt="md" />}>
@@ -30,5 +31,4 @@ const GenerateModal: React.FC<GenerateModalProps> = ({ onClose, viewType, data }
     </Suspense>
   );
 };
-
 export default GenerateModal;

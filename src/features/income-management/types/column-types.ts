@@ -29,24 +29,10 @@ import { renderLesseeNameCell } from '../utils/cell-onclick';
 
 
 
-const billingColumns: ColumnDef<any>[] = [
-  { accessorKey: 'date', header: 'Date' },
-  { accessorKey: 'controlNumber', header: 'Control Number' },
-  { accessorKey: 'lessee', header: 'Lessee' },
-  { accessorKey: 'companyName', header: 'Company Name' },
-  { accessorKey: 'subject', header: 'Subject' },
-  { accessorKey: 'dateReceived ', header: 'Date Received' },
-  {
-    accessorKey: 'status',
-    header: 'Status',
-    cell: ({ row }) => renderStatusCell(row.original.status),
-  },
-  { accessorKey: 'remarks', header: 'Remarks' },
-];
 const soaColumns: ColumnDef<any>[] = [
   { accessorKey: 'date', header: 'Date' },
   { accessorKey: 'controlNumber', header: 'Control Number' },
-  { accessorKey: 'lessee', header: 'Lessee' },
+  { accessorKey: 'lesseeName', header: 'Lessee Name' },
   { accessorKey: 'companyName', header: 'Company Name' },
   { accessorKey: 'subject', header: 'Subject' },
   { accessorKey: 'periodCovered', header: 'Period Covered' },
@@ -57,26 +43,40 @@ const soaColumns: ColumnDef<any>[] = [
   },
   { accessorKey: 'remarks', header: 'Remarks' },
 ];
-
-const paymentColumns: ColumnDef<any>[] = [
-  { accessorKey: 'transactionId', header: 'Transaction ID' },
-  { accessorKey: 'paymentDate', header: 'Payment Date' },
-];
-
-const demandColumns: ColumnDef<any>[] = [
+const billingColumns: ColumnDef<any>[] = [
   { accessorKey: 'date', header: 'Date' },
   { accessorKey: 'controlNumber', header: 'Control Number' },
-  { accessorKey: 'lessee', header: 'Lessee' },
+  { accessorKey: 'lesseeName', header: 'Lessee Name' },
   { accessorKey: 'companyName', header: 'Company Name' },
   { accessorKey: 'subject', header: 'Subject' },
   { accessorKey: 'dateReceived', header: 'Date Received' },
-    {
+  {
     accessorKey: 'status',
     header: 'Status',
     cell: ({ row }) => renderStatusCell(row.original.status),
   },
   { accessorKey: 'remarks', header: 'Remarks' },
 ];
+const demandColumns: ColumnDef<any>[] = [
+  { accessorKey: 'date', header: 'Date' },
+  { accessorKey: 'controlNumber', header: 'Control Number' },
+  { accessorKey: 'lesseeName', header: 'Lessee Name' },
+  { accessorKey: 'companyName', header: 'Company Name' },
+  { accessorKey: 'subject', header: 'Subject' },
+  { accessorKey: 'dateReceived', header: 'Date Received' },
+  {
+    accessorKey: 'status',
+    header: 'Status',
+    cell: ({ row }) => renderStatusCell(row.original.status),
+  },
+  { accessorKey: 'remarks', header: 'Remarks' },
+];
+const paymentColumns: ColumnDef<any>[] = [
+  { accessorKey: 'transactionId', header: 'Transaction ID' },
+  { accessorKey: 'paymentDate', header: 'Payment Date' },
+];
+
+
 
 const journalColumns: ColumnDef<any>[] = [
   { accessorKey: 'jevDate', header: 'JEV Date' },
