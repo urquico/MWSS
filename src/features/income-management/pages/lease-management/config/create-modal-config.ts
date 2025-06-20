@@ -804,60 +804,59 @@ export const formConfigs: Record<string, ModalConfig> = {
         }
       
      ],
-    tableData: [
-        {
-          date: 'March 17, 2025',
-          soaNumber: 'MWSS FD-F-013',
-          amount: '513,275.00',
-          status: 'Paid',
-        },
-        {
-          date: 'April 17, 2025',
-          soaNumber: 'MWSS FD-F-014',
-          amount: '201,112.00',
-          status: 'Paid',
-        },
-        {
-          date: 'May 17, 2025',
-          soaNumber: 'MWSS FD-F-015',
-          amount: '12,000.00',
-          status: 'Paid',
-        },
-        {
-          date: 'June 17, 2025',
-          soaNumber: 'MWSS FD-F-016',
-          amount: '12,543.00',
-          status: 'Unpaid',
-        },
-        {
-          date: 'July 17, 2025',
-          soaNumber: 'MWSS FD-F-017',
-          amount: '74,322.00',
-          status: 'Paid',
-        },
-      ],
-      columns: [
-        {
-          accessorKey: 'date',
-          header: 'Date',
+     tableData: [
+       {
+         date: 'March 17, 2025',
+         soaNumber: 'MWSS FD-F-013',
+         amount: '513,275.00',
+         status: 'Paid',
+       },
+       {
+         date: 'April 17, 2025',
+         soaNumber: 'MWSS FD-F-014',
+         amount: '201,112.00',
+         status: 'Paid',
+       },
+       {
+         date: 'May 17, 2025',
+         soaNumber: 'MWSS FD-F-015',
+         amount: '12,000.00',
+         status: 'Paid',
+       },
+       {
+         date: 'June 17, 2025',
+         soaNumber: 'MWSS FD-F-016',
+         amount: '12,543.00',
+         status: 'Unpaid',
+       },
+       {
+         date: 'July 17, 2025',
+         soaNumber: 'MWSS FD-F-017',
+         amount: '74,322.00',
+         status: 'Paid',
+       },
+     ],
+     columns: [
+       {
+         accessorKey: 'date',
+         header: 'Date',
 
-        },
-        {
-          accessorKey: 'soaNumber',
-          header: 'SOA No.',
-      
-        },
-        {
-          accessorKey: 'amount',
-          header: 'Amount',
+       },
+       {
+         accessorKey: 'soaNumber',
+         header: 'SOA No.',
+    
+       },
+       {
+         accessorKey: 'amount',
+         header: 'Amount',
 
-        },
-        {
-          accessorKey: 'status',
-          header: 'Status',
-        },
-      ],
-   
+       },
+       {
+         accessorKey: 'status',
+         header: 'Status',
+       },
+     ],
    },
 }
 
