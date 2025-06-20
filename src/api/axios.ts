@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { QueryClient } from '@tanstack/react-query';
+import axios from 'axios';
 
 // Axios instance for API requests
 export const api = axios.create({
@@ -7,6 +7,7 @@ export const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+  withCredentials: true,
 });
 
 // React Query client with default options
