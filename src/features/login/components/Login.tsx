@@ -14,6 +14,7 @@ import { useForm, zodResolver } from '@mantine/form';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { appVersion } from '@/utils/version';
+
 interface LoginProps {
   isFromTransition?: boolean;
 }
@@ -76,11 +77,15 @@ const Login = ({
             vertical
           />
         </Grid.Col>
+        
 
-        {/* Right: Login Form */}
-<Grid.Col span={{ base: 12, md: 6 }} className="flex items-center justify-center px-6 py-16">
-  <div className="w-full max-w-md mt-[35%] md:mt-0">
-            <Title fz={48} fw={600} className="mb-2 text-center text-blue-900 font-roboto-slab">
+        {/* Right Column - Login Form */}
+        <Grid.Col
+          span={{ base: 12, md: 6 }}
+          className='flex items-center justify-center'
+        >
+          <div className='w-full max-w-md'>
+            <Title fz={48} fw={600} className='text-blue-900 font-roboto-slab'>
               Welcome!
             </Title>
             <Text fw={300} fz={24} className="mb-8 text-center">
@@ -136,32 +141,14 @@ const Login = ({
               >
                 Log In
               </Button>
-               <div className="text-xs text-right gray-400">
+ <div className="text-xs text-right gray-400">
                 Version {appVersion}
               </div>
             </form>
           </div>
         </Grid.Col>
       </Grid>
-
-      {/* Center-Bottom Vector */}
-<div className="absolute bottom-0 z-0 hidden transform -translate-x-1/2 left-1/2 md:block">
-        <img
-          src="/vector.png"
-          alt="Vector"
-          className="block"
-          style={{
-            width: '20vw',
-            height: '18vw',
-            maxWidth: '393px',
-            maxHeight: '374px',
-            minWidth: '180px',
-            minHeight: '120px',
-          }}
-        />
-      </div>
-
-      {/*  Forgot Password Modal */}
+      {/* Forgot Password Modal */}
       <ForgotPasswordModal open={showForgotModal} onClose={() => setShowForgotModal(false)} />
     </Box>
   );
