@@ -69,8 +69,6 @@ function LeaseManagement({ config }: DataViewProps) {
     }
   }, [config.viewType, data]);
 
-  console.log(data);
-
   const columns = getColumnConfig(config.viewType, config.customColumns);
 
   const handleCreate = () => {
@@ -278,11 +276,7 @@ function LeaseManagement({ config }: DataViewProps) {
           {topToolbarSlot}
         </Box>
         <Table
-          data={
-            config.viewType === 'payment-history'
-              ? filteredData
-              : data?.data || []
-          }
+          data={data?.data || []}
           columns={columns}
           features={{
             filtering: { fuzzy: true, global: true },

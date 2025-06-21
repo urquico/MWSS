@@ -1,7 +1,7 @@
 {
   "name": "mwss_web",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.4.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,10 +9,9 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "format": "prettier --write '**/*.ts{,x}'",
-    "version: update": "node ./update-version.mjs",
+    "version:update": "node ./update-version.mjs",
     "test": "vitest",
     "json-server": "json-server --watch db.json --port 3002"
-
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
