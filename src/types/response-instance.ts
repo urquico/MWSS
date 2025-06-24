@@ -6,3 +6,8 @@ export interface SuccessResponse<T> {
   totalPages?: number;
   currentPage?: number;
 }
+
+export interface ErrorResponse {
+  statusCode: number;
+  error: string;
+}

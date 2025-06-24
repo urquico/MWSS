@@ -11,7 +11,8 @@ import { loginSchema } from '@/features/login/schema/login.schema';
 import { LoginRequest } from '@/features/login/types/login-request';
 import { APP_VERSION } from '@/types/constants';
 import { Anchor, Box, Grid } from '@mantine/core';
-import { useForm, zodResolver } from '@mantine/form';
+import { useForm } from '@mantine/form';
+import { zodResolver } from 'mantine-form-zod-resolver';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -39,7 +40,8 @@ const Login = ({ isFromTransition = false }: LoginProps) => {
   const navigate = useNavigate();
 
   const handleSubmit = async (values: LoginRequest) => {
-    navigate('/landing');
+    // navigate('/landing');
+    await mutateAsync(values);
   };
 
   if (isPending)

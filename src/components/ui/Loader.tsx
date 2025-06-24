@@ -10,7 +10,7 @@ import logo from '/mwss-logo.svg';
 
 function LoaderPage() {
   return (
-    <div className='flex flex-col items-center justify-center h-full max-w-full gap-2'>
+    <div className='flex h-full max-w-full flex-col items-center justify-center gap-2'>
       <Image src={logo} alt='logo' className='monitor:size-40 size-20' />
       <Loader type='dots' size='lg' />
     </div>
