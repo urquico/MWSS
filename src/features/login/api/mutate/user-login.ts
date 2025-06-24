@@ -1,9 +1,11 @@
+import { api } from '@/api/axios';
 import { LoginDataType } from '@/features/login/types/login-data-types';
 import { LoginRequest } from '@/features/login/types/login-request';
-import { SuccessResponse } from '@/types/response-instance';
+import { API_URL } from '@/types/constants';
+import { ErrorResponse, SuccessResponse } from '@/types/response-instance';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import { api } from '@/api/axios';
+
 /**
  *
  * This function is used to login the user
@@ -24,17 +26,18 @@ export const login = async (
   login: LoginRequest,
 ): Promise<SuccessResponse<LoginDataType>> => {
   try {
-    const response = await api.post('/', {
+    const response = await api.post(`${API_URL}/api/v1/auth/login`, {
       email: login.email,
       password: login.password,
     });
 
-    const data = response.data as SuccessResponse<LoginDataType>;
-    if (![200, 201].includes(data.statusCode)) {
-      throw new Error(data.message);
+    if (response.data.statusCode >= 400) {
+      throw response.data;
     }
 
-    return response.data;
+    const data = response.data as SuccessResponse<LoginDataType>;
+
+    return data;
   } catch (error) {
     throw error;
   }
@@ -64,11 +67,19 @@ export const useLoginMutation = () => {
       return login(loginRequest);
     },
     onSuccess: (data: SuccessResponse<LoginDataType>) => {
-      navigate('/landing');
-      if (data.data?.id !== undefined) {
-        localStorage.setItem('id', data.data.id.toString());
+      if (data.data.permissions !== undefined) {
+        localStorage.setItem(
+          'permissions',
+          JSON.stringify(data.data.permissions),
+        );
       }
       localStorage.setItem('isLogged', 'true');
+
+      navigate('/landing');
+    },
+    onError: (error: ErrorResponse) => {
+      console.error('Login failed:', error);
+      // Handle error, e.g., show a notification or alert
     },
   });
 };
