@@ -49,12 +49,10 @@ export enum ActiveRoute {
   RAW_WATER_CUSTOMER_INFORMATION = '/finance/raw-water/customers/info',
   RAW_WATER_CUSTOMER_PAYMENT_HISTORY = '/finance/raw-water/customers/history',
 
-
   RAW_WATER_PAYMENT_MONITORING = '/finance/raw-water/payments',
   RAW_WATER_PAYMENT_RECONCILIATION = '/finance/raw-water/payments/reconciliation',
   RAW_WATER_PAYMENT_HISTORY = '/finance/raw-water/payments/history',
   RAW_WATER_PAYMENT_REMINDER = '/finance/raw-water/payments/reminder',
-
 
   RAW_WATER_PAYMENT_COMPUTATION = '/finance/raw-water/payment-computation',
   RAW_WATER_PAYMENT_COMPUTATION_CPI = '/finance/raw-water/payment-computation/cpi',
@@ -65,7 +63,5 @@ export enum ActiveRoute {
   CONCESSION_MGMT = '/finance/concession',
   CONCESSIONAIRE_FEE = '/finance/concession/fee',
   CONCESSION_JOURNAL_ENTRY_VOUCHER = '/finance/concession/journal',
-  
-
 }
 

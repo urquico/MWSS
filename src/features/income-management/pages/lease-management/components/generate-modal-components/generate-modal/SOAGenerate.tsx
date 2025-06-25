@@ -1,9 +1,10 @@
 import { Grid, Title, Table, Paper } from "@mantine/core";
 import BaseModal from "@/features/income-management/components/BaseModal";
 import TextInput from "@/components/ui/TextInput";
+import { StatementOfAccountData } from "../../../types/data-types";
 import { getTitle, generateModalConfigs, appendTotalRow } from "../../../config/generate-modal-config";
 interface SOAGenerateProps {
-  data?: any;
+  data?: StatementOfAccountData;
   onClose: () => void;
   viewType: string;
 }
@@ -30,19 +31,20 @@ const SOAGenerate: React.FC<SOAGenerateProps> = ({ data, onClose, viewType }) =>
       opened={true}
       onClose={onClose}
     >
-      <Grid p={10}>
-        {fields.map((field) => (
-          <Grid.Col key={field.name} span={field.span}>
-            <TextInput
-              label={field.label}
-              description={field.description}
-              value={data?.[field.name] ?? ""}
-              disabled
-              mt="md"
-            />
-          </Grid.Col>
-        ))}
-      </Grid>
+
+     <Grid p={10}>
+  {fields.map((field) => (
+    <Grid.Col key={field.name} span={field.span}>
+      <TextInput
+        label={field.label}
+        description={field.description}
+        value={(data?.[field.name as keyof StatementOfAccountData] ?? "") as string}
+        disabled
+        mt="md"
+      />
+    </Grid.Col>
+  ))}
+</Grid>
       <Title fz={13} fw={700} fs="italic" pl='10'>
         *subject to annual escalation rate of ten percent (10%)
       </Title>
