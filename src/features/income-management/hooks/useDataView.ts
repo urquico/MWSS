@@ -14,7 +14,7 @@ const viewTypeApiMap: Record<string, string> = {
 };
 
 const fetchViewData = async (viewType: ViewType) => {
-  const endpoint = viewTypeApiMap[viewType];
+  const endpoint = viewTypeApiMap[viewType + '1'];
 
   console.log(
     'Fetching data for view type:',
